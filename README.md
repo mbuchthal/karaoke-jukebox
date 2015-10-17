@@ -1,2 +1,2 @@
 # karaoke-jukebox
-Karaoke Jukebox
+Karaoke Jukebox - song database/renderer and room management
