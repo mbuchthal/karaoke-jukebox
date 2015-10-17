@@ -5,7 +5,7 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
 
-require(__dirname + '/../server.js');
+require(__dirname + '/../../server.js');
 
 var kjPORT = ':' + (process.env.PORT || 3000);
 var kjURL = (process.env.KJURL || 'localhost') + kjPORT;
