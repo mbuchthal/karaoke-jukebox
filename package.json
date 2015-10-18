@@ -1,0 +1,56 @@
+{
+  "name": "karaoke-jukebox",
+  "version": "0.1.0",
+  "description": "Karaoke song database and room-management system. A class project for Code Fellows.",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp tests:test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewmnelson/karaoke-jukebox.git"
+  },
+  "keywords": [
+    "karaoke"
+  ],
+  "author": "andrewmnelson (Andrew Nelson)",
+  "contributors": [
+    {
+      "name": "branespace (Gregory Irwin)"
+    },
+    {
+      "name": "hollislau (Hollis Lau)"
+    },
+    {
+      "name": "mbuchthal (Mark Buchthal)"
+    },
+    {
+      "name": "sschadwick (Steven Chadwick)"
+    }
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewmnelson/karaoke-jukebox/issues"
+  },
+  "homepage": "https://github.com/andrewmnelson/karaoke-jukebox#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.1",
+    "eat": "^0.1.1",
+    "express": "^4.13.3",
+    "http": "0.0.0",
+    "mongoose": "^4.1.11",
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-jscs": "^3.0.1",
+    "gulp-jshint": "^1.11.2",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1",
+    "socket.io-client": "^1.3.7"
+  }
+}
