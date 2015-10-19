@@ -6,10 +6,14 @@ chai.use(chaiHttp);
 var expect = chai.expect;
 var mongoose = require('mongoose');
 
-describe('the lyrics server', function() {
-  var lyricsURL = 'localhost:3000/api';
+process.env.MONGO_URL = 'mongodb://localhost/karaoke_jukebox_test';
 
-  var Lyric = require(__dirname + '/../../models/lyric');
+var server = require(__dirname + '/../../server');
+var lyricsURL = 'localhost:3000/api';
+
+var Lyric = require(__dirname + '/../../models/lyric');
+
+describe('the lyrics server', function() {
   after(function(done) {  // jshint ignore:line
     mongoose.connection.db.dropDatabase(function(err) {
       if (err) {return console.log(err);}
