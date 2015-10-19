@@ -4,7 +4,7 @@
   "description": "Karaoke song database and room-management system. A class project for Code Fellows.",
   "main": "server.js",
   "scripts": {
-    "test": "gulp tests:test"
+    "test": "gulp tests"
   },
   "repository": {
     "type": "git",
