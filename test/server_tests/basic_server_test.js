@@ -4,8 +4,11 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
+var mongoose = require('mongoose');
 
-require(__dirname + '/../../server.js');
+process.env.MONGO_URL = 'mongodb://localhost/karaoke_jukebox_test';
+
+var server = require(__dirname + '/../../server.js');
 
 var kjPORT = ':' + (process.env.PORT || 3000);
 var kjURL = (process.env.KJURL || 'localhost') + kjPORT;
@@ -19,5 +22,12 @@ describe('the karaoke jukebox server', function() {
       expect(typeof resp.body).to.eql('object');
       done();
     });
+  });
+
+  require(__dirname + '/socket_integration_tests');
+  require(__dirname + '/lyrics_test');
+
+  after(function() {
+    server.shutDown();
   });
 });

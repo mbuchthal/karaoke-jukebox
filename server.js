@@ -13,8 +13,18 @@ var socketServer = new SocketServer(io);
 
 var kjLog = require(__dirname + '/lib/logger');
 
+var lyricsRouter = require(__dirname + '/routes/lyric_routes');
+app.use('/api', lyricsRouter);
+
 var port = process.env.PORT || 3000;
 server.listen(port, function() {
   kjLog('karaoke-jukebox server listening on ' + port + ' at ' +
       new Date().toString());
 });
+
+module.exports = exports = server;
+
+server.shutDown = function() {
+  mongoose.disconnect();
+  server.close();
+};

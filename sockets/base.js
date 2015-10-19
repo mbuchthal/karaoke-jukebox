@@ -22,10 +22,12 @@ module.exports = function(io) {
       clientSockets[socket.id].callback();
     });
     socket.on('disconnect', function() {
-      var user = clientSockets[socket.id];
-      clientSockets[socket.id] = null;
-      clients[user.id] = null;
-      serverEvents.emit('disconnected', user);
+      if (clientSockets[socket.id]) {
+        var user = clientSockets[socket.id];
+        clientSockets[socket.id] = null;
+        clients[user.id] = null;
+        serverEvents.emit('disconnected', user);
+      }
     });
   });
 
