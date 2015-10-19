@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
+var sass = require('gulp-sass');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
 
@@ -27,6 +28,16 @@ gulp.task('servertests', function() {
     .on('error', function() {
       hadError = true;
     });
+});
+
+gulp.task('sass', function () {
+  gulp.src('./sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./sass/**/*.scss', ['sass']);
 });
 
 function killProcess() {
@@ -62,3 +73,5 @@ gulp.task('build', ['jshint', 'jscs:warn']);
 gulp.task('tests:test', ['servertests', 'killserver:test']);
 gulp.task('tests:build', ['servertests', 'killserver:build']);
 gulp.task('default', ['build', 'tests:build']);
+
+
