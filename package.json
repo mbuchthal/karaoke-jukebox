@@ -15,10 +15,18 @@
   ],
   "author": "andrewmnelson",
   "contributors": [
-    { "name": "greg.irwin" },
-    { "name": "hollislau" },
-    { "name": "mark.buchthal" },
-    { "name": "sschadwick" }
+    {
+      "name": "greg.irwin"
+    },
+    {
+      "name": "hollislau"
+    },
+    {
+      "name": "mark.buchthal"
+    },
+    {
+      "name": "sschadwick"
+    }
   ],
   "license": "ISC",
   "bugs": {
@@ -26,12 +34,15 @@
   },
   "homepage": "https://github.com/andrewmnelson/karaoke-jukebox#readme",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "eat": "^0.1.1",
     "express": "^4.13.3",
     "http": "0.0.0",
-    "mongoose": "^4.1.11"
+    "mongoose": "^4.1.11",
+    "webpack-stream": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^3.3.0",
