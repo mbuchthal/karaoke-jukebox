@@ -5,7 +5,7 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
 
-require(__dirname + '/../../server.js');
+var server = require(__dirname + '/../../server.js');
 
 var kjPORT = ':' + (process.env.PORT || 3000);
 var kjURL = (process.env.KJURL || 'localhost') + kjPORT;
@@ -19,5 +19,11 @@ describe('the karaoke jukebox server', function() {
       expect(typeof resp.body).to.eql('object');
       done();
     });
+  });
+
+  require(__dirname + '/socket_integration_tests');
+
+  after(function() {
+    server.shutDown();
   });
 });
