@@ -9,16 +9,15 @@ describe('encoding a QR code', function() {
   });
 
   after(function() {
-    fs.unlink(__dirname + '/output.pdf');
+    fs.unlink(__dirname + '/../../output.pdf');
   });
 
   it('should be able to create a new file', function(done) {
     var wasItCreated;
-    var dir = fs.readdir(__dirname, function(err, files) {
+    var dir = fs.readdir(__dirname + '/../../', function(err, files) {
       for (var file in files) {
         if (files[file] === 'output.pdf') {
           wasItCreated = true;
-          console.log('here');
         }
       }
       expect(wasItCreated).to.eql(true);
