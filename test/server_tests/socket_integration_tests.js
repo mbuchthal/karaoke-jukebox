@@ -1,17 +1,10 @@
-var chai = require('chai');
-var expect = chai.expect;
-
-var io = require('socket.io-client');
-var socketURL = 'http://localhost:3000';
-var socketOptions = {
-  transports: ['websocket'],
-  'force new connection': true
-};
-
-require(__dirname + '/../../server.js');
-
 describe('socket server integration', function() {
-
+  var io = require('socket.io-client');
+  var socketURL = 'http://localhost:3000';
+  var socketOptions = {
+    transports: ['websocket'],
+    'force new connection': true
+  };
   var socket;
 
   beforeEach(function(done) {
