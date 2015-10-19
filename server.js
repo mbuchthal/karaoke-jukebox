@@ -21,3 +21,10 @@ server.listen(port, function() {
   kjLog('karaoke-jukebox server listening on ' + port + ' at ' +
       new Date().toString());
 });
+
+module.exports = exports = server;
+
+server.shutDown = function() {
+  mongoose.disconnect();
+  server.close();
+};
