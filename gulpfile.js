@@ -6,8 +6,7 @@ var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
-
-var hadError = false;
+var staticFiles = ['./app/index.html', './app/**.*.svg'];
 
 gulp.task('jshint', function() {
   return gulp.src(lintableFiles)
@@ -23,14 +22,16 @@ gulp.task('jscs:warn', function() {
 
 gulp.task('servertests', function() {
   return gulp.src('test/server_tests/**/*.js', {read: false})
-    .pipe(mocha({reporter: 'spec'}))
-    .on('error', function() {
-      hadError = true;
-    });
+    .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('build', ['jshint', 'jscs:warn']);
+gulp.task('staticfiles', function() {
+  return gulp.src(staticFiles)
+    .pipe(gulp.dest('build/'));
+});
 
-gulp.task('tests:test', ['servertests']);
-gulp.task('tests:build', ['servertests']);
-gulp.task('default', ['build', 'tests:build']);
+gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles']);
+gulp.task('build:pro', ['staticfiles']);
+
+gulp.task('tests', ['servertests']);
+gulp.task('default', ['build:dev', 'tests']);
