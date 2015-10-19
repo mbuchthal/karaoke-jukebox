@@ -12,7 +12,7 @@ describe('encoding a QR code', function() {
     fs.unlink(__dirname + '/../../output.pdf');
   });
 
-  it('should be able to create a new file', function(done) {
+  it('should be able to create a new qr code', function(done) {
     var wasItCreated;
     var dir = fs.readdir(__dirname + '/../../', function(err, files) {
       for (var file in files) {
