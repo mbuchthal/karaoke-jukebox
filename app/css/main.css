@@ -374,3 +374,5 @@ input:focus {
     background-color: #99e6c1; }
   .songbook tr:nth-child(even), .queue tr:nth-child(even) {
     background-color: #a4e1f7; }
+  .songbook a, .queue a {
+    text-decoration: none; }
