@@ -27,3 +27,6 @@
     margin-top: 2em;
   }
 }
+input:focus {
+  border: 2px solid $color-shade;
+}

@@ -53,6 +53,12 @@ p {
   text-align: center;
   position: relative; }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none; }
+
 @font-face {
   font-family: 'icomoon';
   src: url("fonts/icomoon.eot?64s2d3");
@@ -179,6 +185,9 @@ h1 {
       font-size: 1.5em; }
   .login-form input[value="Sign In"] {
     margin-top: 2em; }
+
+input:focus {
+  border: 2px solid #FF953D; }
 
 .menu-container {
   text-align: center;
@@ -311,3 +320,33 @@ h1 {
     font-size: 1.5em; }
   .menu-listitem3 span {
     height: 3.25em; }
+
+.table-container {
+  text-align: center; }
+
+table {
+  font-family: "Lateef", cursive;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0 auto;
+  width: 22em;
+  margin-bottom: 2em;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5); }
+  @media only screen and (min-width: 36em) {
+    table {
+      font-size: 2.5em; } }
+  table thead {
+    vertical-align: middle; }
+  table th {
+    font-weight: bold;
+    font-style: italic;
+    padding: 0.5em;
+    background-color: #a4e1f7; }
+  table td {
+    padding-top: 0.10em;
+    padding-bottom: 0.10em; }
+  table tr:nth-child(odd) {
+    background-color: #99e6c1; }
+  table tr:nth-child(even) {
+    background-color: #a4e1f7; }

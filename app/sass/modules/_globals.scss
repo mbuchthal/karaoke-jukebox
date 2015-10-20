@@ -12,6 +12,13 @@
   position: relative;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 // jQuery(window).resize(function()
 
 // {jQuery(“html”).css(“background”,-moz-linear-gradient(top,  “#170d42″ “0%”, “#6e80ff” “50%”, “#000000″ “100%”), -webkit-gradient(linear, left top, left bottom, color-stop(“0%”,”#170d42″), color-stop(“50%”,”#6e80ff”), color-stop(“100%”,”#000000″)), -webkit-linear-gradient(top,  “#170d42″ “0%”,”#6e80ff” “50%”,”#000000″ “100%”), -o-linear-gradient(top,  “#170d42″ “0%”,”#6e80ff” “50%”,”#000000″ “100%”), -ms-linear-gradient(top,  “#170d42″ “0%”,”#6e80ff” “50%”,”#000000″ “100%”), linear-gradient(top,  “#170d42″ “0%”,”#6e80ff” “50%”,”#000000″ “100%”), “#170D42\9″);
