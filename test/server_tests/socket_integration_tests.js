@@ -10,7 +10,6 @@ describe('socket server integration', function() {
   beforeEach(function(done) {
     socket = io.connect(socketURL, socketOptions);
     socket.on('connect', function() {
-      console.log('connected');
       done();
     });
   });

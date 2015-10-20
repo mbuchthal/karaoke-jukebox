@@ -4,8 +4,8 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL ||
-    'mongodb://localhost/karaoke_jukebox_dev');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
+                'mongodb://localhost/karaoke_jukebox_dev');
 
 var io = require('socket.io').listen(server);
 var SocketServer = require('./sockets/base');
