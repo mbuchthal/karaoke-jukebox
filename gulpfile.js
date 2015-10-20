@@ -53,7 +53,7 @@ gulp.task('watch', function () {
   gulp.watch('./app/**/*.js', ['webpack']);
 });
 
-gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles', 'fonts', 'sass', 'webpack']);
+gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles', 'sass', 'webpack']);
 gulp.task('build:pro', ['staticfiles', 'sass', 'webpack']);
 
 gulp.task('tests', ['servertests']);
