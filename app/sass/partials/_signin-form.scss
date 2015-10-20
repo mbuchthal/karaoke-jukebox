@@ -1,0 +1,23 @@
+
+.login {
+  padding-top: 2em;
+  text-align: center;
+}
+
+.login-form {
+  margin: 0 auto;
+  width: 80%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  font-family: $font-sub;
+  h3 {
+    font-size: 3em;
+    padding-bottom: 1em;
+  }
+  fieldset {
+    font-size: 1.5em;
+    label {
+      padding-right: 1em;
+    }
+  }
+}

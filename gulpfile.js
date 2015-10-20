@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
+var sass = require('gulp-sass');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
 var staticFiles = ['./app/index.html', './app/**.*.svg'];
@@ -28,6 +29,16 @@ gulp.task('servertests', function() {
 gulp.task('staticfiles', function() {
   return gulp.src(staticFiles)
     .pipe(gulp.dest('build/'));
+});
+
+gulp.task('sass', function () {
+  gulp.src('./app/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./app/css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./app/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles']);
