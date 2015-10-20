@@ -1,0 +1,41 @@
+
+.signin {
+  @include circle-mock;
+  @include rotated-text(7, 120deg, -70deg);
+  margin: 0 auto;
+  font-size: 3em;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  &:after {
+    @include insert-svg(url("../images/user-plus.svg"), 70%, 1.5em);
+    left: 1em;
+    padding-top: 5em;
+    padding-left: 0.5em;
+  }
+  span {
+    font-family: $font-sub;
+    height: 3.25em;
+    position: absolute;
+    width: 3em;
+    transform-origin: bottom center;
+    left: 0.5em;
+    top: -0.4em;
+  }
+  &:hover {
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  a {
+    text-decoration: none;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 8em;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+}

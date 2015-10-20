@@ -4,8 +4,9 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URL ||
-    'mongodb://localhost/karaoke_jukebox_dev');
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
+                'mongodb://localhost/karaoke_jukebox_dev');
+process.env.APP_SECRET = process.env.APP_SECRET || 'EVERYBODYDANCENOW';
 
 var io = require('socket.io').listen(server);
 var SocketServer = require('./sockets/base');
@@ -14,7 +15,17 @@ var socketServer = new SocketServer(io);
 var kjLog = require(__dirname + '/lib/logger');
 
 var lyricsRouter = require(__dirname + '/routes/lyric_routes');
+var usersRouter = require(__dirname + '/routes/users_routes');
+
+app.use(function(req, resp, next) {
+  resp.header('Access-Control-Allow-Origin', '*');
+  resp.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  resp.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  next();
+});
+
 app.use('/api', lyricsRouter);
+app.use('/api', usersRouter);
 
 var port = process.env.PORT || 3000;
 server.listen(port, function() {

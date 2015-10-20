@@ -25,7 +25,8 @@ describe('the karaoke jukebox server', function() {
   });
 
   require(__dirname + '/socket_integration_tests');
-  require(__dirname + '/lyrics_test');
+  require(__dirname + '/lyrics_tests');
+  require(__dirname + '/users_tests');
 
   after(function() {
     server.shutDown();

@@ -1,0 +1,21 @@
+
+.gradient {
+  background-image:
+    linear-gradient(
+      $color-theme, $color-sub
+    );
+  background-attachment: fixed;
+}
+
+.textwrap {
+  text-align: center;
+  position: relative;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
