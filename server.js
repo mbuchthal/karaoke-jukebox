@@ -16,10 +16,12 @@ var kjLog = require(__dirname + '/lib/logger');
 
 var lyricsRouter = require(__dirname + '/routes/lyric_routes');
 var usersRouter = require(__dirname + '/routes/users_routes');
+var queueRouter = require(__dirname + '/routes/queue_routes');
 
 app.use('/api', lyricsRouter);
 app.use('/api', usersRouter);
-app.user(express.static('/build'));
+app.use('/api', queueRouter);
+app.use(express.static('/build'));
 
 var port = process.env.PORT || 3000;
 server.listen(port, function() {
