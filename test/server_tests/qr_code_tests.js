@@ -2,10 +2,11 @@ var chai = require('chai');
 var expect = chai.expect;
 var fs = require('fs');
 var createQR = require(__dirname + '/../../lib/qrcode_generate');
+var decodeQR = require(__dirname + '/../../lib/qrcode_decode');
 
 describe('encoding a QR code', function() {
   before(function() {
-    createQR('test QR', 'pdf');
+    createQR('test QR', 'pdf', 'output');
   });
 
   after(function() {
@@ -24,4 +25,20 @@ describe('encoding a QR code', function() {
       done();
     });
   });
+});
+
+describe('decoding a QR code', function() {
+  before(function() {
+    createQR('test QR decode', 'pdf', 'sampleQR');
+  });
+
+  after(function() {
+    fs.unlink(__dirname + '/../../sampleQR.pdf');
+  });
+
+  it('should be able to decode an existing qr code', function(done) {
+    var decoded = decodeQR(__dirname + '/../../sampleQR.pdf');
+    expect(decoded).to.eql('test QR decode');
+  });
+
 });
