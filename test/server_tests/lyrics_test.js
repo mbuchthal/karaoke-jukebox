@@ -6,11 +6,30 @@ chai.use(chaiHttp);
 var expect = chai.expect;
 var mongoose = require('mongoose');
 
-describe('the lyrics server', function() {
-  var lyricsURL = 'localhost:3000/api';
+var lyricsURL = 'localhost:3000/api';
 
-  var Lyric = require(__dirname + '/../../models/lyric');
-  after(function(done) {  // jshint ignore:line
+var Lyric = require(__dirname + '/../../models/lyric');
+
+var testSong = {
+        title: '99BottlesOfBeer',
+        author: 'Anonymous',
+        mp3file: 'ninety_nine_bottles.mp3',
+        lyrics: [{text: 'Ninety-nine bottles of beer on the wall,',
+                  beatDuration: 150,
+                  beatIncrements: [4,2,5,4,4,3,5,3,4,6,0,0]},
+                 {text: 'Ninety-nine bottles of beer,',
+                  beatDuration: 150,
+                  beatIncrements: [4,2,5,4,4,3,6,0,0,0,0]},
+                 {text: 'You take one down and pass it around,',
+                  beatDuration: 150,
+                  beatIncrements: [3,5,0,4,5,0,4,5,3,2,6,0,0]},
+                 {text: 'Ninety-eight bottles of beer on the wall.',
+                  beatDuration: 150,
+                  beatIncrements: [4,2,6,4,4,3,5,3,4,6,0,0]}
+                ]};
+
+describe('the lyrics server', function() {
+  after(function(done) {
     mongoose.connection.db.dropDatabase(function(err) {
       if (err) {return console.log(err);}
       done();
@@ -32,37 +51,60 @@ describe('the lyrics server', function() {
   it('should be able to write a lyric to the database', function(done) {
     chai.request(lyricsURL)
     .post('/lyrics')
-    .send({
-        title: '99BottlesOfBeer',
-        author: 'Annoyamous',
-        mp3file: 'ninety_nine_bottles.mp3',
-        lyrics: [{text: 'Ninety-nine bottles of beer on the wall,',
-                  beatDuration: 150,
-                  beatIncrements: [4,2,5,4,4,3,5,3,4,6,0,0]},
-                 {text: 'Ninety-nine bottles of beer,',
-                  beatDuration: 150,
-                  beatIncrements: [4,2,5,4,4,3,6,0,0,0,0]},
-                 {text: 'You take one down and pass it around,',
-                  beatDuration: 150,
-                  beatIncrements: [3,5,0,4,5,0,4,5,3,2,6,0,0]},
-                 {text: 'Ninety-eight bottles of beer on the wall.',
-                  beatDuration: 150,
-                  beatIncrements: [4,2,6,4,4,3,5,3,4,6,0,0]}
-                ]
-      })
+    .send(testSong)
     .end(function(err, ret) {
       expect(err).to.eql(null);
       expect(ret.status).to.eql(201); // Created
-      expect(ret.body.title).to.eql('99BottlesOfBeer');
-      expect(ret.body.author).to.eql('Annoyamous');
-      expect(ret.body.mp3file).to.eql('ninety_nine_bottles.mp3');
-      expect(ret.body.lyrics.length).to.eql(4);
-      expect(ret.body.lyrics[0].beatDuration).to.eql(150);
-      expect(ret.body.lyrics[0].text.length).to.eql(
-        ret.body.lyrics[0].beatIncrements.reduce(function(acc, inc) {
-          return acc += inc;
-        }));
+      Lyric.find(testSong, function(err, data) {
+        expect(err).to.eql(null);
+        done();
+      });
+    });
+  });
+  it('should return all songs', function(done) {
+    chai.request(lyricsURL)
+    .get('/lyrics')
+    .end(function(err, ret) {
+      expect(err).to.eql(null);
+      expect(ret.body.length).to.eql(1);
       done();
+    });
+  });
+  it('should return a file based on id', function(done) {
+    chai.request(lyricsURL)
+    .get('/lyrics/' + testSong.mp3file)
+    .end(function(err, ret) {
+      expect(err).to.eql(null);
+      expect(ret.body.title).to.eql('99BottlesOfBeer');
+      done();
+    });
+  });
+  it('should update song data', function(done) {
+    testSong.title = '98BottlesOfBeer';
+    chai.request(lyricsURL)
+    .put('/lyrics/' + testSong.mp3file)
+    .send(testSong)
+    .end(function(err, ret) {
+      expect(err).to.eql(null);
+      expect(ret.status).to.eql(200);
+      Lyric.findOne({title: testSong.title}, function(err, data) {
+        expect(err).to.eql(null);
+        expect(data).to.not.eql(null);
+        done();
+      });
+    });
+  });
+  it('should delete song data', function(done) {
+    chai.request(lyricsURL)
+    .delete('/lyrics/' + testSong.mp3file)
+    .end(function(err, ret) {
+      expect(err).to.eql(null);
+      expect(ret.status).to.eql(200);
+      Lyric.findOne({title: testSong.title}, function(err, data) {
+        expect(err).to.eql(null);
+        expect(data).to.eql(null);
+        done();
+      });
     });
   });
 });
