@@ -53,4 +53,3 @@ function supported() {
   var fileSupport = !!(window.File && window.FileReader);
   return (canvasSupport && fileSupport);
 }
-
