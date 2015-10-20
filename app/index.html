@@ -1,5 +1,5 @@
-<html>
 <!doctype html>
+
 <html lang="en" ng-app="kvoxapp">
   <head>
     <meta charset="utf-8">
@@ -9,38 +9,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt|Lateef' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.css">
    <!--  // <script src="js/vendor/modernizr-2.8.3.min.js"></script> -->
-    </head>
-    <body class="gradient">
-      <h1>K<span class="title-svg">Vox</span></h1>
+  </head>
+  <body class="gradient">
+    <h1>K<span class="title-svg">Vox</span></h1>
+
 
         <!-- angular -->
 <main ng-view></main>
 
 <!-- signin.html -->
-        <div class="signin">
-          <a href="#/kvox/menu.html"></a>
-          <div class="textwrap" aria-label="sign-in">
-            <span class="char1" aria="hidden">S</span>
-            <span class="char2" aria="hidden">I</span>
-            <span class="char3" aria="hidden">G</span>
-            <span class="char4" aria="hidden">N</span>
-            <span class="char5" aria="hidden"></span>
-            <span class="char6" aria="hidden">I</span>
-            <span class="char7" aria="hidden">N</span>
-          </div>
+      <div class="signin">
+        <a href="#/kvox/menu.html"></a>
+        <div class="textwrap" aria-label="sign-in">
+          <span class="char1" aria="hidden">S</span>
+          <span class="char2" aria="hidden">I</span>
+          <span class="char3" aria="hidden">G</span>
+          <span class="char4" aria="hidden">N</span>
+          <span class="char5" aria="hidden"></span>
+          <span class="char6" aria="hidden">I</span>
+          <span class="char7" aria="hidden">N</span>
         </div>
+      </div>
 <!-- signin-form.html -->
-        <section id="loginBox" class="login">
-          <form action="" class="login-form">
+      <section id="loginBox" class="login">
+        <form action="" class="login-form">
+          <h3>Sign In</h3>
             <fieldset>
-              <legend>Sign in to K-Vox</legend>
               <label for="username">Name:</label>
               <input type="text" name="username" id="username" placeholder="Enter your username" />
-            </fieldset>
-            <input type="submit" value="Sign In">
-          </form>
-        </section>
+          </fieldset>
+        </form>
+      </section>
+
 <!-- menu.html -->
         <div class="menu-container">
           <h3>Choose One:</h3>
@@ -143,9 +145,12 @@
   </tbody>
 </table>
 </div>
-<!--
-<script src="app.js"></script>
-<script src="../node_modules/angular/angular.js"></script> -->
-    </body>
+
+    <div ng-controller="LyricsCtrl as vm">
+      <ul rendered-lyrics></ul>
+    </div>
+
+  </body>
+  <script src="js/main.js"></script>
 </html>
 
