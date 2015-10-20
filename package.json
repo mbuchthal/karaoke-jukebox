@@ -34,8 +34,6 @@
   },
   "homepage": "https://github.com/andrewmnelson/karaoke-jukebox#readme",
   "dependencies": {
-    "angular": "^1.4.7",
-    "angular-animate": "^1.4.7",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.1",
     "eat": "^0.1.1",
@@ -49,6 +47,7 @@
   },
   "devDependencies": {
     "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
     "angular-route": "^1.4.7",
     "chai": "^3.3.0",
     "chai-http": "^1.0.0",

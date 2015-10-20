@@ -20,7 +20,9 @@ angular.module('kvoxapp').controller('KvoxService', function (KvoxService) {
     })
   }
 
+  // function enterSong () {
 
+  // }
 
 })
 
