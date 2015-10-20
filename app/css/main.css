@@ -125,7 +125,8 @@ h1 {
   margin: 0 auto;
   font-size: 3em;
   border: 1px solid #000;
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+  position: relative; }
   .signin .char1 {
     transform: rotate(-52.85714deg); }
   .signin .char2 {
@@ -162,6 +163,17 @@ h1 {
   .signin:hover {
     color: #fff;
     border: 1px solid #fff; }
+  .signin a {
+    text-decoration: none;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 8em;
+    top: 0;
+    left: 0;
+    border-radius: 50%; }
 
 .login {
   padding-top: 2em;
@@ -208,7 +220,8 @@ input:focus {
   -webkit-justify-content: center;
   justify-content: center;
   -webkit-align-content: center;
-  align-content: center; }
+  align-content: center;
+  list-style-type: none; }
   .menu-list li {
     margin: 0 1em 1em;
     font-size: 3em;
@@ -217,6 +230,17 @@ input:focus {
     .menu-list li:hover {
       color: #fff;
       border: 1px solid #fff; }
+    .menu-list li a {
+      text-decoration: none;
+      position: absolute;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 8em;
+      top: 0;
+      left: 0;
+      border-radius: 50%; }
     .menu-list li span {
       position: absolute;
       width: 3em;
@@ -321,10 +345,10 @@ input:focus {
   .menu-listitem3 span {
     height: 3.25em; }
 
-.table-container {
+.songbook-container {
   text-align: center; }
 
-table {
+.songbook, .queue {
   font-family: "Lateef", cursive;
   font-size: 1.5em;
   text-align: center;
@@ -334,19 +358,19 @@ table {
   border: 1px solid #000;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5); }
   @media only screen and (min-width: 36em) {
-    table {
+    .songbook, .queue {
       font-size: 2.5em; } }
-  table thead {
+  .songbook thead, .queue thead {
     vertical-align: middle; }
-  table th {
+  .songbook th, .queue th {
     font-weight: bold;
     font-style: italic;
     padding: 0.5em;
     background-color: #a4e1f7; }
-  table td {
+  .songbook td, .queue td {
     padding-top: 0.10em;
     padding-bottom: 0.10em; }
-  table tr:nth-child(odd) {
+  .songbook tr:nth-child(odd), .queue tr:nth-child(odd) {
     background-color: #99e6c1; }
-  table tr:nth-child(even) {
+  .songbook tr:nth-child(even), .queue tr:nth-child(even) {
     background-color: #a4e1f7; }

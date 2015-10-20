@@ -1,6 +1,7 @@
 
 require('./app.js');
-require('./kvoxctrl.js');
-require('./kvoxformctrl.js');
-require('./queuectrl.js');
-require('./songbookctrl.js');
+require('./js/kvoxservice');
+require('./js/kvoxctrl.js');
+require('./js/kvoxformctrl.js');
+require('./js/queuectrl.js');
+require('./js/songbookctrl.js');

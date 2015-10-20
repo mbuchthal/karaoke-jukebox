@@ -4,4 +4,9 @@ require('../app.js');
   'use strict'
 
 
+  angular.module("kvoxapp").controller("KvoxCtrl", ["KvoxService", function (KvoxService) {
+
+
+  }]);
+
 })();
