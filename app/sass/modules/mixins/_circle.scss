@@ -1,0 +1,9 @@
+@mixin circle-mock () {
+  font-family: $font-sub;
+  padding: 1em 2em;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 8em;
+  height: 8em;
+  margin: auto 1em;
+}
