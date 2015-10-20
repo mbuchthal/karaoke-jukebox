@@ -5,9 +5,10 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var jscs = require('gulp-jscs');
 var sass = require('gulp-sass');
+var webpack = require('webpack-stream');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
-var staticFiles = ['./app/index.html', './app/**.*.svg'];
+var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/icomoon.*'];
 
 gulp.task('jshint', function() {
   return gulp.src(lintableFiles)
@@ -28,21 +29,33 @@ gulp.task('servertests', function() {
 
 gulp.task('staticfiles', function() {
   return gulp.src(staticFiles)
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('./build'));
 });
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
   gulp.src('./app/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./app/css'));
+    .pipe(gulp.dest('./build/css'));
 });
 
-gulp.task('sass:watch', function () {
+gulp.task('webpack', function() {
+  return gulp.src('./app/js/entry.js')
+    .pipe(webpack({
+      output: {
+        filename: 'main.js',
+      }
+    }))
+    .pipe(gulp.dest('./build/js'));
+});
+
+gulp.task('watch', function() {
   gulp.watch('./app/sass/**/*.scss', ['sass']);
+  gulp.watch('./app/**/*.js', ['webpack']);
+  gulp.watch(staticFiles, ['staticfiles']);
 });
 
-gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles']);
-gulp.task('build:pro', ['staticfiles']);
+gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles', 'sass', 'webpack']);
+gulp.task('build:pro', ['staticfiles', 'sass', 'webpack']);
 
 gulp.task('tests', ['servertests']);
 gulp.task('default', ['build:dev', 'tests']);
