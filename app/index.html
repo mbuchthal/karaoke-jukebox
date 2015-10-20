@@ -9,17 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt|Lateef' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="main.css">
    <!--  // <script src="js/vendor/modernizr-2.8.3.min.js"></script> -->
   </head>
   <body class="gradient">
     <h1>K<span class="title-svg">Vox</span></h1>
 
-
         <!-- angular -->
 <main ng-view></main>
 
 <!-- signin.html -->
+    <div class="signin-wrapper">
       <div class="signin">
         <a href="#/kvox/menu.html"></a>
         <div class="textwrap" aria-label="sign-in">
@@ -32,6 +31,7 @@
           <span class="char7" aria="hidden">N</span>
         </div>
       </div>
+    </div>
 <!-- signin-form.html -->
       <section id="loginBox" class="login">
         <form action="" class="login-form">
@@ -91,11 +91,8 @@
 
         <div>
           <form action="" method="">
-
           </form>
-
         </div>
-
 
 <!-- songbook.html -->
 <div class="songbook-container">
@@ -108,15 +105,13 @@
     </tr>
   </thead>
   <tbody>
-
+    <h3 ng-if="!vm.songs.length">No songs yet!</h3>
     <tr ng-repeat="song in vm.songs">
-
       <td>{{ $index }}</td>
       <td>{{vm.song.author}}</td>
       <td>{{vm.song.title}}</td>
-      <td><a href ng-click="vm.enterSong()">Enter Song</td>
+      <td><a href ng-click="vm.enterSong()">Enter Song</a></td>
     </tr>
-
   </tbody>
 </table>
 </div>
