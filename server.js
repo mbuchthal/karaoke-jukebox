@@ -15,7 +15,7 @@ var socketServer = new SocketServer(io);
 var kjLog = require(__dirname + '/lib/logger');
 
 var lyricsRouter = require(__dirname + '/routes/lyric_routes');
-var usersRouter = require(__dirname + '/routes/user_routes');
+var usersRouter = require(__dirname + '/routes/users_routes');
 app.use('/api', lyricsRouter);
 app.use('/api', usersRouter);
 
