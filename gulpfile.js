@@ -51,6 +51,7 @@ gulp.task('webpack', function() {
 gulp.task('watch', function () {
   gulp.watch('./app/sass/**/*.scss', ['sass']);
   gulp.watch('./app/**/*.js', ['webpack']);
+  gulp.watch(staticFiles, ['staticfiles']);
 });
 
 gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles', 'sass', 'webpack']);
