@@ -5,6 +5,6 @@ require("angular-animate");
 
   "use strict";
 
-  angular.module("test", []);
+  angular.module("kvoxapp", []);
 
 })();

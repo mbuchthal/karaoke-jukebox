@@ -48,11 +48,8 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('sass:watch', function () {
+gulp.task('watch', function () {
   gulp.watch('./app/sass/**/*.scss', ['sass']);
-});
-
-gulp.task('webpack:watch', function() {
   gulp.watch('./app/**/*.js', ['webpack']);
 });
 

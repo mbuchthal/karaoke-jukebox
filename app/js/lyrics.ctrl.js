@@ -5,7 +5,7 @@ var mp3 = require("./yellowSubmarine.js");
 
   "use strict";
 
-  angular.module("test").controller("LyricsCtrl", function() {
+  angular.module("kvoxapp").controller("LyricsCtrl", function() {
     var vm = this;
   }).directive("renderedLyrics", ["$interval", function($interval) {
 
