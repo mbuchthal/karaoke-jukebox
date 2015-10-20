@@ -3,42 +3,61 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
+var jscs = require('gulp-jscs');
+var sass = require('gulp-sass');
 var webpack = require('webpack-stream');
 
+var lintableFiles = ['!node_modules/**', './**/*.js'];
+var staticFiles = ['./app/index.html', './app/**/*.svg', './app/**/icomoon.*'];
+
+gulp.task('jshint', function() {
+  return gulp.src(lintableFiles)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('jscs:warn', function() {
+  return gulp.src(lintableFiles)
+    .pipe(jscs())
+    .pipe(jscs.reporter());
+});
+
+gulp.task('servertests', function() {
+  return gulp.src('test/server_tests/**/*.js', {read: false})
+    .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('staticfiles', function() {
+  return gulp.src(staticFiles)
+    .pipe(gulp.dest('./build'));
+});
+
+gulp.task('sass', function () {
+  gulp.src('./app/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./build/css'));
+});
 
 gulp.task('webpack', function() {
-  return gulp.src('./app/entry.js')
+  return gulp.src('./app/js/entry.js')
     .pipe(webpack({
       output: {
         filename: 'main.js',
       }
     }))
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('jshint', function() {
-  return gulp.src('./*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
-
-gulp.task('test', function() {
-  return gulp.src('test/*.js', { read: false })
-    .pipe(mocha({reporter: 'spec'}))
-    .once('error', function() {
-      console.log('tests failed');
-      process.exit(1);
-    })
-    .once('end', function() {
-      process.exit();
-    });
+gulp.task('sass:watch', function () {
+  gulp.watch('./app/sass/**/*.scss', ['sass']);
 });
 
 gulp.task('webpack:watch', function() {
   gulp.watch('./app/**/*.js', ['webpack']);
 });
 
-gulp.task('default', ['build']);
+gulp.task('build:dev', ['jshint', 'jscs:warn', 'staticfiles', 'fonts', 'sass', 'webpack']);
+gulp.task('build:pro', ['staticfiles', 'sass', 'webpack']);
 
-gulp.task('build', ['jshint', 'test', 'webpack']);
-
+gulp.task('tests', ['servertests']);
+gulp.task('default', ['build:dev', 'tests']);
