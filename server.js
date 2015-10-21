@@ -29,7 +29,7 @@ app.use('/api', lyricsRouter);
 app.use('/api', usersRouter);
 app.use('/api', queueRouter);
 app.use('/api', adminRouter);
-app.use(express.static('/build'));
+app.use(express.static('build'));
 
 var port = process.env.PORT || 3000;
 server.listen(port, function() {
