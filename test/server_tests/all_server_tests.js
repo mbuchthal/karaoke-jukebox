@@ -31,9 +31,13 @@ describe('the karaoke jukebox server', function() {
   require(__dirname + '/qr_code_tests');
   require(__dirname + '/admin_tests');
 
-  after(function() {
-    server.shutDown();
-    //Due to use of socketServer, these tests must be run after server teardown
-    require(__dirname + '/socket_server_tests');
+  after(function(done) {
+    mongoose.connection.db.dropDatabase(function(err) {
+      if (err) {return console.log(err);}
+      server.shutDown();
+      //Due to use of socketServer, these tests must be run after server teardown
+      require(__dirname + '/socket_server_tests');
+      done();
+    });
   });
 });
