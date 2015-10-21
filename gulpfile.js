@@ -8,7 +8,7 @@ var sass = require('gulp-sass');
 var webpack = require('webpack-stream');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
-var staticFiles = ['./app/index.html', './app/**/*.svg', './app/**/icomoon.*'];
+var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/icomoon.*'];
 
 gulp.task('jshint', function() {
   return gulp.src(lintableFiles)
@@ -32,7 +32,7 @@ gulp.task('staticfiles', function() {
     .pipe(gulp.dest('./build'));
 });
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
   gulp.src('./app/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./build/css'));
@@ -48,7 +48,7 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', function() {
   gulp.watch('./app/sass/**/*.scss', ['sass']);
   gulp.watch('./app/**/*.js', ['webpack']);
   gulp.watch(staticFiles, ['staticfiles']);

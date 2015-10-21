@@ -2,7 +2,7 @@ var chai = require('chai');
 var http = require('chai-http');
 chai.use(http);
 var expect = chai.expect;
-var users = require(__dirname + '/../../lib/user');
+var users = require(__dirname + '/../../models/user');
 var serverURL = 'http://localhost:3000';
 
 describe('users', function() {
