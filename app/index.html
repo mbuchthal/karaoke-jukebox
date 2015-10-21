@@ -103,6 +103,7 @@
 
 <!-- songbook.html -->
 <div class="songbook-container">
+<h2>Songbook</h2>
 <table class="songbook">
   <thead>
     <tr>
@@ -118,36 +119,45 @@
       <td>{{ $index }}</td>
       <td>{{vm.song.author}}</td>
       <td>{{vm.song.title}}</td>
-      <td><a href ng-click="vm.enterSong()">Enter Song</a></td>
+      <td><button name="enter-song" ng-click="vm.enterSong()">Enter Song</button></td>
     </tr>
   </tbody>
 </table>
 </div>
 
 <!-- queue.html -->
-<div class="queue-container">
-<table class="queue">
-  <thead>
-    <tr>
-      <th>Queue</th>
-      <th>Username</th>
-      <th>Song Title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>001</td>
-      <td>username1</td>
-      <td>Yellow Submarine</td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>username2</td>
-      <td>(I Can't Get No) Satisfaction</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<section>
+  <div class="queue_header-container">
+    <h2>Queue</h2>
+    <button type="submit" name="update">Update Song</button>
+    <button type="submit" name="delete" class="chicken">Delete Song</button>
+  </div>
+  <div class="queue-container">
+  <table class="queue">
+    <thead>
+      <tr>
+        <th>Queue</th>
+        <th>Username</th>
+        <th>Song Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>001</td>
+        <td>username1</td>
+        <td>Yellow Submarine</td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>username2</td>
+        <td>(I Can't Get No) Satisfaction</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- lyrics -->
 
     <div ng-controller="LyricsCtrl as vm">
       <ul rendered-lyrics></ul>

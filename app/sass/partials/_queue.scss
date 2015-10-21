@@ -1,4 +1,33 @@
 
+.queue_header-container {
+  @include flexbox;
+  padding-bottom: 2.5em;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  h2 {
+    font-size: 2em;
+    font-family: $font-header;
+  }
+  button {
+    cursor: pointer;
+    padding: 0em 1.2em;
+    border-radius: 10px;
+    border: 1px solid;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.5);
+    font-family: $font-sub;
+    font-size: 1.6em;
+    background-image:
+    linear-gradient(to bottom right,
+     #fff 5%, $color-theme
+    );
+  }
+  .chicken:before {
+    @include insert-svg(url("../images/Chicken.svg"), 100%, 1em);
+    top: 0.3em;
+    left: -0.3em;
+  }
+}
+
 .queue {
   @extend .songbook;
 }
