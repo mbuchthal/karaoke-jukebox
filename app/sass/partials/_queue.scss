@@ -4,9 +4,13 @@
   padding-bottom: 2.5em;
   -webkit-justify-content: space-around;
   justify-content: space-around;
+  @media screen and (min-width: 50em) {
+    padding-top: 4.5em;
+  }
   h2 {
     font-size: 2em;
     font-family: $font-header;
+    padding: 0 0.9em;
   }
   button {
     cursor: pointer;
@@ -30,4 +34,8 @@
 
 .queue {
   @extend .songbook;
+}
+
+.queue-container {
+  text-align: center;
 }
