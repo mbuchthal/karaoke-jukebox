@@ -1,4 +1,4 @@
-require("./app.js");
+require("../app.js");
 var mp3 = require("./yellowSubmarine.js");
 
 (function() {
@@ -7,6 +7,9 @@ var mp3 = require("./yellowSubmarine.js");
 
   angular.module("kvoxapp").controller("LyricsCtrl", function() {
     var vm = this;
+
+    vm.username = "Bob";
+    vm.song = "Yellow Submarine";
   }).directive("renderedLyrics", ["$interval", function($interval) {
 
     function link(scope, element) {

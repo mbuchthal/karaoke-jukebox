@@ -16,12 +16,16 @@ var app = angular.module('kvoxapp', ['ngRoute']);
       controller: 'KvoxFormCtrl as vm',
     })
     .when('/kvox/songbook', {
-      templateUrl: 'partials/templates/songbook.html',
+      templateUrl: 'templates/songbook.html',
       controller: 'KvoxSongCtrl as vm',
     })
     .when('/kvox/queue', {
-      templateUrl: 'partials/templates/queue.html',
+      templateUrl: 'templates/queue.html',
       controller: 'KvoxQueueCtrl as vm',
+    })
+    .when('/kvox/play', {
+      templateUrl: 'templates/play.html',
+      controller: 'LyricsCtrl as vm',
     })
     .otherwise({
       redirectTo: '/kvox'

@@ -1,10 +1,10 @@
-require("angular");
-require("angular-animate");
+// require("angular");
+// require("angular-animate");
 
-(function() {
+// (function() {
 
-  "use strict";
+//   "use strict";
 
-  angular.module("kvoxapp", []);
+//   angular.module("kvoxapp", []);
 
-})();
+// })();

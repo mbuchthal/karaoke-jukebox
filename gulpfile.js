@@ -8,7 +8,7 @@ var sass = require('gulp-sass');
 var webpack = require('webpack-stream');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
-var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/icomoon.*'];
+var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/*.jpg', './app/**/*.png', './app/**/icomoon.*'];
 
 gulp.task('jshint', function() {
   return gulp.src(lintableFiles)
@@ -39,7 +39,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('webpack', function() {
-  return gulp.src('./app/js/entry.js')
+  return gulp.src('./app/index.js')
     .pipe(webpack({
       output: {
         filename: 'main.js',
