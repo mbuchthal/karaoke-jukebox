@@ -25,6 +25,15 @@ require('../app.js');
 
 })();
 
+//all controllers
+//disconnectUser
+
+//login controller
+//
+// socket.on('acceptUser')
+//
+
+
 //queue
 // socket.on('onDeck', function ())
     // showOnDeck();
