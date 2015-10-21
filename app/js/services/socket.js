@@ -1,5 +1,5 @@
-module.exports = function(app) {
-  app.factory('socket', ['$rootScope', function($rootScope) {
+(function() {
+  angular.module('kvoxapp').factory('socket', ['$rootScope', function($rootScope) {
     var socket = io.connect();
 
     socket.on('updateQueue', function(queue) {
@@ -51,4 +51,4 @@ module.exports = function(app) {
 
   return socketObj;
   }]);
-};
+})();
