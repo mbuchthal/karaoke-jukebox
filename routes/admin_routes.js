@@ -2,6 +2,8 @@ var express = require('express');
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
+var queue = require(__dirname + '/../models/queue');
+
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
@@ -41,3 +43,7 @@ adminRouter.post('/staticQR', jsonParser, function(req, res) {
   res.status(200).json({msg: 'QR Generated', QR: qrString});
 });
 
+adminRouter.delete('/nextSong', function(req, res) {
+  queue.nextSong();
+  res.status(200).json({});
+});

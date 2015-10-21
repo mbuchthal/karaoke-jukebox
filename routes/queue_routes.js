@@ -50,7 +50,7 @@ queueRouter.patch('/queue', jsonParser, function(req, res) {
   } else {
     var result = queue.reOrder(users.getUser(req.headers.id));
     if (!result) {
-      return handleEror.badRequest(null, res);
+      return handleError.badRequest(null, res);
     }
   }
   socketServer.updateQueue(queue.queue);
