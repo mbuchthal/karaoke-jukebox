@@ -1,0 +1,27 @@
+<?xml version="1.0"?><svg width="1024" height="768" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Spotlight</title>
+ <defs>
+  <linearGradient id="linearGradient3649">
+   <stop stop-color="#ffff00" id="stop3651" offset="0"/>
+   <stop stop-color="#ffff00" stop-opacity="0" id="stop3653" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient3629">
+   <stop stop-color="#4d4d4d" id="stop3631" offset="0"/>
+   <stop stop-color="#838383" id="stop3633" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="1.009891" x2="-0.006237" y1="1.009891" x1="-0.409546" id="linearGradient3639" xlink:href="#linearGradient3629"/>
+  <linearGradient y2="0.667837" x2="0.607394" y1="0.000004" x1="0.000003" id="linearGradient3655" xlink:href="#linearGradient3649"/>
+ </defs>
+ <metadata id="metadata7">image/svg+xml</metadata>
+ <g>
+  <title>Layer 1</title>
+  <g id="layer1">
+   <path id="svg_2" fill="#333333" fill-rule="evenodd" d="m297.816132,92.814774l25.298615,-1.535461l1.099854,164.037277l-23.143188,-21.581146l-3.25528,-140.92067z"/>
+   <path id="svg_3" fill="url(#linearGradient3639)" fill-rule="evenodd" d="m265.736816,140.282776c-102.200409,-3.457886 -101.751526,62.059998 -100.099701,87.519135c23.058228,22.497864 54.771866,63.026093 77.830048,85.523926c36.893127,-24.228455 83.678223,-49.583832 120.571289,-73.812225c-26.584717,-27.442444 -71.716858,-71.788422 -98.301636,-99.230835z"/>
+   <path id="svg_4" fill="#333333" fill-rule="evenodd" d="m189.237885,92.814774l25.298599,-1.535461l1.099838,164.037277l-23.143188,-21.581146l-3.255249,-140.92067z"/>
+   <path id="svg_5" fill="#1a1a1a" fill-rule="evenodd" d="m255.971008,238.185577l-39.877121,143.887299l161.136093,-35.600983l43.946259,-132.762054l-165.205231,24.475739z"/>
+   <path id="svg_6" fill="url(#linearGradient3655)" fill-rule="evenodd" d="m267.678558,321.828735l241.86911,441.888123l347.184509,-162.343018l-494.360596,-340.611542l-94.693024,61.066437z"/>
+   <path id="svg_7" fill="#ffcc00" fill-rule="nonzero" d="m384.010437,279.876068a58.841198,44.752491 0 1 1 -117.682373,40.122833a58.841198,44.752491 0 1 1 117.682373,-40.122833z"/>
+  </g>
+ </g>
+</svg>
