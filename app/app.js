@@ -23,6 +23,10 @@ var app = angular.module('kvoxapp', ['ngRoute']);
       templateUrl: 'templates/queue.html',
       controller: 'KvoxQueueCtrl as vm'
     })
+    .when('/kvox/menu', {
+      templateUrl: 'templates/menu.html',
+      controller: 'KvoxCtrl as vm'
+    })
     .otherwise({
       redirectTo: '/kvox'
     });

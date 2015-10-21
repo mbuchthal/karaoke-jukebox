@@ -24,7 +24,7 @@ angular.module('kvoxapp').controller('KvoxService', ['$rootScope', function (Kvo
 
   // }
 
-})
+}]);
 
 })();
 

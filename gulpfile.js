@@ -39,7 +39,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('webpack', function() {
-  return gulp.src('./app/js/entry.js')
+  return gulp.src('./app/index.js')
     .pipe(webpack({
       output: {
         filename: 'main.js',
