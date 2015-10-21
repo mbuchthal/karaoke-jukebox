@@ -52,6 +52,7 @@ function SocketServer(io) {
   this.acceptUser = function(user, queue, songList) {
     var socketID = connections[user.id].socketID;
     clients[user.id] = user;
+    clients[user.id].socketID = socketID;
     clientSockets[socketID] = user;
     connections[user.id] = null;
     io.sockets.socket(socketID).join('karaoke');
@@ -62,9 +63,24 @@ function SocketServer(io) {
     });
   };
 
-  this.declineConnection = function(user) {
-    io.sockets.socket(connections[user.id]).emit('declineUser');
-    io.sockets.socket(connections[user.id]).close();
+  this.disconnectUser = function(user) {
+    var userSocket;
+    if (connections[user.id]) {
+      userSocket = connections[user.id];
+      connections[user.id] = null;
+    }
+    if (clients[user.id]) {
+      userSocket = clients[user.id];
+      var socketID = clients[user.id].socketID;
+      clients[user.id] = null;
+      clientSockets[socketID] = null;
+    }
+    io.sockets.socket(userSocket).emit('disconnectUser');
+    io.sockets.socket(userSocket).close();
+  };
+
+  this.updateUser = function(user) {
+    io.sockets.socket(clients[user.id]).emit('updateUser', {user: user});
   };
 
   this.onDeck = function(user, callback) {

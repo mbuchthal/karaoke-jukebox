@@ -32,20 +32,36 @@ Method:
 
 Data:
   
-  * user: the object representing the accepted user
-  * queue: a array containing the queue
-  * songlist: an array containing all available song objects
+* user: the object representing the accepted user
+* queue: a array containing the queue
+* songlist: an array containing all available song objects
 
-##### declineUser
+##### disconnectUser
 
 Disconnects the user
 
 Method:
 
-* declineConnection(user)
+* disconnectUser(user)
   * user - the user to be disconnected
 
 Data: (none)
+
+##### updateUser
+
+Pushes updated user information to the user.
+
+Method:
+
+* updateUser(user)
+  * user - the user to be updated
+
+Data:
+
+* user - modified user object
+  * id - user id
+  * nick - new nickname
+  * socketID - not used
 
 ##### onDeck
 

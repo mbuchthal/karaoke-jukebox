@@ -41,7 +41,7 @@ Returns:
 
 * 201 - On success.  Body contains the original passed song data object.
 * 400 - An error occurred while validating the data.  No body.
-* 401 - If post attempt is made by an unauthenticted user. No body.
+* 401 - If post attempt is made by an unauthenticated user. No body.
 * 500 - If something went wrong on the server.  No Body.
 
 #### PUT /api/lyrics/{{mp3file}}
