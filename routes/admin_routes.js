@@ -2,6 +2,7 @@ var express = require('express');
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
+var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
 
@@ -33,5 +34,10 @@ adminRouter.patch('/renameUser', jsonParser, function(req, res) {
   }
   user.changeNick(req.headers.id, req.body.nick);
   res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.headers.id).nick});
+});
+
+adminRouter.post('/staticQR', jsonParser, function(req, res) {
+  var qrString = createQR(req.body.qrMsg, 'svg');
+  res.status(200).json({msg: 'QR Generated', QR: qrString});
 });
 

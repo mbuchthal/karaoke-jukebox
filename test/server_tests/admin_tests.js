@@ -58,4 +58,16 @@ describe('admin', function() {
       });
   });
 
+  it('should generate a static qr code', function(done) {
+    chai.request(serverURL)
+      .post('/api/staticQR')
+      .send({qrMsg: 'your bar name here'})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.status).to.eql(200);
+        expect(res.body.msg).to.eql('QR Generated');
+        expect(res.body.QR.indexOf('<svg')).to.eql(0);
+        done();
+      });
+  });
 });
