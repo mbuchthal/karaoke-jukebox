@@ -1,22 +1,24 @@
 
+<!-- songbook.html -->
 <div class="songbook-container">
+<h2>Songbook</h2>
 <table class="songbook">
   <thead>
     <tr>
       <th>Song #</th>
       <th>Artist</th>
       <th>Song Title</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
-
+    <h3 ng-if="!vm.songs.length">No songs yet!</h3>
     <tr ng-repeat="song in vm.songs">
       <td>{{ $index }}</td>
       <td>{{vm.song.author}}</td>
       <td>{{vm.song.title}}</td>
-      <td><a href ng-click="vm.enterSong()">Enter Song</td>
+      <td><button name="enter-song" ng-click="vm.enterSong()">Enter Song</button></td>
     </tr>
-
   </tbody>
 </table>
 </div>

@@ -2,11 +2,12 @@
 h1 {
   font-family: $font-header;
   font-size: 6em;
-  padding-top: 1em;
-  padding-bottom: 1.25em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   text-align: center;
   @media screen and (max-width: 36em) {
     padding-top: 2em;
+    padding-bottom: 1em;
   }
   span {
     padding-left: 0.9em;
