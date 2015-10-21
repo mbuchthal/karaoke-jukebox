@@ -30,8 +30,7 @@ describe('socket server', function() {
     };
 
     socket = new EventEmitter();
-    SocketServer = require(__dirname + '/../../sockets/base');
-    socketServer = new SocketServer(io);
+    socketServer = require(__dirname + '/../../sockets/base')(io, true);
   });
 
   it('should respond to events', function(done) {
@@ -49,14 +48,14 @@ describe('socket server', function() {
       expect(token).to.eql(user.token);
       done();
     });
-    var user = {token: 12345};
+    var user = {id: 12345};
     io.emit('connection', socket);
-    socket.emit('registerUser', user);
+    socket.emit('registerUser', {user: user});
   });
 
   it('should send queue updates to all registered users', function(done) {
 
-    registerUser(io, socket, socketServer, {token: 12345, username: 'test'});
+    registerUser(io, socket, socketServer, {id: 12345, nick: 'test'});
     var serverEvents = socketServer.getEmitter();
     var mock = sinon.mock(clientSocket);
     mock.expects('emit').once().withExactArgs('updateQueue', {queue: 'test'});
@@ -70,13 +69,12 @@ describe('socket server', function() {
     var mock = sinon.mock(clientSocket);
     mock.expects('emit').once().withExactArgs('acceptUser',
         {user: {
-          token: 12345,
-          username: 'test'},
-         token: 12345,
+          id: 12345,
+          nick: 'test'},
          queue: 'queue',
          songlist: 'songList'
         });
-    registerUser(io, socket, socketServer, {token: 12345, username: 'test'},
+    registerUser(io, socket, socketServer, {id: 12345, nick: 'test'},
         'queue', 'songList');
     mock.verify();
     done();
@@ -84,7 +82,7 @@ describe('socket server', function() {
 
   it('should disconnect unaccepted users', function(done) {
     io.emit('connection', socket);
-    socket.emit('registerUser', {token: 12345});
+    socket.emit('registerUser', {id: 12345});
     var mock = sinon.mock(clientSocket);
     mock.expects('emit').once().withExactArgs('declineUser');
     socketServer.declineConnection(12345);
@@ -94,11 +92,11 @@ describe('socket server', function() {
 
   it('should send onDeck request and accept response', function(done) {
     socket.id = '215';
-    registerUser(io, socket, socketServer, {token: 12345, id: 5},
+    registerUser(io, socket, socketServer, {id: 56789, nick: 'tom'},
         'queue', 'songlist');
     var mock = sinon.mock(clientSocket);
     mock.expects('emit').once().withExactArgs('onDeck');
-    socketServer.onDeck({token: 12345, id: 5}, function() {
+    socketServer.onDeck({id: 56789, nick: 'tom'}, function() {
       mock.verify();
       done();
     });
@@ -107,11 +105,11 @@ describe('socket server', function() {
 
   it('should report disconnections', function(done) {
     socket.id = '215';
-    registerUser(io, socket, socketServer, {token: 12345, id: 5},
+    registerUser(io, socket, socketServer, {id: 12345, nick: 'harry'},
         'queue', 'songlist');
     var serverEvents = socketServer.getEmitter();
     serverEvents.on('disconnected', function(user) {
-      expect(user.token).to.eql(12345);
+      expect(user.id).to.eql(12345);
       done();
     });
     socket.emit('disconnect');
@@ -121,5 +119,5 @@ describe('socket server', function() {
 function registerUser(io, socket, socketServer, user, queue, songList) {
   io.emit('connection', socket);
   socket.emit('registerUser', user);
-  socketServer.acceptUser(user.token, user, queue, songList);
+  socketServer.acceptUser(user, queue, songList);
 }

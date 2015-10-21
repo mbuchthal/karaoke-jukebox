@@ -1,6 +1,16 @@
 var EventEmitter = require('events');
 
-module.exports = function(io) {
+var instance;
+
+module.exports = exports = function(io, newInstance) {
+  //Classic singleton pattern :D
+  if (!instance || newInstance) {
+    instance = new SocketServer(io);
+  }
+  return instance;
+};
+
+function SocketServer(io) {
   var connections = {};
   var clients = {};
   var clientSockets = {};
@@ -11,15 +21,15 @@ module.exports = function(io) {
     socket.on('ping', function() {
       io.sockets.emit('pong');
     });
-    socket.on('registerUser', function(data) {
-      connections[data.token] = {
+    socket.on('registerUser', function(user) {
+      connections[user.id] = {
         socketID: socket.id
       };
-      serverEvents.emit('registerUser', data.token);
+      serverEvents.emit('registerUser', user.id);
     });
     socket.on('onDeck', function(data) {
       clearTimeout(clientSockets[socket.id].timeout);
-      clientSockets[socket.id].callback();
+      clientSockets[socket.id].callback(true);
     });
     socket.on('disconnect', function() {
       if (clientSockets[socket.id]) {
@@ -39,31 +49,30 @@ module.exports = function(io) {
     io.to('karaoke').emit('updateQueue', data);
   };
 
-  this.acceptUser = function(token, user, queue, songList) {
-    var socketID = connections[token].socketID;
+  this.acceptUser = function(user, queue, songList) {
+    var socketID = connections[user.id].socketID;
     clients[user.id] = user;
     clientSockets[socketID] = user;
-    connections[token] = null;
+    connections[user.id] = null;
     io.sockets.socket(socketID).join('karaoke');
     io.sockets.socket(socketID).emit('acceptUser', {
       user: user,
-      token: token,
       queue: queue,
       songlist: songList
     });
   };
 
-  this.declineConnection = function(token) {
-    io.sockets.socket(connections[token]).emit('declineUser');
-    io.sockets.socket(connections[token]).close();
+  this.declineConnection = function(user) {
+    io.sockets.socket(connections[user.id]).emit('declineUser');
+    io.sockets.socket(connections[user.id]).close();
   };
 
   this.onDeck = function(user, callback) {
     clients[user.id].callback = callback;
     clients[user.id].timeout = setTimeout(function() {
-      callback(true);
+      callback(false);
     }, 30000);
     io.sockets.socket(clients[user.id]).emit('onDeck');
   };
 
-};
+}

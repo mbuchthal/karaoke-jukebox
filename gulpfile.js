@@ -23,7 +23,7 @@ gulp.task('jscs:warn', function() {
 });
 
 gulp.task('servertests', function() {
-  return gulp.src('test/server_tests/**/*.js', {read: false})
+  return gulp.src('test/server_tests/all_server_tests.js', {read: false})
     .pipe(mocha({reporter: 'spec'}));
 });
 
