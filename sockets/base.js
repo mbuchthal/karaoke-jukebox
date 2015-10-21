@@ -87,7 +87,7 @@ function SocketServer(io) {
     clients[user.id].callback = callback;
     clients[user.id].timeout = setTimeout(function() {
       callback(false);
-    }, 30000);
+    }, 60000);
     io.sockets.socket(clients[user.id]).emit('onDeck');
   };
 
