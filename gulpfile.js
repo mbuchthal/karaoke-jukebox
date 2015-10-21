@@ -23,7 +23,7 @@ gulp.task('jscs:warn', function() {
 });
 
 gulp.task('servertests', function() {
-  return gulp.src('test/server_tests/**/*.js', {read: false})
+  return gulp.src('test/server_tests/all_server_tests.js', {read: false})
     .pipe(mocha({reporter: 'spec'}));
 });
 
@@ -39,7 +39,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('webpack', function() {
-  return gulp.src('./app/js/entry.js')
+  return gulp.src('./app/index.js')
     .pipe(webpack({
       output: {
         filename: 'main.js',
