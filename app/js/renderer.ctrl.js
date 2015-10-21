@@ -5,7 +5,7 @@ var mp3 = require("./yellowSubmarine.js");
 
   "use strict";
 
-  angular.module("kvoxapp").controller("LyricsCtrl", function() {
+  angular.module("kvoxapp").controller("RendererCtrl", function() {
     var vm = this;
 
     vm.username = "Bob";
