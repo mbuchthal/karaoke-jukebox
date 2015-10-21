@@ -17,7 +17,7 @@ var app = angular.module('kvoxapp', ['ngRoute']);
     })
     .when('/kvox/songbook', {
       templateUrl: 'templates/songbook.html',
-      controller: 'KvoxSongCtrl as vm'
+      controller: 'SongBookCtrl as vm'
     })
     .when('/kvox/queue', {
       templateUrl: 'templates/queue.html',
@@ -25,6 +25,10 @@ var app = angular.module('kvoxapp', ['ngRoute']);
     })
     .when('/kvox/menu', {
       templateUrl: 'templates/menu.html',
+      controller: 'KvoxCtrl as vm'
+    })
+    .when('/kvox/admin', {
+      templateUrl: 'templates/signin-form.html',
       controller: 'KvoxCtrl as vm'
     })
     .otherwise({
