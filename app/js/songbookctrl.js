@@ -3,7 +3,7 @@ require('../app.js');
 (function () {
 'use strict'
 
-angular.module('kvoxapp').controller('KvoxService', function (KvoxService) {
+angular.module('kvoxapp').controller('KvoxService', ['$rootScope', function (KvoxService) {
 
 
   var vm = this;
@@ -15,9 +15,9 @@ angular.module('kvoxapp').controller('KvoxService', function (KvoxService) {
   }
 
   function getSongs () {
-    KvoxService.get().then(function (resp) {
-      vm.songs = resp.data;
-    })
+    // KvoxService.get().then(function (resp) {
+    //   vm.songs = resp.data;
+    // })
   }
 
   // function enterSong () {
@@ -27,3 +27,20 @@ angular.module('kvoxapp').controller('KvoxService', function (KvoxService) {
 })
 
 })();
+
+
+// .controller('logincontroller', ['socket', function(socket){
+//  socket.on('acceptUser', function(data){
+//    $rootScope.songlist = data.songlist;
+//    $rootScope.nick = data.nick
+//    $rootScope.queue = data.queue;
+//  })
+
+// }])
+
+// .controller('insidecontroller', ['socket', function(socket){
+//  socket.on('updateQueue', function(data){
+//    $rootScope.queue = data.queue;
+//  })
+
+// }])

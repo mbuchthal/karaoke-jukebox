@@ -35,11 +35,18 @@
 <!-- signin-form.html -->
       <section id="loginBox" class="login">
         <form action="" class="login-form">
-          <h3>Sign In</h3>
+          <legend>Admin Sign In</legend>
             <fieldset>
-              <label for="username">Name:</label>
-              <input type="text" name="username" id="username" placeholder="Enter your username" />
-          </fieldset>
+              <div>
+                <label for="username">Name:</label>
+                <input type="text" name="username" id="username" />
+              </div>
+              <div>
+                <label for="passcode">Passcode:</label>
+                <input type="password" name="passcode" id="passcode" />
+              </div>
+            </fieldset>
+            <button type="submit" name="login">Login</button>
         </form>
       </section>
 
@@ -102,6 +109,7 @@
       <th>Song #</th>
       <th>Artist</th>
       <th>Song Title</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -146,6 +154,6 @@
     </div>
 
   </body>
-  <script src="js/main.js"></script>
+ <!--  // <script src="js/main.js"></script> -->
 </html>
 

@@ -8,6 +8,27 @@ h1 {
   span {
     padding-left: 0.9em;
   }
+  &:before {
+    @include insert-svg(url("../images/spotlight.svg"), 100%, 8em);
+    position: absolute;
+    top: -1.8em;
+    left: -1em;
+    z-index: -1;
+    @media screen and (min-width: 36em) {
+      display: block;
+    }
+  }
+  &:after {
+    @include insert-svg(url("../images/karaoke-male.svg"), 30%, 4em);
+    position: absolute;
+    top: 2em;
+    left: 1.8em;
+    display: none;
+    @media screen and (min-width: 36em) {
+      display: block;
+    }
+
+  }
 }
 
 .title-svg {
@@ -18,3 +39,13 @@ h1 {
     height: 0.9em;
   }
 }
+
+// @mixin insert-svg($url, $size: 70%, $height-width: 0.5em) {
+//   content: "";
+//   display: inline-block;
+//   width: $height-width;
+//   height: $height-width;
+//   background: $url center center no-repeat;
+//   position: relative;
+//   background-size: $size;
+// }
