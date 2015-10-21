@@ -2,11 +2,38 @@
 h1 {
   font-family: $font-header;
   font-size: 6em;
-  padding-top: 1em;
-  padding-bottom: 1.25em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   text-align: center;
+  @media screen and (max-width: 36em) {
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
   span {
     padding-left: 0.9em;
+  }
+  &:before {
+    @include insert-svg(url("../images/spotlight.svg"), 100%, 8em);
+    position: absolute;
+    top: -1.8em;
+    left: -1em;
+    z-index: -1;
+    @media screen and (max-width: 36em) {
+      height: 5em;
+      width: 5em;
+      top: -1.2em;
+      left: -0.4em;
+    }
+  }
+  &:after {
+    @include insert-svg(url("../images/karaoke-male.svg"), 30%, 4em);
+    position: absolute;
+    top: 2em;
+    left: 1.8em;
+    display: none;
+    @media screen and (min-width: 50em) {
+      display: block;
+    }
   }
 }
 
@@ -18,3 +45,13 @@ h1 {
     height: 0.9em;
   }
 }
+
+// @mixin insert-svg($url, $size: 70%, $height-width: 0.5em) {
+//   content: "";
+//   display: inline-block;
+//   width: $height-width;
+//   height: $height-width;
+//   background: $url center center no-repeat;
+//   position: relative;
+//   background-size: $size;
+// }

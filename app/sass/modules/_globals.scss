@@ -1,8 +1,8 @@
 
 .gradient {
   background-image:
-    linear-gradient(
-      $color-theme, $color-sub
+    linear-gradient(to bottom right,
+      $color-sub, $color-theme 15%, $color-sub
     );
   background-attachment: fixed;
 }
