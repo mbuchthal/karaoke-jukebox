@@ -26,8 +26,22 @@ describe('users', function() {
       expect(res.status).to.eql(202);
       expect(err).to.eql(null);
       expect(users.getUser(res.body.id)).to.not.eql(null);
+      expect(res.body.nick).to.eql('Guest');
       done();
     });
+  });
+
+  it('should return a qr of the user id', function(done) {
+    chai.request(serverURL)
+      .get('/api/user')
+      .set('id', '12345')
+      .set('nick', 'guestperson')
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.status).to.eql(202);
+        expect(res.body.QR.indexOf('<svg')).to.eql(0);
+        done();
+      });
   });
 
   it('should change user nicknames', function(done) {
