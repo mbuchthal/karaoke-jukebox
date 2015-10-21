@@ -66,7 +66,7 @@ describe('the lyrics server', function() {
     .get('/lyrics')
     .end(function(err, ret) {
       expect(err).to.eql(null);
-      expect(ret.body.length).to.eql(1);
+      expect(ret.body.length).to.be.at.least(1);
       done();
     });
   });

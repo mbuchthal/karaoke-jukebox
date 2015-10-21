@@ -28,8 +28,11 @@ describe('the karaoke jukebox server', function() {
   require(__dirname + '/lyrics_tests');
   require(__dirname + '/users_tests');
   require(__dirname + '/queue_routes_tests');
+  require(__dirname + '/qr_code_tests');
 
   after(function() {
     server.shutDown();
+    //Due to use of socketServer, these tests must be run after server teardown
+    require(__dirname + '/socket_server_tests');
   });
 });
