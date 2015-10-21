@@ -54,25 +54,37 @@ describe('socket server', function() {
   });
 
   it('should send queue updates to all registered users', function(done) {
-
     registerUser(io, socket, socketServer, {id: 12345, nick: 'test'});
     var serverEvents = socketServer.getEmitter();
     var mock = sinon.mock(clientSocket);
     mock.expects('emit').once().withExactArgs('updateQueue', {queue: 'test'});
-
     socketServer.updateQueue({queue: 'test'});
+    mock.verify();
+    done();
+  });
+
+  it('should send user updates to that user', function(done) {
+    socket.id = '215';
+    registerUser(io, socket, socketServer, {id: 12345, nick: 'test'});
+    var serverEvents = socketServer.getEmitter();
+    var mock = sinon.mock(clientSocket);
+    mock.expects('emit').once().withExactArgs('updateUser', {user:
+        {id: 12345, nick: 'test', socketID: '215'}});
+    socketServer.updateUser({id: 12345, nick: 'test', socketID: '215'});
     mock.verify();
     done();
   });
 
   it('should update connected user on acceptance', function(done) {
     var mock = sinon.mock(clientSocket);
+    socket.id = '215';
     mock.expects('emit').once().withExactArgs('acceptUser',
         {user: {
           id: 12345,
+          socketID: '215',
           nick: 'test'},
          queue: 'queue',
-         songlist: 'songList'
+         songlist: 'songList',
         });
     registerUser(io, socket, socketServer, {id: 12345, nick: 'test'},
         'queue', 'songList');
@@ -84,8 +96,8 @@ describe('socket server', function() {
     io.emit('connection', socket);
     socket.emit('registerUser', {id: 12345});
     var mock = sinon.mock(clientSocket);
-    mock.expects('emit').once().withExactArgs('declineUser');
-    socketServer.declineConnection(12345);
+    mock.expects('emit').once().withExactArgs('disconnectUser');
+    socketServer.disconnectUser(12345);
     mock.verify();
     done();
   });
@@ -114,6 +126,7 @@ describe('socket server', function() {
     });
     socket.emit('disconnect');
   });
+
 });
 
 function registerUser(io, socket, socketServer, user, queue, songList) {

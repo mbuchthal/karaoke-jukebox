@@ -29,12 +29,6 @@ var testSong = {
                 ]};
 
 describe('the lyrics server', function() {
-  after(function(done) {
-    mongoose.connection.db.dropDatabase(function(err) {
-      if (err) {return console.log(err);}
-      done();
-    });
-  });
   it('should exist', function() {
     expect(Lyric).not.to.eql(undefined);
     expect(Lyric).not.to.eql(null);
