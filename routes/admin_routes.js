@@ -6,7 +6,7 @@ var user = require(__dirname + '/../models/user');
 var adminRouter = module.exports = exports = express.Router();
 
 adminRouter.post('/signinAdmin', jsonParser, function(req, res) {
-// TODO: Authenticate admin user
+  // TODO: Authenticate admin user
 });
 
 adminRouter.post('/acceptUser', jsonParser, function(req, res) {
@@ -31,7 +31,7 @@ adminRouter.patch('/renameUser', jsonParser, function(req, res) {
   if (!user.exists(req.headers.id)) {
     return handleError.notFoundError('User not found: ' + req.headers.id, res);
   }
-  user.changeNick(req.headers.id, req.headers.nick);
-  res.status(200).json({msg: 'User renamed to: ' + req.headers.nick});
+  user.changeNick(req.headers.id, req.body.nick);
+  res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.headers.id).nick});
 });
 
