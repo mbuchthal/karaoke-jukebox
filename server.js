@@ -9,8 +9,7 @@ mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
 process.env.APP_SECRET = process.env.APP_SECRET || 'EVERYBODYDANCENOW';
 
 var io = require('socket.io').listen(server);
-var SocketServer = require('./sockets/base');
-var socketServer = new SocketServer(io);
+var socketServer = require(__dirname + '/sockets/base')(io);
 
 var kjLog = require(__dirname + '/lib/logger');
 
