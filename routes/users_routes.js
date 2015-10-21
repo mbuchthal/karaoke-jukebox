@@ -1,5 +1,5 @@
 var express = require('express');
-var users = require(__dirname + '/../lib/user');
+var users = require(__dirname + '/../models/user');
 var uuid = require('node-uuid');
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
