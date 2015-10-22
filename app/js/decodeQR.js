@@ -31,7 +31,7 @@ function initCanvas(width, height) {
 
 function read(decodedMsg) {
   var html = '<br>Decoded Message:<br/>';
-  if (decodedMsg.indexOf('http') === 0 || decodedMsg.indexOf('https://') === 0) {
+  if (decodedMsg.indexOf('http') === 0) {
     html += '<a target="_blank" href="' + decodedMsg + '">' + decodedMsg + '</a>';
   } else {
     html += '<b>' + htmlEntities(decodedMsg) + '</b>';
