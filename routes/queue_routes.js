@@ -24,6 +24,11 @@ queueRouter.post('/queue', jsonParser, function(req, res) {
       return handleError.notFoundError(null, res);
     }
     queue.add(song, users.getUser(req.headers.id));
+    users.getUser(req.headers.id).queued = true;
+    if (req.body.song) {
+      users.getUser(userID).queuedSong = song;
+    }
+    socketServer.updateUser(users.getUser(userID));
     socketServer.updateQueue(queue.queue);
     res.status(200).json({});
   });
@@ -45,6 +50,8 @@ queueRouter.patch('/queue', jsonParser, function(req, res) {
       if (!song) {
         return handleError.notFoundError(null, res);
       }
+      users.getUser(userID).queuedSong = song;
+      socketServer.updateUser(users.getUser(userID));
       queue.changeSong(users.getUser(req.headers.id), song);
       socketServer.updateQueue(queue.queue);
       return res.status(200).json({});
@@ -67,6 +74,8 @@ queueRouter.delete('/queue', function(req, res) {
   if (!queue.hasSong(users.getUser(req.headers.id))) {
     return handleError.notFoundError(null, res);
   }
+  users.getUser(userID).queued = null;
+  users.getUser(userID).queuedSong = null;
   queue.removeSong(users.getUser(req.headers.id));
   socketServer.updateQueue(queue, queue);
   return res.status(200).json({});
