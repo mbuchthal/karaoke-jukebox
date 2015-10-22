@@ -14,6 +14,7 @@ var socketOptions = {
 };
 var socketURL = 'http://localhost:3000';
 var socket;
+var token;
 
 describe('http basic: header authorization', function() {
   it('should be able to handle http basic auth', function() {
@@ -69,6 +70,7 @@ describe('admin', function() {
       .get('/api/signinAdmin')
       .auth('testAdmin', 'foobar123')
       .end(function(err, res) {
+        token = res.body.token;
         expect(err).to.eql(null);
         expect(res.body.token.length).to.be.above(0);
         done();
@@ -78,7 +80,7 @@ describe('admin', function() {
   it('should accept a user', function(done) {
     chai.request(serverURL)
       .post('/api/acceptUser')
-      .auth('testAdmin', 'foobar123')
+      .set('token', token)
       .send({id: '12345'})
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -91,6 +93,7 @@ describe('admin', function() {
   it('should decline a user', function(done) {
     chai.request(serverURL)
       .post('/api/declineUser')
+      .set('token', token)
       .send({id: '12345', expiry: (Date.now())})
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -104,6 +107,7 @@ describe('admin', function() {
     var agent = chai.request.agent(serverURL);
     agent
       .patch('/api/renameUser')
+      .set('token', token)
       .send({id: '12345', nick: 'newguy', expiry: (Date.now)})
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -117,7 +121,7 @@ describe('admin', function() {
     var agent = chai.request.agent(serverURL);
     agent
       .post('/api/staticQR')
-      .auth('testAdmin', 'foobar123')
+      .set('token', token)
       .send({qrMsg: 'your bar name here'})
       .end(function(err, res) {
         expect(err).to.eql(null);
