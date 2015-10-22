@@ -46,9 +46,6 @@ require('../app.js');
       sweetAlert();
     });
 
-    function errorHandler (response) {
-      $log.error('response', response);
-    }
 
   }]);
 })();

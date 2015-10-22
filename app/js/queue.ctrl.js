@@ -1,6 +1,5 @@
 require('../app.js');
 
-
 (function () {
 'use strict'
 
@@ -34,7 +33,7 @@ require('../app.js');
       });
     }
 
-    function errorHandler (response) {
+    function errorHandler (reponse) {
       $log.error('response', response);
     }
 
