@@ -10,18 +10,21 @@ require('../app.js');
     disconnectUser();
 
     function signIn () {
-      $location.url('/kvok/qr');
+
       $http.get('/api/user')
       .success(function (data) {
+
         var El = document.getElementById('qr-wrapper');
         var newQr = data.QR;
         El.appendChild(newQr);
+
       })
       .error(errorHandler);
+    }
 
       socket.on('acceptUser'), function() {
         $location.url('/kvox/menu');
-      }
+
     }
 
     function setName () {
@@ -38,6 +41,11 @@ require('../app.js');
         $location.url('/kvox');
       });
     }
+    var sweetAlert = require('./sweetalert');
+    socket.on('onDeck', function () {
+      sweetAlert();
+    });
+
 
   }]);
 })();
