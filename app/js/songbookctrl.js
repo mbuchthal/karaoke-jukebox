@@ -1,5 +1,6 @@
 require('../app.js');
 
+
 (function () {
 'use strict'
 
@@ -50,6 +51,12 @@ require('../app.js');
     function errorHandler (response) {
       $log.error('response', response);
     }
+
+    var sweetAlert = require('./sweetalert');
+    socket.on('onDeck', function () {
+      sweetAlert();
+    });
+
 
   }]);
 

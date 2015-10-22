@@ -5,30 +5,17 @@ require('../app.js');
 
   angular.module('kvoxapp').controller('KvoxQueueCtrl', ['socket', '$location', '$http', function (socket, $location, $http) {
 
+
     var vm = this;
     vm.user = socket.user;
     vm.song = socket.song;
 
+    var sweetAlert = require('./sweetalert');
     disconnectUser();
 
-//does this need a vm.user?
     socket.on('onDeck', function () {
-      showOnDeck();
+      sweetAlert();
     });
-
-    function showOnDeck() {
-      //do something to alert user and prompt them
-      //possibly confirm('You are on deck to sing.  Press ok to confirm')
-
-      var confirm = confirm('You are next to sing.  Press ok to confirm.');
-      if (confirm == true) {
-        alert('Get ready to sing!');
-        $location.url('/menu');
-      } else {
-        alert('You have been moved down the queue')
-        $location.url('/queue');
-      }
-    }
 
     function chickenOut () {
       $http.delete( '/api/queue', {
@@ -50,17 +37,11 @@ require('../app.js');
       $log.error('response', response);
     }
 
+    var sweetAlert = require('./sweetalert');
+    socket.on('onDeck', function () {
+      sweetAlert();
+    });
+
   }]);
 
 })();
-
-
-//function clickedShowButton
-// .controller('logincontroller', ['socket', function(socket){
-//  socket.on('acceptUser', function(data){
-//    $rootScope.songlist = data.songlist;
-//    $rootScope.nick = data.nick
-//    $rootScope.queue = data.queue;
-//  })
-
-// }])
