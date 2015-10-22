@@ -52,8 +52,10 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
 });
 
 adminRouter.post('/acceptUser', jsonParser, eatAuth, function(req, res) {
+  console.log(user.usersDict);
+  console.log('acceptuser id: ' + req.body.id);
   var userID = req.body.id;
-  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
+  if (!user.exists(userID)) {
     return handleError.notFoundError('User not found: ' + userID, res);
   }
   Lyric.find({}, function(err, data) {
