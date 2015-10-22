@@ -2,21 +2,22 @@ require('angular');
 require('angular-route');
 require('angular-sweetalert');
 require('sweetalert');
+require('angular-base64');
 
 (function () {
   'use strict'
 
-var app = angular.module('kvoxapp', ['ngRoute']);
+var app = angular.module('kvoxapp', ['ngRoute', 'base64']);
 
   app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/kvox', {
       templateUrl: 'templates/signin.html',
       controller: 'KvoxCtrl as vm'
     })
-    // .when('/kvox/signin', {
-    //   templateUrl: 'templates/signin-form.html',
-    //   controller: 'KvoxFormCtrl as vm'
-    // })
+    .when('/kvox/decodeQR', {
+      templateUrl: 'templates/decodeQR.html',
+      controller: 'AdminCtrl as vm'
+    })
     .when('/kvox/qr', {
       templateUrl: 'templates/qr.html',
       controller: 'KvoxCtrl as vm'
@@ -39,7 +40,7 @@ var app = angular.module('kvoxapp', ['ngRoute']);
     })
     .when('/kvox/admin', {
       templateUrl: 'templates/signin-form.html',
-      controller: 'KvoxCtrl as vm'
+      controller: 'AdminCtrl as vm'
     })
     .when('/kvox/renderer', {
       templateUrl: 'templates/renderer.html',
