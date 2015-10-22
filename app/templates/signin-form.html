@@ -1,17 +1,20 @@
 <!-- signin-form.html -->
 <h1>K<span class="title-svg">Vox</span></h1>
       <section id="loginBox" class="login">
-        <form action="" class="login-form">
-          <legend>Set Name</legend>
+        <form action="" class="login-form" id="admin-form">
+          <legend>Admin:</legend>
             <fieldset>
-
-                <label for="username">Name:</label>
-                <input type="text" name="username" id="username" />
-
+              <label for="username">Name:</label>
+              <input type="text" name="admin-name" id="admin-name" ng-model="vm.admin.username"/>
+              <label for="username">Passcode:</label>
+              <input type="password" name="admin-pass" id="admin-pass" ng-model="vm.admin.basic.password" />
             </fieldset>
+ <!--            <fieldset>
+              <label for="invite-code">Invite Code:</label>
+              <input type="text" name="invite-code" id="invite-code" />
+            </fieldset> -->
             <div class="name-btn_wrapper">
-              <button type="submit" name="setname" ng-click="setName()">Login</button>
-              <a href="#/kvox/menutwo" class="skip-btn">Skip</a>
+              <button type="submit" name="adminlogin" ng-click="adminLogin()">Login</button>
             </div>
         </form>
       </section>
