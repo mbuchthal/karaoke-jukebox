@@ -33,7 +33,7 @@ require('../app.js');
       });
     }
 
-    function errorHandler (reponse) {
+    function errorHandler (response) {
       $log.error('response', response);
     }
 
