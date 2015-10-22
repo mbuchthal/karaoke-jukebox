@@ -3,19 +3,45 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
 var queue = require(__dirname + '/../models/queue');
+var Admin = require(__dirname + '/../models/admin');
+var eatAuth = require(__dirname + '/../lib/eat_authentication');
+var httpBasic = require(__dirname + '/../lib/http_basic');
 var socketServer = require(__dirname + '/../sockets/base')();
 var Lyric = require(__dirname + '/../models/lyric');
 var mongoose = require('mongoose');
-
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
 
-adminRouter.post('/signinAdmin', jsonParser, function(req, res) {
-  // TODO: Authenticate admin user
+adminRouter.post('/signupAdmin', jsonParser, function(req, res) {
+  var newAdmin = new Admin();
+  newAdmin.basic.username = req.body.username;
+  newAdmin.username = req.body.username;
+  newAdmin.generateHash(req.body.password, function(err, hash) {
+    if (err) {return handleError.internalServerError(err, res);}
+    newAdmin.save(function(err, data) {
+      if (err) {return handleError.internalServerError(err, res);}
+      newAdmin.generateToken(function(err, token) {
+        res.json({token: token});
+      });
+    });
+  });
 });
 
-adminRouter.post('/acceptUser', jsonParser, function(req, res) {
+adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
+  Admin.findOne({'basic.username': req.auth.username}, function(err, admin) {
+    if (err) {return handleError.internalServerError(err, res);}
+    admin.compareHash(req.auth.password, function(err, hashRes) {
+      if (err) {return handleError.internalServerError(err, res);}
+      admin.generateToken(function(err, token) {
+        if (err) {return handleError.internalServerError(err, res);}
+        res.json({token: token});
+      });
+    });
+  });
+});
+
+adminRouter.post('/acceptUser', jsonParser, eatAuth, function(req, res) {
   var userID = req.body.id;
   if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
     return handleError.notFoundError('User not found: ' + userID, res);
@@ -28,7 +54,7 @@ adminRouter.post('/acceptUser', jsonParser, function(req, res) {
   });
 });
 
-adminRouter.post('/declineUser', jsonParser, function(req, res) {
+adminRouter.post('/declineUser', jsonParser, eatAuth, function(req, res) {
   var userID = req.body.id;
   if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
     return handleError.notFoundError('User not found: ' + req.body.id, res);
@@ -38,7 +64,7 @@ adminRouter.post('/declineUser', jsonParser, function(req, res) {
   res.status(200).json({msg: 'User has been declined'});
 });
 
-adminRouter.patch('/renameUser', jsonParser, function(req, res) {
+adminRouter.patch('/renameUser', jsonParser, eatAuth, function(req, res) {
   var userID = req.body.id;
   if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
     return handleError.notFoundError('User not found: ' + req.body.id, res);
@@ -47,12 +73,12 @@ adminRouter.patch('/renameUser', jsonParser, function(req, res) {
   res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.body.id).nick});
 });
 
-adminRouter.post('/staticQR', jsonParser, function(req, res) {
+adminRouter.post('/staticQR', jsonParser, eatAuth, function(req, res) {
   var qrString = createQR(req.body.qrMsg, 'svg');
   res.status(200).json({msg: 'QR Generated', QR: qrString});
 });
 
-adminRouter.delete('/nextSong', function(req, res) {
+adminRouter.delete('/nextSong', eatAuth, function(req, res) {
   queue.nextSong();
   res.status(200).json({});
 });
