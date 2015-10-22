@@ -34,3 +34,17 @@
             </li>
           </ul>
         </div>
+
+      <section id="loginBox" class="login">
+        <form action="" class="login-form" ng-submit="setName()">
+          <legend>Set Name</legend>
+            <fieldset>
+              <label for="username">Name:</label>
+              <input type="text" name="username" id="username" ng-model="vm.user.nick" />
+            </fieldset>
+            <div class="name-btn_wrapper">
+              <button type="submit" name="setname">Set</button>
+              <!-- <a href="#/kvox/menutwo" class="skip-btn">Skip</a> -->
+            </div>
+        </form>
+      </section>

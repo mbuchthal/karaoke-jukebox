@@ -1,13 +1,12 @@
 
 .login {
-  padding-top: 2em;
   text-align: center;
 }
 
 .login-form {
   margin: 0 auto;
   width: 40em;
-  padding: 3em 4em 6em 4em;
+  padding: 1em 4em 4em 4em;
   font-family: $font-sub;
   border: 1px solid $color-theme;
 
@@ -16,7 +15,6 @@
     font-size: 3em;
     padding-bottom: 0.25em;
   }
-
   fieldset {
     font-size: 1.5em;
     label {
@@ -39,8 +37,12 @@
     font-size: 1.6em;
     background-image:
     linear-gradient(to bottom right,
-     #fff 5%, $color-theme
+      #fff 5%, $color-theme
     );
+  }
+  input {
+    padding-left: 1.5em;
+    margin-right: 6em;
   }
 }
 input:focus {

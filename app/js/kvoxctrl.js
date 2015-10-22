@@ -9,18 +9,28 @@ require('../app.js');
 
     disconnectUser();
 
-
     function signIn () {
+      $location.url('/kvok/qr');
+      $http.get('/api/user')
+      .success(function (data) {
+        var El = document.getElementById('qr-wrapper');
+        var newQr = data.QR;
+        El.appendChild(newQr);
+      })
+      .error(errorHandler);
+
       socket.on('acceptUser'), function() {
         $location.url('/kvox/menu');
       }
     }
 
     function setName () {
-      //set vm.user.nick to new value
-      socket.on('updateUser'), function () {
-        $location.url('/kvox/menu');
-      }
+      //using ng model to set user.nick to input value
+      $http.patch('/api/user', {nick: vm.user.nick})
+      .success(function (resp) {
+        console.dir('response', response);
+      })
+      .error(errorHandler);
     }
 
     function disconnectUser (user) {
@@ -30,10 +40,4 @@ require('../app.js');
     }
 
   }]);
-
 })();
-
-//login controller
-//
-// socket.on('acceptUser')
-//

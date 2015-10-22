@@ -9,6 +9,8 @@ require('../app.js');
     // vm.user = socket.user;
     // // vm.songs = socket.songList;
     vm.songs = [];
+
+    // sample songs for testing views
     var songSampleOne = {
       title:  'Cherry Pie',
       author: 'Poison'
@@ -19,34 +21,27 @@ require('../app.js');
     };
     vm.songs.push(songSampleTwo);
     vm.songs.push(songSampleOne);
-    console.log(vm.songs);
-    console.log(vm.songs[0].author);
 
     disconnectUser();
 
-
-    function enterSong () {
-      if (!vm.song) {
+    function enterSong (song) {
+      if (!vm.user.queued) {
         // enter song into queue
-        $http.post('/api/queue', vm.song, {
-          headers: {'vm.user': 'vm.user.id'}
-        })
+        $http.post('/api/queue', song)
         .success(function (resp) {
           $location.url('/queue');
         })
         .error(errorHandler);
       } else {
         // update song in queue
-        $http.patch('/api/queue', vm.song, {
-          headers: {'vm.user': 'vm.user.id'}
-        })
+        $http.patch('/api/queue', song)
         .success(function (resp) {
           $location.url('/queue');
         })
       }
     }
 
-    function disconnectUser (user) {
+    function disconnectUser () {
       socket.on('disconnectUser', function () {
         $location.url('/kvox');
       });
