@@ -16,12 +16,13 @@ describe('admin', function() {
   beforeEach(function(done) {
     socket = io.connect(socketURL, socketOptions);
     socket.on('connect', function() {
+      socket.emit('registerUser', {id: '12345', nick: 'guestperson'});
       chai.request(serverURL)
         .get('/api/user')
         .set('id', '12345')
         .set('nick', 'guestperson')
+        .set('expiry', Date.now() + 800000)
         .end(function(err, data) {
-          socket.emit('registerUser', {id: '12345', nick: 'guestperson'});
           done();
         });
     });
@@ -44,7 +45,7 @@ describe('admin', function() {
   it('should decline a user', function(done) {
     chai.request(serverURL)
       .post('/api/declineUser')
-      .send({id: '12345'})
+      .send({id: '12345', expiry: (Date.now())})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -54,9 +55,10 @@ describe('admin', function() {
   });
 
   it('should rename a user', function(done) {
-    chai.request(serverURL)
+    var agent = chai.request.agent(serverURL);
+    agent
       .patch('/api/renameUser')
-      .send({id: '12345', nick: 'newguy'})
+      .send({id: '12345', nick: 'newguy', expiry: (Date.now)})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -66,7 +68,8 @@ describe('admin', function() {
   });
 
   it('should generate a static qr code', function(done) {
-    chai.request(serverURL)
+    var agent = chai.request.agent(serverURL);
+    agent
       .post('/api/staticQR')
       .send({qrMsg: 'your bar name here'})
       .end(function(err, res) {
@@ -77,4 +80,5 @@ describe('admin', function() {
         done();
       });
   });
+
 });
