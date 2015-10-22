@@ -1,8 +1,8 @@
 
 <!-- songbook.html -->
+<h1>K<span class="title-svg">Vox</span></h1>
 <div class="songbook-container">
 <h2>Songbook</h2>
-
 <table class="songbook">
   <thead>
     <tr>
@@ -15,12 +15,12 @@
   <tbody>
     <h3 ng-if="!vm.songs.length">No songs yet!</h3>
     <tr ng-repeat="song in vm.songs">
-      <td>{{ $index }}</td>
-      <td>{{vm.song.author}}</td>
-      <td>{{vm.song.title}}</td>
-      <td><button name="enter-song" ng-click="vm.enterSong()">Enter Song</button></td>
+      <td>{{ $index + 1 }}</td>
+      <td>{{song.author}}</td>
+      <td>{{song.title}}</td>
+      <td><button name="enter-song" ng-click="vm.enterSong(song)">Enter Song</button></td>
     </tr>
   </tbody>
 </table>
-<a href="#/kvox/menu" class="button-mock">Back To Menu</a>
+<a href="#/kvox/menu" class="menu-btn">Back To Menu</a>
 </div>

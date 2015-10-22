@@ -82,3 +82,15 @@
     height: 3.25em;
   }
 }
+.menu-listitem4 {
+  @include circle-mock;
+  @include rotated-text(11, 145deg, -80deg);
+   > .icon-stack:before {
+    position: relative;
+    top: 2em;
+    font-size: 1.5em;
+  }
+  span {
+    height: 3.5em;
+  }
+}

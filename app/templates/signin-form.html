@@ -1,18 +1,18 @@
 <!-- signin-form.html -->
+<h1>K<span class="title-svg">Vox</span></h1>
       <section id="loginBox" class="login">
         <form action="" class="login-form">
-          <legend>Admin Sign In</legend>
+          <legend>Set Name</legend>
             <fieldset>
-              <div>
+
                 <label for="username">Name:</label>
                 <input type="text" name="username" id="username" />
-              </div>
-              <div>
-                <label for="passcode">Passcode:</label>
-                <input type="password" name="passcode" id="passcode" />
-              </div>
+
             </fieldset>
-            <button type="submit" name="login">Login</button>
+            <div class="name-btn_wrapper">
+              <button type="submit" name="setname" ng-click="setName()">Login</button>
+              <a href="#/kvox/menutwo" class="skip-btn">Skip</a>
+            </div>
         </form>
       </section>
 
