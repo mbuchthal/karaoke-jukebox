@@ -3,6 +3,9 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
 var queue = require(__dirname + '/../models/queue');
+var socketServer = require(__dirname + '/../sockets/base')();
+var Lyric = require(__dirname + '/../models/lyric');
+var mongoose = require('mongoose');
 
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
@@ -13,29 +16,35 @@ adminRouter.post('/signinAdmin', jsonParser, function(req, res) {
 });
 
 adminRouter.post('/acceptUser', jsonParser, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
+    return handleError.notFoundError('User not found: ' + userID, res);
   }
-  user.setExpiry(req.headers.id);
-  user.usersDict.accepted = true;
-  res.status(202).json({msg: 'User has been accepted'});
+  Lyric.find({}, function(err, data) {
+    if (err) { return handleError.internalServerError(err, data); }
+    user.setExpiry(user.getUser(userID));
+    socketServer.acceptUser(user.getUser(userID), queue.queue, data || []);
+    res.status(202).json({msg: 'User has been accepted'});
+  });
 });
 
 adminRouter.post('/declineUser', jsonParser, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
+    return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
-  user.remove(req.headers.id);
-  // TODO: DISCONNECT USER FROM SOCKET
+  socketServer.disconnectUser(user.getUser(req.body.id));
+  user.remove(req.body.id);
   res.status(200).json({msg: 'User has been declined'});
 });
 
 adminRouter.patch('/renameUser', jsonParser, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
+    return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
-  user.changeNick(req.headers.id, req.body.nick);
-  res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.headers.id).nick});
+  user.changeNick(req.body.id, req.body.nick);
+  res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.body.id).nick});
 });
 
 adminRouter.post('/staticQR', jsonParser, function(req, res) {

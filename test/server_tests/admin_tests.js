@@ -3,17 +3,29 @@ var http = require('chai-http');
 chai.use(http);
 var expect = chai.expect;
 var user = require(__dirname + '/../../models/user');
+var io = require('socket.io-client');
 var serverURL = 'http://localhost:3000';
+var socketOptions = {
+  transports: ['websocket'],
+  'force new connection': true
+};
+var socketURL = 'http://localhost:3000';
+var socket;
 
 describe('admin', function() {
   beforeEach(function(done) {
-    chai.request(serverURL)
-      .get('/api/user')
-      .set('id', '12345')
-      .set('nick', 'guestperson')
-      .end(function(err, data) {
-        done();
-      });
+    socket = io.connect(socketURL, socketOptions);
+    socket.on('connect', function() {
+      socket.emit('registerUser', {id: '12345', nick: 'guestperson'});
+      chai.request(serverURL)
+        .get('/api/user')
+        .set('id', '12345')
+        .set('nick', 'guestperson')
+        .set('expiry', Date.now() + 800000)
+        .end(function(err, data) {
+          done();
+        });
+    });
   });
 
   it('should be able to signin to admin');
@@ -21,8 +33,7 @@ describe('admin', function() {
   it('should accept a user', function(done) {
     chai.request(serverURL)
       .post('/api/acceptUser')
-      .set('id', '12345')
-      .set('nick', 'guestperson')
+      .send({id: '12345'})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(202);
@@ -34,8 +45,7 @@ describe('admin', function() {
   it('should decline a user', function(done) {
     chai.request(serverURL)
       .post('/api/declineUser')
-      .set('id', '12345')
-      .set('nick', 'guestperson')
+      .send({id: '12345', expiry: (Date.now())})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -45,11 +55,10 @@ describe('admin', function() {
   });
 
   it('should rename a user', function(done) {
-    chai.request(serverURL)
+    var agent = chai.request.agent(serverURL);
+    agent
       .patch('/api/renameUser')
-      .set('id', '12345')
-      .set('nick', 'guestperson')
-      .send({nick: 'newguy'})
+      .send({id: '12345', nick: 'newguy', expiry: (Date.now)})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
@@ -59,7 +68,8 @@ describe('admin', function() {
   });
 
   it('should generate a static qr code', function(done) {
-    chai.request(serverURL)
+    var agent = chai.request.agent(serverURL);
+    agent
       .post('/api/staticQR')
       .send({qrMsg: 'your bar name here'})
       .end(function(err, res) {
@@ -70,4 +80,5 @@ describe('admin', function() {
         done();
       });
   });
+
 });
