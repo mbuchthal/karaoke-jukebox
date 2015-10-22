@@ -2,7 +2,6 @@ var chai = require('chai');
 var http = require('chai-http');
 chai.use(http);
 var expect = chai.expect;
-var mongoose = require('mongoose');
 var httpBasic = require(__dirname + '/../../lib/http_basic');
 
 var user = require(__dirname + '/../../models/user');
@@ -39,18 +38,10 @@ describe('admin', function() {
       socket.emit('registerUser', {id: '12345', nick: 'guestperson'});
       chai.request(serverURL)
         .get('/api/user')
-        .set('id', '12345')
-        .set('nick', 'guestperson')
         .set('expiry', Date.now() + 800000)
         .end(function(err, data) {
           done();
         });
-    });
-  });
-
-  after(function(done) {
-    mongoose.connection.db.dropDatabase(function() {
-      done();
     });
   });
 
