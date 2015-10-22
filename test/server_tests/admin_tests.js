@@ -52,7 +52,6 @@ describe('admin', function() {
     });
   });
 
-//create a new admin account
   it('should be able to create a new admin', function(done) {
     chai.request(serverURL)
       .post('/api/signupAdmin')
@@ -67,10 +66,9 @@ describe('admin', function() {
   it('should be able to signin to admin', function(done) {
     chai.request(serverURL)
       .get('/api/signinAdmin')
-      .auth({username: 'testAdmin', password: 'foobar123'})
+      .auth('testAdmin', 'foobar123')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        console.log(res);
         expect(res.body.token.length).to.be.above(0);
         done();
       });
@@ -79,6 +77,7 @@ describe('admin', function() {
   it('should accept a user', function(done) {
     chai.request(serverURL)
       .post('/api/acceptUser')
+      .auth('testAdmin', 'foobar123')
       .send({id: '12345'})
       .end(function(err, res) {
         expect(err).to.eql(null);
@@ -115,8 +114,7 @@ describe('admin', function() {
   it('should generate a static qr code', function(done) {
     chai.request(serverURL)
       .post('/api/staticQR')
-      .set('username', 'testAdmin')
-      .set('password', 'foobar123')
+      .auth('testAdmin', 'foobar123')
       .send({qrMsg: 'your bar name here'})
       .end(function(err, res) {
         expect(err).to.eql(null);
