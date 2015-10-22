@@ -6,4 +6,5 @@ require('./js/kvoxformctrl.js');
 require('./js/queue.ctrl.js');
 require('./js/songbookctrl.js');
 require('./js/admin.ctrl.js');
+require('./js/ngLoadScript');
 

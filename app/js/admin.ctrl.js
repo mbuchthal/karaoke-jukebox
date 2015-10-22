@@ -1,6 +1,4 @@
 require('../app.js');
-require('./llqrcode.js');
-require('./decodeQR.js');
 
 (function () {
   'use strict'
@@ -22,8 +20,7 @@ require('./decodeQR.js');
     function errorHandler (response) {
       $log.error('response', response);
     }
-
-
+console.log('test');
   }]);
 
 })();
