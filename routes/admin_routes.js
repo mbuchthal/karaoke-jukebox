@@ -3,14 +3,10 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
 var queue = require(__dirname + '/../models/queue');
-<<<<<<< HEAD
 var Admin = require(__dirname + '/../models/admin');
 var eatAuth = require(__dirname + '/../lib/eat_authentication');
 var httpBasic = require(__dirname + '/../lib/http_basic');
-=======
 var socketServer = require(__dirname + '/../sockets/base')();
-
->>>>>>> b154cc8cb389ed47ccc6178fc2e3f9b0de5714cb
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
