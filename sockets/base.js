@@ -50,17 +50,19 @@ function SocketServer(io) {
   };
 
   this.acceptUser = function(user, queue, songList) {
-    var socketID = connections[user.id].socketID;
-    clients[user.id] = user;
-    clients[user.id].socketID = socketID;
-    clientSockets[socketID] = user;
-    connections[user.id] = null;
-    io.to(socketID).join('karaoke');
-    io.to(socketID).emit('acceptUser', {
-      user: user,
-      queue: queue,
-      songlist: songList
-    });
+    if (connections[user.id]) {
+      var socketID = connections[user.id].socketID;
+      clients[user.id] = user;
+      clients[user.id].socketID = socketID;
+      clientSockets[socketID] = user;
+      connections[user.id] = null;
+      io.sockets.connected[socketID].join('karaoke');
+      io.to(socketID).emit('acceptUser', {
+        user: user,
+        queue: queue,
+        songlist: songList
+      });
+    }
   };
 
   this.disconnectUser = function(user) {
