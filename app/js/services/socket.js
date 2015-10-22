@@ -1,6 +1,10 @@
 (function() {
-  angular.module('kvoxapp').factory('socket', ['$rootScope', function($rootScope) {
+  angular.module('kvoxapp').factory('socket', ['$rootScope', '$http', function($rootScope, $http) {
     var socket = io.connect();
+
+    $http.defaults.headers.common.id = socketObj.user.id;
+    $http.defaults.headers.common.nick = socketObj.user.nick;
+    $http.defaults.headers.common.expiry = socketObj.user.expiry;
 
     socket.on('updateQueue', function(queue) {
       socketObj.queue = queue;
@@ -14,6 +18,15 @@
 
     socket.on('updateUser', function(user) {
       socketObj.user = user;
+    });
+
+    socket.on('disconnectUser', function() {
+      $http.defaults.headers.common.id = null;
+      $http.defaults.headers.common.nick = null;
+      $http.defaults.headers.common.expiry = null;
+      socketObj.user = {};
+      socketObj.queue = null;
+      socketObj.songlist = null;
     });
 
     var socketObj = {
@@ -42,9 +55,12 @@
         socket.emit('onDeck', callback);
       },
       disconnect: function(callback) {
+        $http.defaults.headers.common.id = null;
+        $http.defaults.headers.common.nick = null;
+        $http.defaults.headers.common.expiry = null;
         socket.close();
       },
-      user: null,
+      user: {},
       queue: null,
       songlist: null
     };
