@@ -1,16 +1,16 @@
 (function () {
   'use strict';
- 
+
   angular.module('kvoxapp').directive('script', function() {
     return {
       restrict: 'E',
       scope: false,
-      link: function(scope, elem, attr) 
+      link: function(scope, elem, attr)
       {
-        if (attr.type==='text/javascript-lazy') 
+        if (attr.type==='text/javascript-lazy')
         {
           var s = document.createElement("script");
-          s.type = "text/javascript";                
+          s.type = "text/javascript";
           var src = elem.attr('src');
           if(src!==undefined)
           {
@@ -27,5 +27,5 @@
       }
     };
   });
- 
+
 }());
