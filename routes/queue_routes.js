@@ -9,7 +9,8 @@ var queueRouter = module.exports = exports = express.Router();
 var Lyric = require(__dirname + '/../models/lyric');
 
 queueRouter.post('/queue', jsonParser, function(req, res) {
-  if (!users.exists(req.headers.id)) {
+  var userID = req.headers.id;
+  if (!users.exists(userID) || users.isExpired(users.getUser(userID))) {
     return handleError.unauthorized(null, res);
   }
   if (!(req.body && req.body.song)) {
@@ -29,7 +30,8 @@ queueRouter.post('/queue', jsonParser, function(req, res) {
 });
 
 queueRouter.patch('/queue', jsonParser, function(req, res) {
-  if (!users.exists(req.headers.id)) {
+  var userID = req.headers.id;
+  if (!users.exists(userID) || users.isExpired(users.getUser(userID))) {
     return handleError.unauthorized(null, res);
   }
   if (!queue.hasSong(users.getUser(req.headers.id))) {
@@ -58,7 +60,8 @@ queueRouter.patch('/queue', jsonParser, function(req, res) {
 });
 
 queueRouter.delete('/queue', function(req, res) {
-  if (!users.exists(req.headers.id)) {
+  var userID = req.headers.id;
+  if (!users.exists(userID) || users.isExpired(users.getUser(userID))) {
     return handleError.unauthorized(null, res);
   }
   if (!queue.hasSong(users.getUser(req.headers.id))) {

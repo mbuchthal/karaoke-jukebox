@@ -7,6 +7,8 @@ var Admin = require(__dirname + '/../models/admin');
 var eatAuth = require(__dirname + '/../lib/eat_authentication');
 var httpBasic = require(__dirname + '/../lib/http_basic');
 var socketServer = require(__dirname + '/../sockets/base')();
+var Lyric = require(__dirname + '/../models/lyric');
+var mongoose = require('mongoose');
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
@@ -40,16 +42,21 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
 });
 
 adminRouter.post('/acceptUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.body.id)) {
-    return handleError.notFoundError('User not found: ' + req.body.id, res);
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
+    return handleError.notFoundError('User not found: ' + userID, res);
   }
-  user.setExpiry(req.body.id);
-  user.usersDict.accepted = true;
-  res.status(202).json({msg: 'User has been accepted'});
+  Lyric.find({}, function(err, data) {
+    if (err) { return handleError.internalServerError(err, data); }
+    user.setExpiry(user.getUser(userID));
+    socketServer.acceptUser(user.getUser(userID), queue.queue, data || []);
+    res.status(202).json({msg: 'User has been accepted'});
+  });
 });
 
 adminRouter.post('/declineUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.body.id)) {
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
     return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
   socketServer.disconnectUser(user.getUser(req.body.id));
@@ -58,7 +65,8 @@ adminRouter.post('/declineUser', jsonParser, eatAuth, function(req, res) {
 });
 
 adminRouter.patch('/renameUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.body.id)) {
+  var userID = req.body.id;
+  if (!user.exists(userID) || user.isExpired(user.getUser(userID))) {
     return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
   user.changeNick(req.body.id, req.body.nick);
