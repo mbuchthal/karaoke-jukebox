@@ -31,6 +31,10 @@ var app = angular.module('kvoxapp', ['ngRoute']);
       templateUrl: 'templates/signin-form.html',
       controller: 'KvoxCtrl as vm'
     })
+    .when('/kvox/menutwo', {
+      templateUrl: 'templates/menutwo.html',
+      controller: 'KvoxCtrl as vm'
+    })
     .otherwise({
       redirectTo: '/kvox'
     });

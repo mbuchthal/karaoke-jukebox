@@ -6,9 +6,9 @@ require('../app.js');
   angular.module('kvoxapp').controller('SongBookCtrl', ['socket', function (socket) {
 
     var vm = this;
-    vm.user = socket.user;
-    vm.songs = socket.songList;
-
+    // vm.user = socket.user;
+    // // vm.songs = socket.songList;
+    vm.songs = [];
     var songSampleOne = {
       title:  'Cherry Pie',
       author: 'Poison'
@@ -20,7 +20,7 @@ require('../app.js');
     vm.songs.push(songSampleTwo);
     vm.songs.push(songSampleOne);
     console.log(vm.songs);
-
+    console.log(vm.songs[0].author);
   }]);
 
 })();
