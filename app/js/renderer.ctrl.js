@@ -91,9 +91,13 @@ require("./url.filter.js");
       }, beatDuration);
 
       audio.addEventListener("pause", function() {
-        console.log("paused");
+        // console.log("paused");
         $interval.cancel(timeoutId);
         audio.currentTime = 0;
+        resetSong();
+      });
+
+      audio.addEventListener("ended", function() {
         resetSong();
       });
     }

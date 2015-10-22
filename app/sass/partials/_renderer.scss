@@ -21,6 +21,7 @@
   }
   .lyrics {
     font-family: $font-lyric;
+    height: 95px;
     top: 74%;
   }
   .rendered, .unrendered {
@@ -34,7 +35,9 @@
   .audio {
     position: absolute;
     top: 105%;
-    left: 40%;
+    left: -webkit-calc(50% - 150px);
+    left: -moz-calc(50% - 150px);
+    left: calc(50% - 150px);
   }
 }
 
