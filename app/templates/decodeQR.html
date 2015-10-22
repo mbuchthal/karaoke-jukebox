@@ -1,23 +1,22 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>QR Decoder</title>
   </head>
 
-  <body> -->
-<h1>K<span class="title-svg">Vox</span></h1>
-    <div class="decode-qr">
+  <body>
+    <div id="main">
       <p>Try to decode a QR. It's probably impossible</p>
-      <input type="file" id="imageLoader" onchange="handleImage(this.files)"></input>
+      <input type="file" id="imageLoader" onchange="handleImage(this.files)">
       <canvas id="out-canvas" width="300" height="300"></canvas>
     </div>
 
     <div id="result">
       <canvas id="qr-canvas"></canvas>
     </div>
-<script type="text/javascript-lazy">console.log("load");</script>
-<script type="text/javascript-lazy" src="js/llqrcode.js"></script>
-<script type="text/javascript-lazy" src="js/decodeQR.js"></script>
 
-<!--   </body>
-</html> -->
+    <script type="text/javascript" src="llqrcode.js"></script>
+    <script type="text/javascript" src="script.js"></script>    
+    <script type="text/javascript">load();</script>
+  </body>
+</html>
