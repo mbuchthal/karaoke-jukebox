@@ -20,9 +20,6 @@ queueRouter.post('/queue', jsonParser, function(req, res) {
     if (err) {
       return handleError.internalServerError(null, res);
     }
-    if (!song) {
-      return handleError.notFoundError(null, res);
-    }
     queue.add(song, users.getUser(req.headers.id));
     socketServer.updateQueue(queue.queue);
     res.status(200).json({});
