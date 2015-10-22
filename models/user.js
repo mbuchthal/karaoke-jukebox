@@ -17,12 +17,9 @@ module.exports = exports = {
   },
   setExpiry: function(user) {
     var exp = Date.now() + 43200000; //exp after 12h
-    this.usersDict[user.expiry] = exp;
+    this.usersDict[user.id].expiry = exp;
   },
-  checkExpired: function(user) {
-    if (this.usersDict[user.expiry] < Date.now()) {
-      return true;
-    }
-    return false;
+  isExpired: function(user) {
+    return this.usersDict[user.id].expiry < Date.now();
   }
 };

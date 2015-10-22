@@ -5,10 +5,9 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var expect = chai.expect;
 var mongoose = require('mongoose');
-
 var lyricsURL = 'localhost:3000/api';
-
 var Lyric = require(__dirname + '/../../models/lyric');
+var token;
 
 var testSong = {
         title: '99BottlesOfBeer',
@@ -29,10 +28,21 @@ var testSong = {
                 ]};
 
 describe('the lyrics server', function() {
+  before(function(done) {
+    chai.request(lyricsURL)
+      .post('/signupAdmin')
+      .send({username: 'testAdmin2', password: 'foobar123'})
+      .end(function(err, res) {
+        token = res.body.token;
+        done();
+      });
+  });
+
   it('should exist', function() {
     expect(Lyric).not.to.eql(undefined);
     expect(Lyric).not.to.eql(null);
   });
+
   it('should have a database connection', function(done) {
     chai.request(lyricsURL)
     .get('/lyrics')
@@ -42,9 +52,11 @@ describe('the lyrics server', function() {
       done();
     });
   });
+
   it('should be able to write a lyric to the database', function(done) {
     chai.request(lyricsURL)
     .post('/lyrics')
+    .set('token', token)
     .send(testSong)
     .end(function(err, ret) {
       expect(err).to.eql(null);
@@ -55,6 +67,7 @@ describe('the lyrics server', function() {
       });
     });
   });
+
   it('should return all songs', function(done) {
     chai.request(lyricsURL)
     .get('/lyrics')
@@ -64,6 +77,7 @@ describe('the lyrics server', function() {
       done();
     });
   });
+
   it('should return a file based on id', function(done) {
     chai.request(lyricsURL)
     .get('/lyrics/' + testSong.mp3file)
@@ -73,10 +87,12 @@ describe('the lyrics server', function() {
       done();
     });
   });
+
   it('should update song data', function(done) {
     testSong.title = '98BottlesOfBeer';
     chai.request(lyricsURL)
     .put('/lyrics/' + testSong.mp3file)
+    .set('token', token)
     .send(testSong)
     .end(function(err, ret) {
       expect(err).to.eql(null);
@@ -88,9 +104,11 @@ describe('the lyrics server', function() {
       });
     });
   });
+
   it('should delete song data', function(done) {
     chai.request(lyricsURL)
     .delete('/lyrics/' + testSong.mp3file)
+    .set('token', token)
     .end(function(err, ret) {
       expect(err).to.eql(null);
       expect(ret.status).to.eql(200);

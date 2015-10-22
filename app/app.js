@@ -1,5 +1,7 @@
 require('angular');
 require('angular-route');
+require('angular-sweetalert');
+require('sweetalert');
 
 (function () {
   'use strict'
@@ -11,9 +13,13 @@ var app = angular.module('kvoxapp', ['ngRoute']);
       templateUrl: 'templates/signin.html',
       controller: 'KvoxCtrl as vm'
     })
-    .when('/kvox/signin', {
-      templateUrl: 'templates/signin-form.html',
-      controller: 'KvoxFormCtrl as vm'
+    // .when('/kvox/signin', {
+    //   templateUrl: 'templates/signin-form.html',
+    //   controller: 'KvoxFormCtrl as vm'
+    // })
+    .when('/kvox/qr', {
+      templateUrl: 'templates/qr.html',
+      controller: 'KvoxCtrl as vm'
     })
     .when('/kvox/songbook', {
       templateUrl: 'templates/songbook.html',
@@ -38,6 +44,10 @@ var app = angular.module('kvoxapp', ['ngRoute']);
     .when('/kvox/renderer', {
       templateUrl: 'templates/renderer.html',
       controller: 'RendererCtrl as vm',
+    })
+    .when('/kvox/menutwo', {
+      templateUrl: 'templates/menutwo.html',
+      controller: 'KvoxCtrl as vm'
     })
     .otherwise({
       redirectTo: '/kvox'

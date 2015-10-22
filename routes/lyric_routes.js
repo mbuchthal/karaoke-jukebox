@@ -3,6 +3,7 @@
 var express = require('express');
 var jsonParser = require('body-parser').json();
 var Lyric = require(__dirname + '/../models/lyric');
+var eatAuth = require(__dirname + '/../lib/eat_authentication');
 
 var handleError = require(__dirname + '/../lib/handle_error');
 var lyricsRouter = module.exports = exports = express.Router();
@@ -30,8 +31,7 @@ lyricsRouter.get('/lyrics', function(req, resp) {
   });
 });
 
-lyricsRouter.post('/lyrics', jsonParser, function(req, resp) {
-  //Add user authentication
+lyricsRouter.post('/lyrics', jsonParser, eatAuth, function(req, resp) {
   var newLyric = new Lyric(req.body);
   newLyric.save(function(err, data) {
     if (err) {
@@ -45,8 +45,7 @@ lyricsRouter.post('/lyrics', jsonParser, function(req, resp) {
   });
 });
 
-lyricsRouter.put('/lyrics/:mp3file', jsonParser, function(req, resp) {
-  //Add user authentication
+lyricsRouter.put('/lyrics/:mp3file', jsonParser, eatAuth, function(req, resp) {
   Lyric.findOneAndUpdate(req.params, req.body, function(err, data) {
     if (err) {
       return handleError.internalServerError(err, resp);
@@ -60,8 +59,7 @@ lyricsRouter.put('/lyrics/:mp3file', jsonParser, function(req, resp) {
   });
 });
 
-lyricsRouter.delete('/lyrics/:mp3file', function(req, resp) {
-  //Add user authentication
+lyricsRouter.delete('/lyrics/:mp3file', eatAuth, function(req, resp) {
   Lyric.remove(req.params, function(err, data) {
     if (err) {
       return handleError.internalServerError(err, resp);

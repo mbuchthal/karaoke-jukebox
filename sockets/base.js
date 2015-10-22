@@ -50,17 +50,19 @@ function SocketServer(io) {
   };
 
   this.acceptUser = function(user, queue, songList) {
-    var socketID = connections[user.id].socketID;
-    clients[user.id] = user;
-    clients[user.id].socketID = socketID;
-    clientSockets[socketID] = user;
-    connections[user.id] = null;
-    io.sockets.socket(socketID).join('karaoke');
-    io.sockets.socket(socketID).emit('acceptUser', {
-      user: user,
-      queue: queue,
-      songlist: songList
-    });
+    if (connections[user.id]) {
+      var socketID = connections[user.id].socketID;
+      clients[user.id] = user;
+      clients[user.id].socketID = socketID;
+      clientSockets[socketID] = user;
+      connections[user.id] = null;
+      io.sockets.connected[socketID].join('karaoke');
+      io.to(socketID).emit('acceptUser', {
+        user: user,
+        queue: queue,
+        songlist: songList
+      });
+    }
   };
 
   this.disconnectUser = function(user) {
@@ -75,12 +77,14 @@ function SocketServer(io) {
       clients[user.id] = null;
       clientSockets[socketID] = null;
     }
-    io.sockets.socket(userSocket).emit('disconnectUser');
-    io.sockets.socket(userSocket).close();
+    io.to(userSocket.socketID).emit('disconnectUser');
+    io.sockets.connected[userSocket.socketID].disconnect();
   };
 
   this.updateUser = function(user) {
-    io.sockets.socket(clients[user.id]).emit('updateUser', {user: user});
+    if (clients[user.id]) {
+      io.to(clients[user.id].socketID).emit('updateUser', {user: user});
+    }
   };
 
   this.onDeck = function(user, callback) {
@@ -88,7 +92,7 @@ function SocketServer(io) {
     clients[user.id].timeout = setTimeout(function() {
       callback(false);
     }, 60000);
-    io.sockets.socket(clients[user.id]).emit('onDeck');
+    io.to(clients[user.id].socketID).emit('onDeck');
   };
 
 }

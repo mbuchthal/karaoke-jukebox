@@ -35,6 +35,7 @@ describe('the karaoke jukebox server', function() {
     mongoose.connection.db.dropDatabase(function(err) {
       if (err) {return console.log(err);}
       server.shutDown();
+      mongoose.connection.close();
       //Due to use of socketServer, these tests must be run after server teardown
       require(__dirname + '/socket_server_tests');
       done();
