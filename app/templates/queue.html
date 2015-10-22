@@ -1,9 +1,10 @@
 <!-- queue.html -->
+<h1>K<span class="title-svg">Vox</span></h1>
 <section>
   <div class="queue_header-container">
     <h2>Queue</h2>
-    <button type="submit" name="update">Update Song</button>
-    <button type="submit" name="delete" class="chicken">Delete Song</button>
+    <a href="#/kvox/songbook" class="update-btn">Update Song</a>
+    <button type="submit" name="delete" class="chicken" ng-click="vm.chickenOut()">Chicken Out</button>
   </div>
   <div class="queue-container">
   <table class="queue">
@@ -15,19 +16,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>001</td>
-        <td>username1</td>
-        <td>Yellow Submarine</td>
-      </tr>
-      <tr>
-        <td>002</td>
-        <td>username2</td>
-        <td>(I Can't Get No) Satisfaction</td>
+      <tr ng-repeat="user in vm.users">
+        <td>{{ $index }}</td>
+        <td>{{vm.nick}}</td>
+        <td>{{vm.song}}</td>
       </tr>
     </tbody>
   </table>
-  <a href="#/kvox/menu" class="button-mock">Back to Menu</a>
+  <a href="#/kvox/menu" class="menu-btn">Back to Menu</a>
   </div>
 
 </section>
