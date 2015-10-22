@@ -1,17 +1,10 @@
 require("../app.js");
-var mp3 = require("./yellowSubmarine.js");
 
 (function() {
 
   "use strict";
 
-  angular.module("kvoxapp").controller("RendererCtrl", function() {
-    var vm = this;
-
-    vm.username = "Bob";
-    vm.song = "Yellow Submarine";
-
-  }).directive("rendererDir", ["$interval", function($interval) {
+  angular.module("kvoxapp").directive("rendererDir", ["$interval", function($interval) {
 
     function link(scope, element) {
       var lyricArray, renderedArray, unrenderedArray;
@@ -102,3 +95,4 @@ var mp3 = require("./yellowSubmarine.js");
   }]);
 
 })();
+
