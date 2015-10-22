@@ -8,6 +8,4 @@ describe('QR codes', function() {
     var str = createQR('unit test QR Generate', 'svg');
     expect(str.indexOf('<svg')).to.eql(0);
   });
-
-  it('should be able to read a qr code');
 });
