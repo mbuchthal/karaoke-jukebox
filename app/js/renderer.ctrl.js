@@ -5,15 +5,10 @@ var mp3 = require("./yellowSubmarine.js");
 
   "use strict";
 
-  angular.module("kvoxapp").controller("RendererCtrl", function() {
+  angular.module("kvoxapp").controller("RendererCtrl", ["$interval", function($interval) {
     var vm = this;
 
-    vm.username = "Bob";
-    vm.song = "Yellow Submarine";
-
-  }).directive("rendererDir", ["$interval", function($interval) {
-
-    function link(scope, element) {
+    function renderSong() {
       var lyricArray, renderedArray, unrenderedArray;
       var currentLyric = mp3.lyrics[0].text;
       var beatDuration = mp3.lyrics[0].beat_duration;
@@ -37,32 +32,14 @@ var mp3 = require("./yellowSubmarine.js");
         lyricArray = currentLyric.split("");
         renderedArray = lyricArray.slice(0, charCounter);
         unrenderedArray = lyricArray.slice(charCounter);
-        scope.renderedCurrentLyric = renderedArray.join("");
-        scope.unrenderedCurrentLyric = unrenderedArray.join("");
+        vm.renderedCurrentLyric = renderedArray.join("");
+        vm.unrenderedCurrentLyric = unrenderedArray.join("");
       }
 
-      function renderCurrentLyric() {
-        element.append('<li><span class="rendered">' + scope.renderedCurrentLyric + '</span><span class="unrendered">' + scope.unrenderedCurrentLyric + '</span></li>');
-      }
-
-      function renderNextLyric() {
-        element.append('<li class="unrendered">' + scope.nextLyric + '</li>');
-      }
-
-      function clearRenderedLyrics() {
-        element.empty();
-      }
-
-      // scope.$watch("rendered", function() {
-      //   updateLyric();
-      // });
-
-      scope.nextLyric = mp3.lyrics[1].text;
+      vm.nextLyric = mp3.lyrics[1].text;
 
       // Render initial conditions to screen
       updateLyrics();
-      renderCurrentLyric();
-      renderNextLyric();
 
       timeoutId = $interval(function() {
         // Deactivate timer interval after last lyric has rendered
@@ -72,33 +49,32 @@ var mp3 = require("./yellowSubmarine.js");
         // On each beat, update counters
         if (beatCounter < beatIncrements.length) {
           incrementCounters();
-          console.log(scope.renderedCurrentLyric);
+          console.log(vm.renderedCurrentLyric);
         }
         // Retrieve next line when current lyric has finished and reset counters
         if (lineCounter < mp3.lyrics.length - 1 && beatCounter === beatIncrements.length) {
           lineCounter++;
           currentLyric = mp3.lyrics[lineCounter].text;
           if (lineCounter < mp3.lyrics.length - 1) {
-            scope.nextLyric = mp3.lyrics[lineCounter + 1].text;
+            vm.nextLyric = mp3.lyrics[lineCounter + 1].text;
           } else {
-            scope.nextLyric = "";
+            vm.nextLyric = "";
           }
           beatIncrements = mp3.lyrics[lineCounter].beat_increments;
           beatDuration = mp3.lyrics[lineCounter].beat_duration;
           resetCounters();
-          console.log(currentLyric, scope.nextLyric, beatIncrements, beatDuration);
+          console.log(currentLyric, vm.nextLyric, beatIncrements, beatDuration);
         }
         // Update lyrics and render to screen
         updateLyrics();
-        clearRenderedLyrics();
-        renderCurrentLyric();
-        renderNextLyric();
       }, beatDuration);
     }
 
-    return {
-      link: link
-    };
+    vm.username = "Bob";
+    vm.song = "Yellow Submarine";
+
+    renderSong();
+
   }]);
 
 })();

@@ -1,4 +1,4 @@
-<h1 class="title">K<span class="title-svg small">Vox</span></h1>
+<h1 class="title-small">K<span class="title-svg-small">Vox</span></h1>
 <section class="lyrics-container">
   <h2>{{vm.username}} is singing "{{vm.song}}"</h2>
   <ul class="cb-slideshow">
@@ -21,5 +21,12 @@
       <span>Image 6</span>
     </li>
   </ul>
-  <ul class="lyrics" renderer-dir></ul>
+  <ul class="lyrics">
+    <li>
+      <span class="rendered">{{vm.renderedCurrentLyric}}</span><span class="unrendered">{{vm.unrenderedCurrentLyric}}</span>
+    </li>
+    <li>
+      <span class="unrendered">{{vm.nextLyric}}</span>
+    </li>
+  </ul>
 </section>
