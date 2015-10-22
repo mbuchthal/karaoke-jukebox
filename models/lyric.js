@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var lyricSchema = new mongoose.Schema({
   title:  {type: String, required: true},
   author: {type: String, default: 'Anonymous'},
+  genre: String,
   mp3file: {type:  String, required: true, unique: true, validate: URISafe},
   lyrics: [{text: String,
             beatDuration: Number,

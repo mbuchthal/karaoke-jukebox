@@ -1,6 +1,16 @@
 var EventEmitter = require('events');
 
-module.exports = function(io) {
+var instance;
+
+module.exports = exports = function(io, newInstance) {
+  //Classic singleton pattern :D
+  if (!instance || newInstance) {
+    instance = new SocketServer(io);
+  }
+  return instance;
+};
+
+function SocketServer(io) {
   var connections = {};
   var clients = {};
   var clientSockets = {};
@@ -11,15 +21,15 @@ module.exports = function(io) {
     socket.on('ping', function() {
       io.sockets.emit('pong');
     });
-    socket.on('registerUser', function(data) {
-      connections[data.token] = {
+    socket.on('registerUser', function(user) {
+      connections[user.id] = {
         socketID: socket.id
       };
-      serverEvents.emit('registerUser', data.token);
+      serverEvents.emit('registerUser', user.id);
     });
     socket.on('onDeck', function(data) {
       clearTimeout(clientSockets[socket.id].timeout);
-      clientSockets[socket.id].callback();
+      clientSockets[socket.id].callback(true);
     });
     socket.on('disconnect', function() {
       if (clientSockets[socket.id]) {
@@ -39,31 +49,50 @@ module.exports = function(io) {
     io.to('karaoke').emit('updateQueue', data);
   };
 
-  this.acceptUser = function(token, user, queue, songList) {
-    var socketID = connections[token].socketID;
-    clients[user.id] = user;
-    clientSockets[socketID] = user;
-    connections[token] = null;
-    io.sockets.socket(socketID).join('karaoke');
-    io.sockets.socket(socketID).emit('acceptUser', {
-      user: user,
-      token: token,
-      queue: queue,
-      songlist: songList
-    });
+  this.acceptUser = function(user, queue, songList) {
+    if (connections[user.id]) {
+      var socketID = connections[user.id].socketID;
+      clients[user.id] = user;
+      clients[user.id].socketID = socketID;
+      clientSockets[socketID] = user;
+      connections[user.id] = null;
+      io.sockets.connected[socketID].join('karaoke');
+      io.to(socketID).emit('acceptUser', {
+        user: user,
+        queue: queue,
+        songlist: songList
+      });
+    }
   };
 
-  this.declineConnection = function(token) {
-    io.sockets.socket(connections[token]).emit('declineUser');
-    io.sockets.socket(connections[token]).close();
+  this.disconnectUser = function(user) {
+    var userSocket;
+    if (connections[user.id]) {
+      userSocket = connections[user.id];
+      connections[user.id] = null;
+    }
+    if (clients[user.id]) {
+      userSocket = clients[user.id];
+      var socketID = clients[user.id].socketID;
+      clients[user.id] = null;
+      clientSockets[socketID] = null;
+    }
+    io.to(userSocket.socketID).emit('disconnectUser');
+    io.sockets.connected[userSocket.socketID].disconnect();
+  };
+
+  this.updateUser = function(user) {
+    if (clients[user.id]) {
+      io.to(clients[user.id].socketID).emit('updateUser', {user: user});
+    }
   };
 
   this.onDeck = function(user, callback) {
     clients[user.id].callback = callback;
     clients[user.id].timeout = setTimeout(function() {
-      callback(true);
-    }, 30000);
-    io.sockets.socket(clients[user.id]).emit('onDeck');
+      callback(false);
+    }, 60000);
+    io.to(clients[user.id].socketID).emit('onDeck');
   };
 
-};
+}
