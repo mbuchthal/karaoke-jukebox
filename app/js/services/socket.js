@@ -2,9 +2,6 @@
   angular.module('kvoxapp').factory('socket', ['$rootScope', '$http', function($rootScope, $http) {
     var socket = io.connect();
 
-    $http.defaults.headers.common.id = socketObj.user.id;
-    $http.defaults.headers.common.nick = socketObj.user.nick;
-    $http.defaults.headers.common.expiry = socketObj.user.expiry;
 
     socket.on('updateQueue', function(queue) {
       socketObj.queue = queue;
@@ -64,6 +61,10 @@
       queue: null,
       songlist: null
     };
+
+    $http.defaults.headers.common.id = socketObj.user.id;
+    $http.defaults.headers.common.nick = socketObj.user.nick;
+    $http.defaults.headers.common.expiry = socketObj.user.expiry;
 
   return socketObj;
   }]);

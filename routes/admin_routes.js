@@ -13,6 +13,16 @@ var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
 
+if (process.env.APP_SECRET === 'EVERYBODYDANCENOW') {
+  var devAdmin = new Admin();
+  devAdmin.basic.username = 'admin';
+  devAdmin.username = 'admin';
+  devAdmin.generateHash('foobar123', function(err, hash) {
+    devAdmin.save(function(err, data) {
+    });
+  });
+}
+
 adminRouter.post('/signupAdmin', jsonParser, function(req, res) {
   var newAdmin = new Admin();
   newAdmin.basic.username = req.body.username;
