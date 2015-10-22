@@ -1,6 +1,6 @@
 # Socket Connections
 
-### Send and receive data without seperate 
+### Send and receive data without seperate
 
 #### Emitted Events
 
@@ -31,7 +31,7 @@ Method:
   * songlist: an array containing all available song objects
 
 Data:
-  
+
 * user: the object representing the accepted user
 * queue: a array containing the queue
 * songlist: an array containing all available song objects
