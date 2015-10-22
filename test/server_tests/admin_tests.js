@@ -108,7 +108,7 @@ describe('admin', function() {
     agent
       .patch('/api/renameUser')
       .set('token', token)
-      .send({id: '12345', nick: 'newguy', expiry: (Date.now)})
+      .send({id: '12345', nick: 'newguy'})
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.status).to.eql(200);
