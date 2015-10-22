@@ -3,9 +3,14 @@ var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
 var queue = require(__dirname + '/../models/queue');
+<<<<<<< HEAD
 var Admin = require(__dirname + '/../models/admin');
 var eatAuth = require(__dirname + '/../lib/eat_authentication');
 var httpBasic = require(__dirname + '/../lib/http_basic');
+=======
+var socketServer = require(__dirname + '/../sockets/base')();
+
+>>>>>>> b154cc8cb389ed47ccc6178fc2e3f9b0de5714cb
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
@@ -39,29 +44,29 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
 });
 
 adminRouter.post('/acceptUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  if (!user.exists(req.body.id)) {
+    return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
-  user.setExpiry(req.headers.id);
+  user.setExpiry(req.body.id);
   user.usersDict.accepted = true;
   res.status(202).json({msg: 'User has been accepted'});
 });
 
 adminRouter.post('/declineUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  if (!user.exists(req.body.id)) {
+    return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
-  user.remove(req.headers.id);
-  // TODO: DISCONNECT USER FROM SOCKET
+  socketServer.disconnectUser(user.getUser(req.body.id));
+  user.remove(req.body.id);
   res.status(200).json({msg: 'User has been declined'});
 });
 
 adminRouter.patch('/renameUser', jsonParser, eatAuth, function(req, res) {
-  if (!user.exists(req.headers.id)) {
-    return handleError.notFoundError('User not found: ' + req.headers.id, res);
+  if (!user.exists(req.body.id)) {
+    return handleError.notFoundError('User not found: ' + req.body.id, res);
   }
-  user.changeNick(req.headers.id, req.body.nick);
-  res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.headers.id).nick});
+  user.changeNick(req.body.id, req.body.nick);
+  res.status(200).json({msg: 'User renamed to: ' + user.getUser(req.body.id).nick});
 });
 
 adminRouter.post('/staticQR', jsonParser, eatAuth, function(req, res) {

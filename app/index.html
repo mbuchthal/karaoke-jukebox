@@ -14,142 +14,17 @@
   <body class="gradient">
     <h1>K<span class="title-svg">Vox</span></h1>
 
-
         <!-- angular -->
-<main ng-view></main>
+  <main ng-view></main>
 
-<!-- signin.html -->
-      <div class="signin">
-        <a href="#/kvox/menu.html"></a>
-        <div class="textwrap" aria-label="sign-in">
-          <span class="char1" aria="hidden">S</span>
-          <span class="char2" aria="hidden">I</span>
-          <span class="char3" aria="hidden">G</span>
-          <span class="char4" aria="hidden">N</span>
-          <span class="char5" aria="hidden"></span>
-          <span class="char6" aria="hidden">I</span>
-          <span class="char7" aria="hidden">N</span>
-        </div>
-      </div>
-<!-- signin-form.html -->
-      <section id="loginBox" class="login">
-        <form action="" class="login-form">
-          <h3>Sign In</h3>
-            <fieldset>
-              <label for="username">Name:</label>
-              <input type="text" name="username" id="username" placeholder="Enter your username" />
-          </fieldset>
-        </form>
-      </section>
-
-<!-- menu.html -->
-        <div class="menu-container">
-          <h3>Choose One:</h3>
-          <ul class="menu-list">
-            <li class="menu-listitem1 textwrap" aria-label="sign-up">
-              <a href="#/kvox/songbook.html"></a>
-              <span class="char1" aria="hidden">S</span>
-              <span class="char2" aria="hidden">I</span>
-              <span class="char3" aria="hidden">G</span>
-              <span class="char4" aria="hidden">N</span>
-              <span class="char5" aria="hidden"></span>
-              <span class="char6" aria="hidden">U</span>
-              <span class="char7" aria="hidden">P</span>
-              <span class="icon-modern-mic"></span>
-            </li>
-            <li class="menu-listitem2 textwrap" aria-label="view songs">
-              <a href="#/kvox/songbook.html"></a>
-              <span class="char1" aria="hidden">S</span>
-              <span class="char2" aria="hidden">O</span>
-              <span class="char3" aria="hidden">N</span>
-              <span class="char4" aria="hidden">G</span>
-              <span class="char5" aria="hidden">-</span>
-              <span class="char6" aria="hidden">B</span>
-              <span class="char7" aria="hidden">O</span>
-              <span class="char8" aria="hidden">O</span>
-              <span class="char9" aria="hidden">K</span>
-              <span class="icon-file-music"></span>
-            </li>
-            <li class="menu-listitem3 textwrap" aria-label="view queue">
-              <a href="#/kvox/queue.html"></a>
-              <span class="char1" aria="hidden">V</span>
-              <span class="char2" aria="hidden">I</span>
-              <span class="char3" aria="hidden">E</span>
-              <span class="char4" aria="hidden">W</span>
-              <span class="char5" aria="hidden"></span>
-              <span class="char6" aria="hidden">Q</span>
-              <span class="char7" aria="hidden">U</span>
-              <span class="char8" aria="hidden">E</span>
-              <span class="char9" aria="hidden">U</span>
-              <span class="char10" aria="hidden">E</span>
-              <span class="icon-stack"></span>
-            </li>
-          </ul>
-        </div>
-<!-- signup.html -->
-
-        <div>
-          <form action="" method="">
-
-          </form>
-
-        </div>
-
-
-<!-- songbook.html -->
-<div class="songbook-container">
-<table class="songbook">
-  <thead>
-    <tr>
-      <th>Song #</th>
-      <th>Artist</th>
-      <th>Song Title</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <tr ng-repeat="song in vm.songs">
-
-      <td>{{ $index }}</td>
-      <td>{{vm.song.author}}</td>
-      <td>{{vm.song.title}}</td>
-      <td><a href ng-click="vm.enterSong()">Enter Song</td>
-    </tr>
-
-  </tbody>
-</table>
-</div>
-
-<!-- queue.html -->
-<div class="queue-container">
-<table class="queue">
-  <thead>
-    <tr>
-      <th>Queue</th>
-      <th>Username</th>
-      <th>Song Title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>001</td>
-      <td>username1</td>
-      <td>Yellow Submarine</td>
-    </tr>
-    <tr>
-      <td>002</td>
-      <td>username2</td>
-      <td>(I Can't Get No) Satisfaction</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+<!-- lyrics -->
+<!--
     <div ng-controller="LyricsCtrl as vm">
       <ul rendered-lyrics></ul>
     </div>
-
+ -->
   </body>
+  <script src='/socket.io/socket.io.js'>
   <script src="js/main.js"></script>
 </html>
 
