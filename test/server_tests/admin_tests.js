@@ -2,8 +2,27 @@ var chai = require('chai');
 var http = require('chai-http');
 chai.use(http);
 var expect = chai.expect;
+var mongoose = require('mongoose');
+var httpBasic = require(__dirname + '/../../lib/http_basic');
+
 var user = require(__dirname + '/../../models/user');
 var serverURL = 'http://localhost:3000';
+
+describe('http basic: header authorization', function() {
+  it('should be able to handle http basic auth', function() {
+    var req = { //simulate request
+      headers: {
+        authorization: 'Basic ' + (new Buffer('testuser1:foobar123')).toString('base64')
+      }
+    };
+
+    httpBasic(req, {}, function() {
+      expect(typeof req.auth).to.eql('object');
+      expect(req.auth.username).to.eql('testuser1');
+      expect(req.auth.password).to.eql('foobar123');
+    });
+  });
+});
 
 describe('admin', function() {
   beforeEach(function(done) {
@@ -16,7 +35,35 @@ describe('admin', function() {
       });
   });
 
-  it('should be able to signin to admin');
+  after(function(done) {
+    mongoose.connection.db.dropDatabase(function() {
+      done();
+    });
+  });
+
+//create a new admin account
+  it('should be able to create a new admin', function(done) {
+    chai.request(serverURL)
+      .post('/api/signupAdmin')
+      .send({username: 'testAdmin', password: 'foobar123'})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.token.length).to.be.above(0);
+        done();
+      });
+  });
+
+  it('should be able to signin to admin', function(done) {
+    chai.request(serverURL)
+      .get('/api/signinAdmin')
+      .auth({username: 'testAdmin', password: 'foobar123'})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        console.log(res);
+        expect(res.body.token.length).to.be.above(0);
+        done();
+      });
+  });
 
   it('should accept a user', function(done) {
     chai.request(serverURL)
@@ -61,6 +108,8 @@ describe('admin', function() {
   it('should generate a static qr code', function(done) {
     chai.request(serverURL)
       .post('/api/staticQR')
+      .set('username', 'testAdmin')
+      .set('password', 'foobar123')
       .send({qrMsg: 'your bar name here'})
       .end(function(err, res) {
         expect(err).to.eql(null);
