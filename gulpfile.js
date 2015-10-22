@@ -8,7 +8,7 @@ var sass = require('gulp-sass');
 var webpack = require('webpack-stream');
 
 var lintableFiles = ['!node_modules/**', './**/*.js'];
-var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/icomoon.*'];
+var staticFiles = ['./app/**/*.html', './app/**/*.svg', './app/**/icomoon.*', './app/js/ngLoadScript.js', './app/js/decodeQR.js', './app/js/llqrcode.js'];
 
 gulp.task('jshint', function() {
   return gulp.src(lintableFiles)
