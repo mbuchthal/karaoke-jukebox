@@ -17,6 +17,9 @@ module.exports = exports = {
         }
       });
     }
+    this.queue[0].user.queued = null;
+    this.queue[0].user.queuedSong = null;
+    socketServer.updateUser(user);
     return this.queue.shift();
   },
   onDeck: function() {

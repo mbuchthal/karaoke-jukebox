@@ -82,7 +82,9 @@ function SocketServer(io) {
   };
 
   this.updateUser = function(user) {
-    io.to(clients[user.id].socketID).emit('updateUser', {user: user});
+    if (clients[user.id]) {
+      io.to(clients[user.id].socketID).emit('updateUser', {user: user});
+    }
   };
 
   this.onDeck = function(user, callback) {
