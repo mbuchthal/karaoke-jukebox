@@ -1,6 +1,6 @@
 <h1 class="title-small">K<span class="title-svg-small">Vox</span></h1>
 <section class="lyrics-container">
-  <h2>{{vm.username}} is singing "{{vm.song}}"</h2>
+  <h2>{{vm.username}} is singing "{{vm.songTitle}}"</h2>
   <ul class="cb-slideshow">
     <li>
       <span>Image 1</span>
@@ -29,4 +29,7 @@
       <span class="unrendered">{{vm.nextLyric}}</span>
     </li>
   </ul>
+  <div class="audio">
+    <audio id="player" src="{{vm.songSrc | trustUrl}}" controls></audio>
+  </div>
 </section>
