@@ -13,8 +13,8 @@ describe('socket server', function() {
     io = new EventEmitter();
     io.sockets = {
       emit: function() {},
-      socket: function() {
-        return clientSocket;
+      connected: {
+        '215': clientSocket
       },
       to: function() {
         return clientSocket;
@@ -26,7 +26,7 @@ describe('socket server', function() {
     clientSocket = {
       join: function(id) {},
       emit: function(eventName, eventData) {},
-      close: function() {}
+      disconnect: function() {}
     };
 
     socket = new EventEmitter();
@@ -54,6 +54,7 @@ describe('socket server', function() {
   });
 
   it('should send queue updates to all registered users', function(done) {
+    socket.id = '215';
     registerUser(io, socket, socketServer, {id: 12345, nick: 'test'});
     var serverEvents = socketServer.getEmitter();
     var mock = sinon.mock(clientSocket);
@@ -65,12 +66,12 @@ describe('socket server', function() {
 
   it('should send user updates to that user', function(done) {
     socket.id = '215';
-    registerUser(io, socket, socketServer, {id: 12345, nick: 'test'});
+    registerUser(io, socket, socketServer, {id: 23456, nick: 'test'});
     var serverEvents = socketServer.getEmitter();
     var mock = sinon.mock(clientSocket);
-    mock.expects('emit').once().withExactArgs('updateUser', {user:
-        {id: 12345, nick: 'test', socketID: '215'}});
-    socketServer.updateUser({id: 12345, nick: 'test', socketID: '215'});
+    mock.expects('emit').once().withExactArgs('updateUser',
+        {user: {id: 23456, nick: 'test', socketID: '215'}});
+    socketServer.updateUser({id: 23456, nick: 'test', socketID: '215'});
     mock.verify();
     done();
   });
@@ -93,11 +94,12 @@ describe('socket server', function() {
   });
 
   it('should disconnect unaccepted users', function(done) {
-    io.emit('connection', socket);
-    socket.emit('registerUser', {id: 12345});
+    socket.id = '215';
     var mock = sinon.mock(clientSocket);
+    registerUser(io, socket, socketServer, {id: 12345, nick: 'test',
+        socketID: '215'}, 'queue', 'songList');
     mock.expects('emit').once().withExactArgs('disconnectUser');
-    socketServer.disconnectUser(12345);
+    socketServer.disconnectUser({id: 12345});
     mock.verify();
     done();
   });
