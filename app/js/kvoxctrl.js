@@ -29,11 +29,11 @@ require('../app.js');
     });
 
 
-    function setName () {
+    vm.setName = function() {
       //using ng model to set user.nick to input value
       $http.patch('/api/user', {nick: vm.user.nick})
-      .success(function (resp) {
-        console.dir('response', response);
+      .success(function (res) {
+        console.dir('response: ' + res);
       })
       .error(errorHandler);
     }
