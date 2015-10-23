@@ -73,8 +73,8 @@ require("./url.filter.js");
 3,3,5,0,0,0,4,6,4,0,0,4,0,3,0,0,0,0,0]},
 {"text":"All of us under its spell","beatDuration":"264","beatIncrements":[
 3,0,0,3,3,0,3,0,0,3,4,0,6,0,0,0]},
-{"text":"We know that it's probably magic","beatDuration":"264","beatIncrements":[
-2,0,5,0,0,5,5,0,5,0,2,0,2,0,4,0,0,0,0,0,2,0,0,0,0,0]},
+{"text":"We know that it's probably magic...","beatDuration":"264","beatIncrements":[
+2,0,5,0,0,5,5,0,5,0,2,0,2,0,4,0,0,0,0,0,2,0,0,0,0,0,1,0,1,0,1,0]},
 {"text":"Have you been half-asleep","beatDuration":"264","beatIncrements":[
 4,0,4,0,5,0,5,3,4,0,0]},
 {"text":"and have you heard voices?","beatDuration":"264","beatIncrements":[
