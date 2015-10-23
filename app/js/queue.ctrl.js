@@ -8,7 +8,23 @@ require('../app.js');
 
     var vm = this;
     vm.user = socket.user;
-    vm.song = socket.song;
+    vm.queue = socket.queue;
+    socket.on('updateQueue', function(){
+      vm.queue = socket.queue;
+    });
+
+
+    vm.queueUp = function() {
+      if (socket.queued) { return false; }
+      socket.queued = true;
+      $http.post('/api/queue')
+      .success(function(res) {
+        //vm.queue.push({user:{nick:vm.user.nick}});
+      })
+      .error(function(res) {
+        console.log('failed to add to queue: ' + res);
+      })
+    }
 
     var sweetAlert = require('./sweetalert');
     disconnectUser();
@@ -18,6 +34,8 @@ require('../app.js');
     });
 
     function chickenOut () {
+
+      socket.queued = false;
       console.log('chicken');
       $http.delete( '/api/queue', {
         headers: {'vm.user': 'vm.user.id'}
