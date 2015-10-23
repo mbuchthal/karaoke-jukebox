@@ -29,6 +29,25 @@ function initCanvas(width, height) {
   ctx.clearRect(0, 0, width, height);
 }
 
+function post(path, params, method) {
+  method = method || 'post';
+  var form = document.createElement('form');
+  form.setAttribute('method', method);
+  form.setAttribute('action', path);
+  for (var key in params) {
+    if (params.hasOwnProperty(key)) {
+      var hiddenField = document.createElement('input');
+      hiddenField.setAttribute('type', 'hidden');
+      hiddenField.setAttribute('name', key);
+      hiddenField.setAttribute('value', params[key]);
+      form.appendChild(hiddenField);
+    }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+}
+
 function read(decodedMsg) {
   var html = '<br>Decoded Message:<br/>';
   if (decodedMsg.indexOf('http') === 0) {
@@ -36,6 +55,7 @@ function read(decodedMsg) {
   } else {
     html += '<b>' + htmlEntities(decodedMsg) + '</b>';
   }
+  post('/api/acceptUser', {id: decodedMsg});
   document.getElementById('result').innerHTML = html;
 }
 
