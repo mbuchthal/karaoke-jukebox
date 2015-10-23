@@ -1,7 +1,7 @@
 <!-- signin-form.html -->
 <h1 class="title">K<span class="title-svg">Vox</span></h1>
       <section id="loginBox" class="login">
-        <form action="" class="login-form" id="admin-form">
+        <form class="login-form" id="admin-form" ng-submit="vm.adminLogin()">
           <legend>Admin:</legend>
             <fieldset>
               <label for="username">Name:</label>
@@ -10,7 +10,7 @@
               <input type="password" name="admin-pass" id="admin-pass" ng-model="vm.admin.basic.password" />
             </fieldset>
             <div class="name-btn_wrapper">
-              <button type="submit" name="adminlogin" ng-click="adminLogin()">Login</button>
+              <button type="submit" name="adminlogin">Login</button>
             </div>
         </form>
       </section>
