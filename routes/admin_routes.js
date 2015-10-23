@@ -14,7 +14,7 @@ var createQR = require(__dirname + '/../lib/qrcode_generate');
 
 var adminRouter = module.exports = exports = express.Router();
 
-if (process.env.APP_SECRET === 'EVERYBODYDANCENOW') {
+//if (process.env.APP_SECRET === 'EVERYBODYDANCENOW') {
   var devAdmin = new Admin();
   devAdmin.basic.username = 'admin';
   devAdmin.username = 'admin';
@@ -22,7 +22,7 @@ if (process.env.APP_SECRET === 'EVERYBODYDANCENOW') {
     devAdmin.save(function(err, data) {
     });
   });
-}
+//}
 
 adminRouter.post('/signupAdmin', jsonParser, function(req, res) {
   var newAdmin = new Admin();
@@ -40,7 +40,6 @@ adminRouter.post('/signupAdmin', jsonParser, function(req, res) {
 });
 
 adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
-  console.log(req.auth)
   Admin.findOne({'basic.username': req.auth.username}, function(err, admin) {
     if (err) {return handleError.internalServerError(err, res);}
     if (!admin) {return handleError.unauthorized(err, res);}
@@ -49,7 +48,6 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
       if (!hashRes) {return handleError.unauthorized(err, res);}
       admin.generateToken(function(err, token) {
         if (err) {return handleError.internalServerError(err, res);}
-        console.log(token);
         res.json({token: token});
       });
     });
@@ -57,7 +55,6 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
 });
 
 adminRouter.post('/acceptUser', bodyParser, eatAuth, function(req, res) {
-  console.log('acceptuser id: ' + req.body.id);
   var userID = req.body.id;
   if (!user.exists(userID)) {
     return handleError.notFoundError('User not found: ' + userID, res);

@@ -38,7 +38,6 @@ require('../app.js');
     vm.chickenOut = function() {
 
       socket.queued = false;
-      console.log('chicken');
       $http.delete( '/api/queue')
       .success(function (resp) {
         $location.url('/kvox/menu');

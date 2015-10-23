@@ -40,9 +40,5 @@ usersRouter.patch('/user', jsonParser, function(req, res) {
     }
   }
   socketServer.updateQueue(queue.queue);
-  console.log('change nick');
-  console.log('user id: ' + userID);
-  console.log('new nick: ' + req.body.nick);
-  console.log(users.usersDict);
   res.status(200).json(users.getUser(req.headers.id));
 });

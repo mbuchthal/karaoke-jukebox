@@ -26,8 +26,6 @@ function SocketServer(io) {
         socketID: socket.id
       };
       serverEvents.emit('registerUser', user.id);
-      console.log('registeruser id: ' + user.id);
-      console.log('socket id: ' + socket.id);
     });
     socket.on('onDeck', function() {
       clearTimeout(clientSockets[socket.id].timeout);
@@ -54,8 +52,6 @@ function SocketServer(io) {
   };
 
   this.acceptUser = function(user, queue, songList) {
-    console.log(connections);
-    console.log('user id: ' + user.id);
     if (connections[user.id]) {
       var socketID = connections[user.id].socketID;
       clients[user.id] = user;
