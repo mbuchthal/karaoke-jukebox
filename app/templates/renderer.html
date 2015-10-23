@@ -1,35 +1,37 @@
-<h1 class="title-small">K<span class="title-svg-small">Vox</span></h1>
-<section class="lyrics-container">
-  <h2>{{vm.username}} is singing "{{vm.songTitle}}"</h2>
-  <ul class="cb-slideshow">
-    <li>
-      <span>Image 1</span>
-    </li>
-    <li>
-      <span>Image 2</span>
-    </li>
-    <li>
-      <span>Image 3</span>
-    </li>
-    <li>
-      <span>Image 4</span>
-    </li>
-    <li>
-      <span>Image 5</span>
-    </li>
-    <li>
-      <span>Image 6</span>
-    </li>
-  </ul>
-  <ul class="lyrics">
-    <li>
-      <span class="rendered">{{vm.renderedCurrentLyric}}</span><span class="unrendered">{{vm.unrenderedCurrentLyric}}</span>
-    </li>
-    <li>
-      <span class="unrendered">{{vm.nextLyric}}</span>
-    </li>
-  </ul>
-  <div class="audio">
-    <audio id="player" src="{{vm.songSrc | trustUrl}}" controls></audio>
-  </div>
-</section>
+<article>
+  <h1 class="title-small">K<span class="title-svg-small">Vox</span></h1>
+  <section class="lyrics-container">
+    <h2><span class="highlight">{{vm.username}}</span>{{vm.message}}<span class="highlight">{{vm.songTitle}}</span></h2>
+    <ul class="cb-slideshow">
+      <li>
+        <span>Image 1</span>
+      </li>
+      <li>
+        <span>Image 2</span>
+      </li>
+      <li>
+        <span>Image 3</span>
+      </li>
+      <li>
+        <span>Image 4</span>
+      </li>
+      <li>
+        <span>Image 5</span>
+      </li>
+      <li>
+        <span>Image 6</span>
+      </li>
+    </ul>
+    <ul class="lyrics">
+      <li>
+        <span class="rendered">{{vm.renderedCurrentLyric}}</span><span class="unrendered">{{vm.unrenderedCurrentLyric}}</span>
+      </li>
+      <li>
+        <span class="unrendered">{{vm.nextLyric}}</span>
+      </li>
+    </ul>
+    <div class="audio">
+      <audio id="player" src="{{vm.songSrc | trustUrl}}" controls></audio>
+    </div>
+  </section>
+</article>
