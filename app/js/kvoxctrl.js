@@ -20,8 +20,6 @@ require('../app.js');
           qr.className = "qr-item";
           qr.innerHTML = data.QR;
           El.appendChild(qr);
-          // parentEl.hide();
-          // qr.scrollIntoView();
           socket.emit('registerUser', {id: data.id});
 
         })
