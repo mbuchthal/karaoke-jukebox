@@ -3,7 +3,7 @@ require('../app.js');
 (function () {
   'use strict'
 
-  angular.module('kvoxapp').controller('AdminCtrl', ['socket', '$location', '$base64', function (socket, $location, $base64) {
+  angular.module('kvoxapp').controller('AdminCtrl', ['socket', '$location', '$base64', '$log', '$http', function (socket, $location, $base64, $log, $http) {
 
     var vm = this;
 
@@ -20,7 +20,6 @@ require('../app.js');
     function errorHandler (response) {
       $log.error('response', response);
     }
-console.log('test');
-  }]);
 
+  }]);
 })();

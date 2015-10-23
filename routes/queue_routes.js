@@ -13,10 +13,11 @@ queueRouter.post('/queue', jsonParser, function(req, res) {
   if (!users.exists(userID) || users.isExpired(users.getUser(userID))) {
     return handleError.unauthorized(null, res);
   }
-  if (!(req.body && req.body.song)) {
-    return handleError.badRequest(null, res);
+  var query = {};
+  if (req.body.song && req.body.song.mp3file) {
+    query.mp3file = req.body.song.mp3file;
   }
-  Lyric.findOne({mp3file: req.body.song.mp3file}, function(err, song) {
+  Lyric.findOne(query, function(err, song) {
     if (err) {
       return handleError.internalServerError(null, res);
     }
@@ -74,6 +75,6 @@ queueRouter.delete('/queue', function(req, res) {
   users.getUser(userID).queued = null;
   users.getUser(userID).queuedSong = null;
   queue.removeSong(users.getUser(req.headers.id));
-  socketServer.updateQueue(queue, queue);
+  socketServer.updateQueue(queue.queue);
   return res.status(200).json({});
 });

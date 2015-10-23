@@ -3,11 +3,12 @@ require('angular-route');
 require('angular-sweetalert');
 require('sweetalert');
 require('angular-base64');
+require('angular-cookies');
 
 (function () {
   'use strict'
 
-var app = angular.module('kvoxapp', ['ngRoute', 'base64']);
+var app = angular.module('kvoxapp', ['ngRoute', 'base64', 'ngCookies']);
 
   app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/kvox', {
@@ -29,10 +30,6 @@ var app = angular.module('kvoxapp', ['ngRoute', 'base64']);
     .when('/kvox/queue', {
       templateUrl: 'templates/queue.html',
       controller: 'KvoxQueueCtrl as vm',
-    })
-    .when('/kvox/queue', {
-      templateUrl: 'templates/queue.html',
-      controller: 'KvoxQueueCtrl as vm'
     })
     .when('/kvox/menu', {
       templateUrl: 'templates/menu.html',
