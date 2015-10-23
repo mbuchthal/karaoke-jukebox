@@ -18,7 +18,7 @@ require('../app.js');
       socket.queued = true;
       $http.post('/api/queue')
       .success(function(res) {
-        vm.queue.push({user:{nick:vm.user.nick}});
+        //vm.queue.push({user:{nick:vm.user.nick}});
       })
       .error(function(res) {
         console.log('failed to add to queue: ' + res);
@@ -35,15 +35,13 @@ require('../app.js');
       });
     }
 
-    function chickenOut () {
+    vm.chickenOut = function() {
 
       socket.queued = false;
       console.log('chicken');
-      $http.delete( '/api/queue', {
-        headers: {'vm.user': 'vm.user.id'}
-      })
+      $http.delete( '/api/queue')
       .success(function (resp) {
-        $location.url('/menu');
+        $location.url('/kvox/menu');
       })
       .error(errorHandler);
     }

@@ -1,17 +1,19 @@
 (function() {
-  angular.module('kvoxapp').factory('socket', ['$rootScope', '$http', function($rootScope, $http) {
+  angular.module('kvoxapp').factory('socket', ['$rootScope', '$http', '$cookies', function($rootScope, $http, $cookies) {
     var socket = io.connect();
 
     socket.on('updateQueue', function(queue) {
       $rootScope.$apply(function() {
         socketObj.queue = queue;
       });
-
       console.log(queue);
     });
 
     socket.on('acceptUser', function(data) {
       $rootScope.$apply(function() {
+        $cookies.put('id', data.user.id);
+        $cookies.put('nick', data.user.nick);
+        $cookies.put('expiry', data.user.expiry);
         socketObj.user = data.user;
         socketObj.queue = data.queue;
         socketObj.songlist = data.songlist;
@@ -72,8 +74,8 @@
         socket.close();
       },
       user: {},
-      queue: null,
-      songlist: null
+      queue: [],
+      songlist: {}
     };
 
 
