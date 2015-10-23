@@ -23,9 +23,8 @@
     font-family: $font-sub;
     font-size: 1.6em;
     background-image:
-    linear-gradient(to bottom right,
-     #fff 5%, $color-theme
-    );
+    -webkit-linear-gradient(top left, #fff 5%, $color-theme);background-image:
+    linear-gradient(to bottom right, #fff 5%, $color-theme);
   }
   .chicken:before {
     @include insert-svg(url("../images/Chicken.svg"), 100%, 1em);

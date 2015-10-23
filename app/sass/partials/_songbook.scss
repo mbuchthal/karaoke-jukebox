@@ -51,6 +51,7 @@ button[name="enter-song"] {
   font-family: $font-sub;
   font-size: 0.6em;
   background-image:
+  -webkit-linear-gradient(top left, #fff 5%, $color-theme);background-image:
   linear-gradient(to bottom right,
    #fff 5%, $color-theme
   );
