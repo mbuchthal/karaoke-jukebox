@@ -33,15 +33,13 @@ require('../app.js');
       sweetAlert();
     });
 
-    function chickenOut () {
+    vm.chickenOut = function() {
 
       socket.queued = false;
       console.log('chicken');
-      $http.delete( '/api/queue', {
-        headers: {'vm.user': 'vm.user.id'}
-      })
+      $http.delete( '/api/queue')
       .success(function (resp) {
-        $location.url('/menu');
+        $location.url('/kvox/menu');
       })
       .error(errorHandler);
     }
