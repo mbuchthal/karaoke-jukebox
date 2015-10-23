@@ -45,8 +45,8 @@ require("./url.filter.js");
 3,5,0,3,0,0,4,3,0,4,0,0]},
 {"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
 3,3,5,0,0,0,4,5,4,0,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0]},
-{"text":"[2 bars]","beatDuration":"264","beatIncrements":[
-1,0,0,0,0,0,1,0,0,0,0,0]},
+{"text":"■ ■ ■ ■","beatDuration":"264","beatIncrements":[
+1,0,1,1,0,0,1,0,1,1,0,0]},
 {"text":"Who said that every wish","beatDuration":"264","beatIncrements":[
 3,0,5,0,0,5,3,3,5,0,0]},
 {"text":"would be heard and answered","beatDuration":"264","beatIncrements":[
@@ -62,7 +62,7 @@ require("./url.filter.js");
 {"text":"What's so amazing","beatDuration":"264","beatIncrements":[
 6,0,3,0,3,0,1,0,5,0]},
 {"text":"that keeps us stargazing","beatDuration":"264","beatIncrements":[
-4,0,6,0,3,0,5,0,3,0,3,0,0,0]},
+4,0,6,0,3,0,5,0,3,0,3,0,0]},
 {"text":"and what do we think we might see?","beatDuration":"264","beatIncrements":[
 3,5,0,3,0,3,0,6,0,0,3,6,0,5,0,0,0,0,0,0,0,0,0,0,0]},
 {"text":"Someday we'll find it","beatDuration":"264","beatIncrements":[
