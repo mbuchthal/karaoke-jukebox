@@ -103,16 +103,18 @@ require("./url.filter.js");
 // {"text":"Laa daa da daa daa de daa ooo","beatDuration":"264","beatIncrements":[
 // 3,0,4,0,0,3,4,0,4,0,3,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0]}]}
 //     };
-    // var user = queue.user;
+    // var username = queue.user;
     // var song = queue.song;
     var user, song, lyricArray, renderedArray, unrenderedArray, currentLyric, timeoutId, beatDuration, beatIncrements, lineCounter, beatCounter, charCounter;
     var audio = document.getElementById("player");
     var mp3Path = "http://localhost:5678/"
 
     function initialize() {
+      console.log(socket.queue[0]);
       user = socket.queue[0].user;
       song = socket.queue[0].song;
-      updateQueue();
+      vm.songSrc = mp3Path + song.mp3file;
+      console.log(socket.queue);
       userMessage(",", " you're up!");
       beatDuration = song.lyrics[0].beatDuration;
       beatIncrements = song.lyrics[0].beatIncrements;
@@ -200,8 +202,6 @@ require("./url.filter.js");
         updateLyrics();
       }, beatDuration);
     }
-
-    vm.songSrc = mp3Path + song.mp3file;
 
     initialize();
 
