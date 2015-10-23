@@ -19,6 +19,9 @@
     font-size: 3em;
     z-index: 100;
   }
+  .highlight {
+    color: $color-sub;
+  }
   .lyrics {
     font-family: $font-lyric;
     height: 95px;
