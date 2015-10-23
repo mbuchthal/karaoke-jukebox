@@ -3,17 +3,30 @@
     var socket = io.connect();
 
     socket.on('updateQueue', function(queue) {
-      socketObj.queue = queue;
+      $rootScope.$apply(function() {
+        socketObj.queue = queue;
+      });
+
+      console.log(queue);
     });
 
-    socket.on('acceptUser', function(user, queue, songlist) {
-      socketObj.user = user;
-      socketObj.queue = queue;
-      socketObj.songlist = songlist;
+    socket.on('acceptUser', function(data) {
+      $rootScope.$apply(function() {
+        socketObj.user = data.user;
+        socketObj.queue = data.queue;
+        socketObj.songlist = data.songlist;
+        $http.defaults.headers.common.id = data.user.id;
+        $http.defaults.headers.common.nick = data.user.nick;
+        $http.defaults.headers.common.expiry = data.user.expiry;
+      });
     });
 
-    socket.on('updateUser', function(user) {
-      socketObj.user = user;
+    socket.on('updateUser', function(data) {
+      $rootScope.$apply(function() {
+        socketObj.user = data.user;
+        $http.defaults.headers.common.nick = data.user.nick;
+        $http.defaults.headers.common.expiry = data.user.expiry;
+      });
     });
 
     socket.on('disconnectUser', function() {
@@ -27,9 +40,7 @@
 
     var socketObj = {
       on: function(event, callback) {
-        console.log('setup');
         socket.on(event, function() {
-          console.log('fired');
           var args = arguments;
           $rootScope.$apply(function(){
             if (callback) {
@@ -65,9 +76,7 @@
       songlist: null
     };
 
-    $http.defaults.headers.common.id = socketObj.user.id;
-    $http.defaults.headers.common.nick = socketObj.user.nick;
-    $http.defaults.headers.common.expiry = socketObj.user.expiry;
+
 
   return socketObj;
   }]);

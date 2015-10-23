@@ -14,8 +14,10 @@ require('../app.js');
 
       $http.get('/api/user')
         .success(function (data) {
+          var parentEl = document.getElementById('sign-in_header');
           var El = document.getElementById('qr-wrapper');
           var qr = document.createElement('div');
+          qr.className = "qr-item";
           qr.innerHTML = data.QR;
           El.appendChild(qr);
           socket.emit('registerUser', {id: data.id});
@@ -29,11 +31,11 @@ require('../app.js');
     });
 
 
-    function setName () {
+    vm.setName = function() {
       //using ng model to set user.nick to input value
       $http.patch('/api/user', {nick: vm.user.nick})
-      .success(function (resp) {
-        console.dir('response', response);
+      .success(function (res) {
+        console.dir('response: ' + res);
       })
       .error(errorHandler);
     }

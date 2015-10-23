@@ -9,10 +9,11 @@ require('../app.js');
     var vm = this;
     // vm.user = socket.user;
     // // vm.songs = socket.songList;
-    vm.songs = [];
+    vm.songs = socket.songlist;
+    vm.user = socket.user;
 
     // sample songs for testing views
-    var songSampleOne = {
+/*    var songSampleOne = {
       title:  'Cherry Pie',
       author: 'Poison'
     };
@@ -21,23 +22,23 @@ require('../app.js');
       author: 'Don Mclean'
     };
     vm.songs.push(songSampleTwo);
-    vm.songs.push(songSampleOne);
+    vm.songs.push(songSampleOne);*/
 
     disconnectUser();
 
-    function enterSong (song) {
+    vm.enterSong = function (song) {
       if (!vm.user.queued) {
         // enter song into queue
-        $http.post('/api/queue', song)
+        $http.post('/api/queue', {song: song})
         .success(function (resp) {
-          $location.url('/queue');
+          $location.url('/kvox/queue');
         })
         .error(errorHandler);
       } else {
         // update song in queue
-        $http.patch('/api/queue', song)
+        $http.patch('/api/queue', {song: song})
         .success(function (resp) {
-          $location.url('/queue');
+          $location.url('/kvox/queue');
         })
       }
     }
