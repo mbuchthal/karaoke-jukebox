@@ -3,7 +3,7 @@ require('../app.js');
 (function () {
   'use strict'
 
-  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', function (socket, $location) {
+  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', '$scope', function (socket, $location, $scope) {
 
     var vm = socket;
 
@@ -22,9 +22,9 @@ require('../app.js');
       .error(errorHandler);
     }
 
-      socket.on('acceptUser'), function() {
+    socket.on('acceptUser'), function() {
         $location.url('/kvox/menu');
-
+        $scope.apply()
     }
 
     function setName () {
