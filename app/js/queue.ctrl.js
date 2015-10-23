@@ -13,7 +13,6 @@ require('../app.js');
       vm.queue = socket.queue;
     });
 
-
     vm.queueUp = function() {
       if (socket.queued) { return false; }
       socket.queued = true;
@@ -29,9 +28,12 @@ require('../app.js');
     var sweetAlert = require('./sweetalert');
     disconnectUser();
 
-    socket.on('onDeck', function () {
-      sweetAlert();
-    });
+    initializeQueue();
+    function initializeQueue () {
+      socket.onDeck(function () {
+        sweetAlert();
+      });
+    }
 
     vm.chickenOut = function() {
 
