@@ -109,7 +109,7 @@ describe('socket server', function() {
     registerUser(io, socket, socketServer, {id: 56789, nick: 'tom'},
         'queue', 'songlist');
     var mock = sinon.mock(clientSocket);
-    mock.expects('emit').once().withExactArgs('onDeck');
+    mock.expects('emit').once();
     socketServer.onDeck({id: 56789, nick: 'tom'}, function() {
       mock.verify();
       done();

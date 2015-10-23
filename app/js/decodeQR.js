@@ -44,7 +44,6 @@ function post(path, params, method) {
       hiddenField.setAttribute('type', 'hidden');
       hiddenField.setAttribute('name', key);
       hiddenField.setAttribute('value', params[key]);
-      console.log(hiddenField);
       form.appendChild(hiddenField);
     }
   }
@@ -57,7 +56,7 @@ function read(decodedMsg) {
   var html = htmlEntities(decodedMsg);
   var token = document.getElementById('tokenDiv').innerHTML;
   post('/api/acceptUser', {id: decodedMsg});
-  //document.getElementById('result').innerHTML = html;
+  document.getElementById('result').innerHTML = html;
 }
 
 function htmlEntities(str) {

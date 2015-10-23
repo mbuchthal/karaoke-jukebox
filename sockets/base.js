@@ -29,9 +29,11 @@ function SocketServer(io) {
       console.log('registeruser id: ' + user.id);
       console.log('socket id: ' + socket.id);
     });
-    socket.on('onDeck', function(data) {
+    socket.on('onDeck', function() {
       clearTimeout(clientSockets[socket.id].timeout);
-      clientSockets[socket.id].callback(true);
+      if (clientSockets[socket.id].callback) {
+        clientSockets[socket.id].callback(true);
+      }
     });
     socket.on('disconnect', function() {
       if (clientSockets[socket.id]) {
@@ -94,7 +96,9 @@ function SocketServer(io) {
   this.onDeck = function(user, callback) {
     clients[user.id].callback = callback;
     clients[user.id].timeout = setTimeout(function() {
-      callback(false);
+      if (callback) {
+        callback(false);
+      }
     }, 60000);
     io.to(clients[user.id].socketID).emit('onDeck');
   };
