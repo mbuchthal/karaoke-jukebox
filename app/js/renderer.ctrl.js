@@ -44,7 +44,7 @@ require("./url.filter.js");
 {"text":"the Rainbow Connection","beatDuration":"264","beatIncrements":[
 3,5,0,3,0,0,4,3,0,4,0,0]},
 {"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
-3,3,5,0,0,0,4,5,4,0,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0]},
+3,3,5,0,0,0,4,6,4,0,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0]},
 {"text":"■ ■ ■ ■","beatDuration":"264","beatIncrements":[
 1,0,1,1,0,0,1,0,1,1,0,0]},
 {"text":"Who said that every wish","beatDuration":"264","beatIncrements":[
@@ -70,7 +70,7 @@ require("./url.filter.js");
 {"text":"the Rainbow Connection","beatDuration":"264","beatIncrements":[
 3,5,0,3,0,0,4,3,0,4,0,0]},
 {"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
-3,3,5,0,0,0,4,5,5,0,0,4,0,3,0,0,0,0,0]},
+3,3,5,0,0,0,4,5,4,0,0,4,0,3,0,0,0,0,0]},
 {"text":"All of us under its spell","beatDuration":"264","beatIncrements":[
 3,0,0,3,3,0,3,0,0,3,4,0,6,0,0,0]},
 {"text":"We know that it's probably magic","beatDuration":"264","beatIncrements":[
@@ -78,7 +78,7 @@ require("./url.filter.js");
 {"text":"Have you been half-asleep","beatDuration":"264","beatIncrements":[
 4,0,4,0,5,0,5,3,4,0,0]},
 {"text":"and have you heard voices?","beatDuration":"264","beatIncrements":[
-3,5,0,4,0,6,0,4,0,4,0,0,0,0,0]},
+3,5,0,4,0,6,0,4,0,4,0,0,0]},
 {"text":"I've heard them calling my name","beatDuration":"264","beatIncrements":[
 4,0,6,0,5,0,5,0,3,0,3,0,5,0,0,0,0,0,0,0,0,0,0,0]},
 {"text":"Is this the sweet sound","beatDuration":"264","beatIncrements":[
