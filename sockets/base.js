@@ -28,7 +28,7 @@ function SocketServer(io) {
       serverEvents.emit('registerUser', user.id);
     });
     socket.on('onDeck', function() {
-      clearTimeout(clientSockets[socket.id].timeout);
+      //clearTimeout(clientSockets[socket.id].timeout);
       if (clientSockets[socket.id].callback) {
         clientSockets[socket.id].callback(true);
       }
