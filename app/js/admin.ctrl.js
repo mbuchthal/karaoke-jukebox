@@ -20,7 +20,16 @@ require('../app.js');
     function errorHandler (response) {
       $log.error('response', response);
     }
-console.log('test');
-  }]);
 
+    //  vm.adminSendUserId = function(userId) {
+    //   $http.post('/api/acceptUser', {
+    //     id: userId
+    //   })
+    //   .success(function() {
+    //     $locationurl('/kvox/decodeQR');
+    //   })
+    //   .error(errorHandler);
+    // }
+
+  }]);
 })();
