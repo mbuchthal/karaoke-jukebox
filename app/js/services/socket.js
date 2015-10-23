@@ -31,10 +31,11 @@
         socket.on(event, function() {
           console.log('fired');
           var args = arguments;
-          console.log(typeof callback);
-          if (callback) {
-            callback(args);
-          }
+          $rootScope.$apply(function(){
+            if (callback) {
+              callback.apply(socket, args);
+            }
+          });
         });
       },
       emit: function(event, data, callback) {
