@@ -84,7 +84,7 @@
 }
 .menu-listitem4 {
   @include circle-mock;
-  @include rotated-text(11, 145deg, -80deg);
+  @include rotated-text(10, 150deg, -83deg);
    > .icon-stack:before {
     position: relative;
     top: 2em;

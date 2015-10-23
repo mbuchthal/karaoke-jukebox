@@ -3,6 +3,8 @@
   $angle-per-char: $angle-span / $num-letters;
   @for $i from 1 through $num-letters {
     .char#{$i} {
+      -webkit-transform:(rotate($angle-offset + $angle-per-char * $i));
+      -ms-transform:(rotate($angle-offset + $angle-per-char * $i));
       transform:(rotate($angle-offset + $angle-per-char * $i));
     }
   }
