@@ -20,7 +20,6 @@ require('../app.js');
     function errorHandler (response) {
       $log.error('response', response);
     }
-console.log('test');
-  }]);
 
+  }]);
 })();
