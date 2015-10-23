@@ -6,6 +6,8 @@ var handleError = require(__dirname + '/../lib/handle_error');
 var createQR = require(__dirname + '/../lib/qrcode_generate');
 var socketServer = require(__dirname + '/../sockets/base')();
 var queue = require(__dirname + '/../models/queue');
+var mongoose = require('mongoose');
+var Lyric = require(__dirname + '/../models/lyric');
 
 var usersRouter = module.exports = exports = express.Router();
 
@@ -17,8 +19,10 @@ usersRouter.get('/user', function(req, res) {
   };
   users.add(user);
   if (!users.isExpired(user)) {
-    socketServer.acceptUser(user);
-    return res.status(202).json({id: user.id, nick: user.nick});
+    return Lyric.find({}, function (err, data) {
+      socketServer.acceptUser(user, queue.queue, data || []);
+      return res.status(202).json({id: user.id, nick: user.nick});  
+    });
   }
   var qrIdString = createQR(user.id, 'svg');
   res.status(202).json({id: user.id, nick: user.nick, QR: qrIdString});

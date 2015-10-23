@@ -19,7 +19,7 @@ require('../app.js');
       socket.queued = true;
       $http.post('/api/queue')
       .success(function(res) {
-        vm.queue.push({user:{nick:vm.user.nick}});
+        //vm.queue.push({user:{nick:vm.user.nick}});
       })
       .error(function(res) {
         console.log('failed to add to queue: ' + res);
