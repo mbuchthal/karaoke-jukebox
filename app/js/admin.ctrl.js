@@ -21,15 +21,5 @@ require('../app.js');
       $log.error('response', response);
     }
 
-    //  vm.adminSendUserId = function(userId) {
-    //   $http.post('/api/acceptUser', {
-    //     id: userId
-    //   })
-    //   .success(function() {
-    //     $locationurl('/kvox/decodeQR');
-    //   })
-    //   .error(errorHandler);
-    // }
-
   }]);
 })();
