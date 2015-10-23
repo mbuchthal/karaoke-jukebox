@@ -1,0 +1,45 @@
+.lyrics-container {
+  position: relative;
+  text-align: center;
+  height: 610px;
+  margin: 0 2em;
+  padding: 1em;
+  border: 1px solid black;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+  h2, .lyrics {
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5em;
+  }
+  h2, .unrendered {
+    color: white;
+  }
+  h2 {
+    font-family: $font-header;
+    font-size: 3em;
+    z-index: 100;
+  }
+  .lyrics {
+    font-family: $font-lyric;
+    height: 95px;
+    top: 74%;
+  }
+  .rendered, .unrendered {
+    font-size: 4em;
+    position: relative;
+    z-index: 100;
+  }
+  .rendered {
+    color: yellow;
+  }
+  .audio {
+    position: absolute;
+    top: 105%;
+    left: -webkit-calc(50% - 150px);
+    left: -moz-calc(50% - 150px);
+    left: calc(50% - 150px);
+  }
+}
+
+
+

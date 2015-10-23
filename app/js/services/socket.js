@@ -2,7 +2,6 @@
   angular.module('kvoxapp').factory('socket', ['$rootScope', '$http', function($rootScope, $http) {
     var socket = io.connect();
 
-
     socket.on('updateQueue', function(queue) {
       socketObj.queue = queue;
     });
@@ -28,11 +27,14 @@
 
     var socketObj = {
       on: function(event, callback) {
+        console.log('setup');
         socket.on(event, function() {
+          console.log('fired');
           var args = arguments;
-          $rootScope.apply(function() {
-            callback.apply(socket, args);
-          });
+          console.log(typeof callback);
+          if (callback) {
+            callback(args);
+          }
         });
       },
       emit: function(event, data, callback) {
