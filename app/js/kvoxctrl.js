@@ -24,10 +24,9 @@ require('../app.js');
       .error(errorHandler);
     }
 
-    socket.on('acceptUser'), function() {
+    socket.on('acceptUser', function() {
         $location.url('/kvox/menu');
-        $scope.apply()
-    };
+    });
 
 
     function setName () {
