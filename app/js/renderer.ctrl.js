@@ -13,7 +13,96 @@ require("./url.filter.js");
         id: "57394578394579",
         nick: "Bob"
       },
-      song: {"_id":"5627e25560365c0300740b4d","title":"Yellow Submarine","genre":"Rock","mp3file":"yellowsubmarine-beatles.mp3","__v":0,"lyrics":[{"beatDuration":206,"text":"[8 hb silence]  [8 hb guitar strum]","_id":"5627ee9d30fdb80300d826b9","beatIncrements":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"beatDuration":206,"text":". . . In the town where I was born","_id":"5627ee9d30fdb80300d826b8","beatIncrements":[1,1,1,1,1,1,2,4,5,0,0,0,0,6,2,4,5,0,0,0,0,0]},{"beatDuration":206,"text":"lived a man who sailed the seas","_id":"5627ee9d30fdb80300d826b7","beatIncrements":[5,2,2,1,1,0,0,4,7,4,5,0,0,0,0,0]},{"beatDuration":206,"text":"And he told us of his life","_id":"5627ee9d30fdb80300d826b6","beatIncrements":[3,3,5,0,0,0,0,3,3,4,5,0,0,0,0,0]},{"beatDuration":206,"text":"in the land of submarines","_id":"5627ee9d30fdb80300d826b5","beatIncrements":[2,4,3,1,1,0,0,3,4,2,5,0,0,0,0,0]},{"beatDuration":206,"text":"So we sailed up to the sun","_id":"5627ee9d30fdb80300d826b4","beatIncrements":[2,3,7,0,0,0,0,3,3,4,4,0,0,0,0,0]},{"beatDuration":206,"text":"Til we found the sea of green","_id":"5627ee9d30fdb80300d826b3","beatIncrements":[3,3,3,1,2,0,0,4,4,3,6,0,0,0,0,0]},{"beatDuration":206,"text":"And we lived beneath the waves","_id":"5627ee9d30fdb80300d826b2","beatIncrements":[3,3,6,0,0,0,0,3,5,4,6,0,0,0,0,0]},{"beatDuration":206,"text":"In our Yellow Submarine","_id":"5627ee9d30fdb80300d826b1","beatIncrements":[2,4,3,1,3,0,0,0,4,2,4,0,0,0,0,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d826b0","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d826af","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d826ae","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d826ad","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0]},{"beatDuration":206,"text":"And our friends are all aboard","_id":"5627ee9d30fdb80300d826ac","beatIncrements":[3,4,8,0,0,0,0,4,4,3,4,0,0,0,0,0]},{"beatDuration":206,"text":"Many more of us live next door","_id":"5627ee9d30fdb80300d826ab","beatIncrements":[2,2,5,3,3,0,0,0,5,5,5,0,0,0,0,0]},{"beatDuration":206,"text":"And the band begins to play","_id":"5627ee9d30fdb80300d826aa","beatIncrements":[3,4,5,0,0,0,0,3,4,3,5,0,0,0,0,0]},{"beatDuration":206,"text":"[18 hb band instruments]","_id":"5627ee9d30fdb80300d826a9","beatIncrements":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d826a8","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d826a7","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d826a6","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d826a5","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"[62 hb instrumental break, voices in background ]","_id":"5627ee9d30fdb80300d826a4","beatIncrements":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},{"beatDuration":206,"text":"So we live a life of ease ","_id":"5627ee9d30fdb80300d826a3","beatIncrements":[2,3,5,0,0,0,0,2,5,3,5,0,0,0,0,0]},{"beatDuration":206,"text":"Every one of us has all we need","_id":"5627ee9d30fdb80300d826a2","beatIncrements":[2,3,4,3,3,0,0,4,4,3,5,0,0,0,0,0]},{"beatDuration":206,"text":"Sky of blue and sea of green","_id":"5627ee9d30fdb80300d826a1","beatIncrements":[3,3,5,0,0,0,0,4,4,3,6,0,0,0,0,0]},{"beatDuration":206,"text":"In our Yellow Submarine","_id":"5627ee9d30fdb80300d826a0","beatIncrements":[2,4,3,1,3,0,0,0,4,2,4,0,0,0,0,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d8269f","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d8269e","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d8269d","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d8269c","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d8269b","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d8269a","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"We all live in a Yellow Submarine","_id":"5627ee9d30fdb80300d82699","beatIncrements":[2,0,4,0,5,0,3,2,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"Yellow Submarine, Yellow Submarine","_id":"5627ee9d30fdb80300d82698","beatIncrements":[3,3,4,2,5,0,0,0,4,3,4,2,4,0,0,0]},{"beatDuration":206,"text":"","_id":"5627ee9d30fdb80300d82697","beatIncrements":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}],"author":"The Beatles"}
+      song: {"title":"Rainbow Connection","author":"Kermit the Frog","mp3file":"rainbowconnection-kermitthefrog.mp3","genre":"Musical",
+"lyrics":[
+{"text":"•  •  • • • •","beatDuration":"264","beatIncrements":[
+    0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 
+1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 
+1,0,0,1,0,0, 1,0,0,1,0,0, 1,0,0,1,0,0, 1,0,0,1,0,0]},
+{"text":"Why are there so many","beatDuration":"264","beatIncrements":[
+3,0,4,0,0,6,3,3,2,0,0,0]},
+{"text":"songs about rainbows","beatDuration":"264","beatIncrements":[
+5,0,0,3,3,0,5,0,4,0,0]},
+{"text":"and what's on the other side?","beatDuration":"264","beatIncrements":[
+3,7,0,3,0,4,0,2,1,1,1,1,0,6,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Rainbows are visions","beatDuration":"264","beatIncrements":[
+4,0,4,0,0,4,4,0,5,0,0]},
+{"text":"but only illusions","beatDuration":"264","beatIncrements":[
+3,3,0,2,0,0,4,1,0,5,0,0]},
+{"text":"and rainbows have nothing to hide","beatDuration":"264","beatIncrements":[
+3,5,0,4,0,5,0,3,5,0,0,0,3,5,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"So we've been told","beatDuration":"264","beatIncrements":[
+2,0,6,0,5,0,5,0]},
+{"text":"and some choose to believe it","beatDuration":"264","beatIncrements":[
+3,0,5,0,7,0,3,0,3,0,5,3,0,0,0,0]},
+{"text":"I know they're wrong","beatDuration":"264","beatIncrements":[
+1,0,5,0,8,6,0,0]},
+{"text":"wait and see","beatDuration":"264","beatIncrements":[
+4,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Someday we'll find it","beatDuration":"264","beatIncrements":[
+4,0,3,0,0,6,5,0,3,0,0]},
+{"text":"the Rainbow Connection","beatDuration":"264","beatIncrements":[
+3,5,0,3,0,0,4,3,0,4,0,0]},
+{"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
+3,3,5,0,0,0,4,6,4,0,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"• • • • • •","beatDuration":"264","beatIncrements":[
+1,1,1,1,1,1,1,1,1,1,1,0]},
+{"text":"Who said that every wish","beatDuration":"264","beatIncrements":[
+3,0,5,0,0,5,3,3,5,0,0]},
+{"text":"would be heard and answered","beatDuration":"264","beatIncrements":[
+5,3,0,6,0,0,4,4,0,6,0,0]},
+{"text":"when wished on the morning star?","beatDuration":"264","beatIncrements":[
+4,7,0,3,0,4,0,5,0,0,0,3,0,6,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Somebody thought of that","beatDuration":"264","beatIncrements":[
+4,2,2,0,0,0,8,3,5,0,0]},
+{"text":"and someone believed it","beatDuration":"264","beatIncrements":[
+3,5,0,3,0,0,3,6,0,3,0,0,0]},
+{"text":"Look what it's done so far","beatDuration":"264","beatIncrements":[
+4,0,5,0,5,0,5,0,0,0,3,0,4,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"What's so amazing","beatDuration":"264","beatIncrements":[
+6,0,3,0,3,0,1,0,5,0]},
+{"text":"that keeps us stargazing","beatDuration":"264","beatIncrements":[
+4,0,6,0,3,0,5,0,3,0,3,0,0]},
+{"text":"and what do we think we might see?","beatDuration":"264","beatIncrements":[
+3,5,0,3,0,3,0,6,0,0,3,6,0,5,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Someday we'll find it","beatDuration":"264","beatIncrements":[
+4,0,3,0,0,6,5,0,3,0,0]},
+{"text":"the Rainbow Connection","beatDuration":"264","beatIncrements":[
+3,5,0,3,0,0,4,3,0,4,0,0]},
+{"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
+3,3,5,0,0,0,4,6,4,0,0,4,0,3,0,0,0,0,0]},
+{"text":"All of us under its spell","beatDuration":"264","beatIncrements":[
+3,0,0,3,3,0,3,0,0,3,4,0,6,0,0,0]},
+{"text":"We know that it's probably magic...","beatDuration":"264","beatIncrements":[
+2,0,5,0,0,5,5,0,5,0,2,0,2,0,4,0,0,0,0,0,2,0,0,0,0,0,1,0,1,0,1,0]},
+{"text":"Have you been half-asleep","beatDuration":"264","beatIncrements":[
+4,0,4,0,5,0,5,3,4,0,0]},
+{"text":"and have you heard voices?","beatDuration":"264","beatIncrements":[
+3,5,0,4,0,6,0,4,0,4,0,0,0]},
+{"text":"I've heard them calling my name","beatDuration":"264","beatIncrements":[
+4,0,6,0,5,0,5,0,3,0,3,0,5,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Is this the sweet sound","beatDuration":"264","beatIncrements":[
+2,0,5,0,0,4,6,0,6,0,0,0,0]},
+{"text":"that called the young sailors?","beatDuration":"264","beatIncrements":[
+4,7,0,0,4,6,0,5,0,4,0,0]},
+{"text":"The voice might be one and the same","beatDuration":"264","beatIncrements":[
+3,6,0,6,0,3,0,4,4,0,0,4,0,5,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"I've heard it","beatDuration":"264","beatIncrements":[
+4,0,6,0,3,0]},
+{"text":"too many times to ignore it","beatDuration":"264","beatIncrements":[
+3,0,3,0,2,0,6,0,3,0,3,0,4,3,0,0,0]},
+{"text":"it's something that I'm s'posed to be","beatDuration":"264","beatIncrements":[
+4,5,0,5,0,0,5,4,0,8,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0]},
+{"text":"Someday we'll find it","beatDuration":"264","beatIncrements":[
+4,0,3,0,6,0,5,0,3,0,0]},
+{"text":"the Rainbow Connection","beatDuration":"264","beatIncrements":[
+3,5,0,4,0,0,3,3,0,4,0,0]},
+{"text":"the lovers, the dreamers, and me","beatDuration":"264","beatIncrements":[
+3,4,4,0,0,0,4,6,4,0,0,4,0,3,0,0,0,0,0]},
+{"text":"Laa da daa dee da daa dum","beatDuration":"264","beatIncrements":[
+3,0,0,3,4,0,4,0,0,3,4,0,4,0,0,0]},
+{"text":"Laa daa da daa daa de daa ooo","beatDuration":"264","beatIncrements":[
+3,0,4,0,0,3,4,0,4,0,3,0,4,0,4,0,0,0,0,0,0,0,0,0,0,0]}]}
     };
     // var queue = socket.queue;
     var user = queue.user;
