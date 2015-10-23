@@ -15,8 +15,8 @@ require("./url.filter.js");
       },
       song: {"title":"Rainbow Connection","author":"Kermit the Frog","mp3file":"rainbowconnection-kermitthefrog.mp3","genre":"Musical",
 "lyrics":[
-{"text":".  .  . . . .","beatDuration":"264","beatIncrements":[
-0,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 
+{"text":"■  ■  ■ ■ ■ ■","beatDuration":"264","beatIncrements":[
+    0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 
 1,0,0,0,0,0, 1,0,0,0,0,0, 1,0,0,0,0,0, 
 1,0,0,1,0,0, 1,0,0,1,0,0, 1,0,0,1,0,0, 1,0,0,1,0,0]},
 {"text":"Why are there so many","beatDuration":"264","beatIncrements":[
