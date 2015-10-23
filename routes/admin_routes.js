@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser').urlencoded();
 var jsonParser = require('body-parser').json();
 var handleError = require(__dirname + '/../lib/handle_error');
 var user = require(__dirname + '/../models/user');
@@ -55,8 +56,7 @@ adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
   });
 });
 
-adminRouter.post('/acceptUser', jsonParser, eatAuth, function(req, res) {
-  console.log(user.usersDict);
+adminRouter.post('/acceptUser', bodyParser, eatAuth, function(req, res) {
   console.log('acceptuser id: ' + req.body.id);
   var userID = req.body.id;
   if (!user.exists(userID)) {

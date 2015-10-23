@@ -32,7 +32,7 @@ app.use('/api', adminRouter);
 app.use(express.static('build'));
 
 var port = process.env.PORT || 3000;
-server.listen(port, function() {
+server.listen(port, '0.0.0.0', function() {
   kjLog('karaoke-jukebox server listening on ' + port + ' at ' +
       new Date().toString());
 });
