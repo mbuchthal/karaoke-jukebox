@@ -1,18 +1,19 @@
+.queue {
+  text-align: center;
+  h2 {
+    font-size: 2em;
+    font-family: $font-header;
+    padding-bottom: 1.5em;
+  }
+}
 
 .queue_header-container {
   @include flexbox;
-
   padding-bottom: 2.5em;
   -webkit-justify-content: space-around;
   justify-content: space-around;
   @media screen and (min-width: 50em) {
-    padding-top: 4.5em;
-  }
-
-  h2 {
-    font-size: 2em;
-    font-family: $font-header;
-    margin: 0 1.5%;
+    padding-top: 2.5em;
   }
   button {
     cursor: pointer;
@@ -25,7 +26,6 @@
     linear-gradient(to bottom right,
      #fff 5%, $color-theme
     );
-
   }
   .chicken:before {
     @include insert-svg(url("../images/Chicken.svg"), 100%, 1em);
@@ -34,7 +34,7 @@
   }
 }
 
-.queue {
+.queue-table {
   @extend .songbook;
 }
 

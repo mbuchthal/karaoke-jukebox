@@ -1,14 +1,14 @@
 <!-- queue.html -->
 <h1 class="title">K<span class="title-svg">Vox</span></h1>
-<section>
+<section class="queue">
+  <h2 class="queue-head">Queue</h2>
   <div class="queue_header-container">
-    <h2>Queue</h2>
     <a href="#/kvox/songbook" class="update-btn">Update Song</a>
     <a href ng-disabled="socket.queued" ng-click="vm.queueUp()" class="update-btn">Get In Line</a>
     <button type="submit" name="delete" class="chicken" ng-click="vm.chickenOut()">Chicken Out</button>
   </div>
   <div class="queue-container">
-  <table class="queue">
+  <table class="queue-table">
     <thead>
       <tr>
         <th>Queue</th>
