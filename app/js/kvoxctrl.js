@@ -14,20 +14,23 @@ require('../app.js');
 
       $http.get('/api/user')
         .success(function (data) {
+          var parentEl = document.getElementById('sign-in_header');
           var El = document.getElementById('qr-wrapper');
           var qr = document.createElement('div');
+          qr.className = "qr-item";
           qr.innerHTML = data.QR;
           El.appendChild(qr);
+          // parentEl.hide();
+          // qr.scrollIntoView();
           socket.emit('registerUser', {id: data.id});
 
         })
       .error(errorHandler);
     }
 
-    socket.on('acceptUser'), function() {
+    socket.on('acceptUser', function() {
         $location.url('/kvox/menu');
-        $scope.apply()
-    };
+    });
 
 
     function setName () {
