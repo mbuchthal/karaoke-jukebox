@@ -3,7 +3,8 @@ require('../app.js');
 (function () {
   'use strict';
 
-  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', '$http', function (socket, $location, $http) {
+
+  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', '$http', '$scope', '$log', function (socket, $location, $http, $scope, $log) {
 
     var vm = this;
 
@@ -13,7 +14,6 @@ require('../app.js');
 
       $http.get('/api/user')
         .success(function (data) {
-
           var El = document.getElementById('qr-wrapper');
           var qr = document.createElement('div');
           qr.innerHTML = data.QR;
@@ -22,11 +22,13 @@ require('../app.js');
 
         })
       .error(errorHandler);
+    }
+
+    socket.on('acceptUser'), function() {
+        $location.url('/kvox/menu');
+        $scope.apply()
     };
 
-    socket.on('acceptUser', function() {
-      $location.path('/kvox/menu');
-    });
 
     function setName () {
       //using ng model to set user.nick to input value
@@ -37,9 +39,11 @@ require('../app.js');
       .error(errorHandler);
     }
 
-    socket.on('disconnectUser', function() {
-      $location.url('/knox');
-    });
+    function disconnectUser () {
+      socket.on('disconnectUser', function() {
+        $location.url('/knox');
+      });
+    }
 
     var sweetAlert = require('./sweetalert');
     socket.on('onDeck', function () {

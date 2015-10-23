@@ -3,7 +3,7 @@ require('../app.js');
 (function () {
 'use strict'
 
-  angular.module('kvoxapp').controller('KvoxQueueCtrl', ['socket', '$location', '$http', function (socket, $location, $http) {
+  angular.module('kvoxapp').controller('KvoxQueueCtrl', ['socket', '$location', '$http', '$scope', '$log', function (socket, $location, $http, $scope, $log) {
 
 
     var vm = this;
@@ -18,6 +18,7 @@ require('../app.js');
     });
 
     function chickenOut () {
+      console.log('chicken');
       $http.delete( '/api/queue', {
         headers: {'vm.user': 'vm.user.id'}
       })
