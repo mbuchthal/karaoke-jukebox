@@ -3,7 +3,7 @@ require('../app.js');
 (function () {
 'use strict'
 
-  angular.module('kvoxapp').controller('KvoxQueueCtrl', ['socket', '$location', '$http', '$scope', function (socket, $location, $http, $scope) {
+  angular.module('kvoxapp').controller('KvoxQueueCtrl', ['socket', '$location', '$http', '$scope', '$log', function (socket, $location, $http, $scope, $log) {
 
 
     var vm = this;

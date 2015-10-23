@@ -30,10 +30,6 @@ var app = angular.module('kvoxapp', ['ngRoute', 'base64']);
       templateUrl: 'templates/queue.html',
       controller: 'KvoxQueueCtrl as vm',
     })
-    .when('/kvox/queue', {
-      templateUrl: 'templates/queue.html',
-      controller: 'KvoxQueueCtrl as vm'
-    })
     .when('/kvox/menu', {
       templateUrl: 'templates/menu.html',
       controller: 'KvoxCtrl as vm'

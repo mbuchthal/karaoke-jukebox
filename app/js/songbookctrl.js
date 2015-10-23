@@ -4,7 +4,7 @@ require('../app.js');
 (function () {
 'use strict'
 
-  angular.module('kvoxapp').controller('SongBookCtrl', ['socket', '$location', function (socket, $location) {
+  angular.module('kvoxapp').controller('SongBookCtrl', ['socket', '$location', '$log', '$http', function (socket, $location, $log, $http) {
 
     var vm = this;
     // vm.user = socket.user;

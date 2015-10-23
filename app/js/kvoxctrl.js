@@ -4,7 +4,7 @@ require('../app.js');
   'use strict';
 
 
-  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', '$http', '$scope', function (socket, $location, $http, $scope) {
+  angular.module('kvoxapp').controller('KvoxCtrl', ['socket', '$location', '$http', '$scope', '$log', function (socket, $location, $http, $scope, $log) {
 
     var vm = this;
 
@@ -14,7 +14,6 @@ require('../app.js');
 
       $http.get('/api/user')
         .success(function (data) {
-
           var El = document.getElementById('qr-wrapper');
           var qr = document.createElement('div');
           qr.innerHTML = data.QR;
@@ -23,7 +22,6 @@ require('../app.js');
 
         })
       .error(errorHandler);
-
     }
 
     socket.on('acceptUser'), function() {
@@ -41,9 +39,11 @@ require('../app.js');
       .error(errorHandler);
     }
 
-    socket.on('disconnectUser', function() {
-      $location.url('/knox');
-    });
+    function disconnectUser () {
+      socket.on('disconnectUser', function() {
+        $location.url('/knox');
+      });
+    }
 
     var sweetAlert = require('./sweetalert');
     socket.on('onDeck', function () {
