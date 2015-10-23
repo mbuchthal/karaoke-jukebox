@@ -1,6 +1,8 @@
 var canvas = null;
 var ctx = null;
 
+setTimeout(load, 250);
+
 function load() {
   if (supported()) {
     initCanvas(100, 100);
@@ -34,12 +36,15 @@ function post(path, params, method) {
   var form = document.createElement('form');
   form.setAttribute('method', method);
   form.setAttribute('action', path);
+  form.setAttribute('target', 'hiddenFrame');
+  console.log(params);
   for (var key in params) {
     if (params.hasOwnProperty(key)) {
       var hiddenField = document.createElement('input');
       hiddenField.setAttribute('type', 'hidden');
       hiddenField.setAttribute('name', key);
       hiddenField.setAttribute('value', params[key]);
+      console.log(hiddenField);
       form.appendChild(hiddenField);
     }
   }
@@ -49,14 +54,10 @@ function post(path, params, method) {
 }
 
 function read(decodedMsg) {
-  var html = '<br>Decoded Message:<br/>';
-  if (decodedMsg.indexOf('http') === 0) {
-    html += '<a target="_blank" href="' + decodedMsg + '">' + decodedMsg + '</a>';
-  } else {
-    html += '<b>' + htmlEntities(decodedMsg) + '</b>';
-  }
+  var html = htmlEntities(decodedMsg);
+  var token = document.getElementById('tokenDiv').innerHTML;
   post('/api/acceptUser', {id: decodedMsg});
-  document.getElementById('result').innerHTML = html;
+  //document.getElementById('result').innerHTML = html;
 }
 
 function htmlEntities(str) {

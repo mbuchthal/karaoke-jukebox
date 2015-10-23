@@ -39,12 +39,16 @@ adminRouter.post('/signupAdmin', jsonParser, function(req, res) {
 });
 
 adminRouter.get('/signinAdmin', httpBasic, function(req, res) {
+  console.log(req.auth)
   Admin.findOne({'basic.username': req.auth.username}, function(err, admin) {
     if (err) {return handleError.internalServerError(err, res);}
+    if (!admin) {return handleError.unauthorized(err, res);}
     admin.compareHash(req.auth.password, function(err, hashRes) {
       if (err) {return handleError.internalServerError(err, res);}
+      if (!hashRes) {return handleError.unauthorized(err, res);}
       admin.generateToken(function(err, token) {
         if (err) {return handleError.internalServerError(err, res);}
+        console.log(token);
         res.json({token: token});
       });
     });
