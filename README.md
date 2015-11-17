@@ -22,7 +22,7 @@ At this point, the admin has to scan the QR code to verify that the user is pres
 
 ![alt text](/docs/Demo/IMG_0076.PNG "Main Menu")
 
-Users can update their username (defualt is Guest), choose to sing either Yellow Submarine or Rainbow Connection, and view the karaoke queue.
+Users can choose to sing either Yellow Submarine or Rainbow Connection, update their username (default is Guest), and view the karaoke queue.
 
 ![alt text](/docs/Demo/IMG_0079.PNG "Song Selection")
 
