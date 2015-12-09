@@ -12,7 +12,7 @@ Note: mp3's are not provided in this demo for copyright reasons.
 
 The lyrics and timing are hard-coded for the Yellow Submarine and Rainbow Connection examples.
 
-### Karaoke Jukeboke and Room Management System
+### Karaoke Player and Room Management System
 This app is designed to be used by a karaoke host. When patrons are linked to the app (typically a link on a poster in a bar) and click Sign In, they are assigned a unique id and given a QR code containing their id.
 
 ![QR Code](/docs/Demo/IMG_0074.PNG "Patron's Generated QR Code")
