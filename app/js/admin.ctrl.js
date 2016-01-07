@@ -19,19 +19,19 @@ require('../app.js');
     }
 
     vm.adminLogin = function() {
-      $http({ 
-        url: '/api/signinAdmin', 
+      $http({
+        url: '/api/signinAdmin',
         method: 'GET',
         headers: {
           'Authorization': 'Basic ' + $base64.encode(vm.admin.username + ':' + vm.admin.basic.password)
-      }})
+        }})
       .success(function (data) {
         $cookies.put('token', data.token);
         $http.defaults.headers.common.token = data.token;
         $location.url('/kvox/decodeQR');
       })
       .error(errorHandler);
-    }
+    };
 
     function errorHandler (response) {
       $log.error('response', response);
