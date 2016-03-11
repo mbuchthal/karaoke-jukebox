@@ -107,7 +107,7 @@ require("./url.filter.js");
     // var song = queue.song;
     var user, song, lyricArray, renderedArray, unrenderedArray, currentLyric, timeoutId, beatDuration, beatIncrements, lineCounter, beatCounter, charCounter;
     var audio = document.getElementById("player");
-    var mp3Path = 'http://kvox-server.herokuapp.com/';
+    var mp3Path = 'https://kvox-server.herokuapp.com/';
 
     function initialize() {
       console.log(socket.queue[0]);
