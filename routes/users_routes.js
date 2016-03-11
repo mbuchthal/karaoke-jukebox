@@ -21,7 +21,7 @@ usersRouter.get('/user', function(req, res) {
   if (!users.isExpired(user)) {
     return Lyric.find({}, function (err, data) {
       socketServer.acceptUser(user, queue.queue, data || []);
-      return res.status(202).json({id: user.id, nick: user.nick});  
+      return res.status(202).json({id: user.id, nick: user.nick});
     });
   }
   var qrIdString = createQR(user.id, 'svg');
