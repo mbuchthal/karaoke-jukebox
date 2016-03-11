@@ -1,8 +1,8 @@
 # K-Vox:
 
-[![Build Status](https://travis-ci.org/andrewmnelson/karaoke-jukebox.svg?branch=master)](https://travis-ci.org/andrewmnelson/karaoke-jukebox)
+[![Build Status](https://travis-ci.org/sschadwick/karaoke-jukebox.svg?branch=master)](https://travis-ci.org/sschadwick/karaoke-jukebox)
 
-Project is deployed on: https://kjstage.herokuapp.com/
+Project is deployed on: https://kvox.herokuapp.com/
 
 Mp3's must be hosted locally using Node.js:
 
