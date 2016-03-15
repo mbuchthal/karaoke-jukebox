@@ -4,12 +4,6 @@
 
 Project is deployed on: https://kvox.herokuapp.com/
 
-Mp3's must be hosted locally using Node.js:
-
-```node mp3server/mp3server.js```
-
-Note: mp3's are not provided in this demo for copyright reasons.
-
 The lyrics and timing are hard-coded for the Yellow Submarine and Rainbow Connection examples.
 
 ### Karaoke Player and Room Management System
