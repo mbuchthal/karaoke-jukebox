@@ -9,7 +9,7 @@ require("./url.filter.js");
     var vm = this;
     var user, song, currentLyric, timeoutId, beatDuration, beatIncrements, lineCounter, beatCounter, charCounter;
     var audio = document.getElementById("player");
-    var mp3Path = "http://localhost:5678/"
+    var mp3Path = 'https://kvox-server.herokuapp.com/';
 
     function initialize() {
       user = socket.queue[0].user;

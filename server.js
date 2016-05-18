@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
                 'mongodb://localhost/karaoke_jukebox_dev');
 process.env.APP_SECRET = process.env.APP_SECRET || 'EVERYBODYDANCENOW';
+process.env.MP3_SERVER = process.env.MP3_SERVER || 'http://localhost:5678/';
 
 var io = require('socket.io').listen(server);
 var socketServer = require(__dirname + '/sockets/base')(io);

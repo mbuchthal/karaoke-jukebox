@@ -1,18 +1,12 @@
 # K-Vox:
 
-[![Build Status](https://travis-ci.org/andrewmnelson/karaoke-jukebox.svg?branch=master)](https://travis-ci.org/andrewmnelson/karaoke-jukebox)
+[![Build Status](https://travis-ci.org/sschadwick/karaoke-jukebox.svg?branch=master)](https://travis-ci.org/sschadwick/karaoke-jukebox)
 
-Project is deployed on: https://kjstage.herokuapp.com/
-
-Mp3's must be hosted locally using Node.js:
-
-```node mp3server/mp3server.js```
-
-Note: mp3's are not provided in this demo for copyright reasons.
+Project is deployed on: https://kvox.herokuapp.com/
 
 The lyrics and timing are hard-coded for the Yellow Submarine and Rainbow Connection examples.
 
-### Karaoke Jukeboke and Room Management System
+### Karaoke Player and Room Management System
 This app is designed to be used by a karaoke host. When patrons are linked to the app (typically a link on a poster in a bar) and click Sign In, they are assigned a unique id and given a QR code containing their id.
 
 ![QR Code](/docs/Demo/IMG_0074.PNG "Patron's Generated QR Code")
