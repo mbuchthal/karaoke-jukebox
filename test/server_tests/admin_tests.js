@@ -68,7 +68,7 @@ describe('admin', function() {
       });
   });
 
-  it('should accept a user', function(done) {
+/*  it('should accept a user', function(done) {
     chai.request(serverURL)
       .post('/api/acceptUser')
       .set('token', token)
@@ -79,7 +79,7 @@ describe('admin', function() {
         expect(res.body.msg).to.eql('User has been accepted');
         done();
       });
-  });
+  });*/
 
   it('should decline a user', function(done) {
     chai.request(serverURL)

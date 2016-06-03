@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGO_URL ||
                 'mongodb://localhost/karaoke_jukebox_dev');
 process.env.APP_SECRET = process.env.APP_SECRET || 'EVERYBODYDANCENOW';
+process.env.MP3_SERVER = process.env.MP3_SERVER || 'http://localhost:5678/';
 
 var io = require('socket.io').listen(server);
 var socketServer = require(__dirname + '/sockets/base')(io);
@@ -32,7 +33,7 @@ app.use('/api', adminRouter);
 app.use(express.static('build'));
 
 var port = process.env.PORT || 3000;
-server.listen(port, function() {
+server.listen(port, '0.0.0.0', function() {
   kjLog('karaoke-jukebox server listening on ' + port + ' at ' +
       new Date().toString());
 });
